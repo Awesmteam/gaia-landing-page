@@ -5,15 +5,15 @@ import { ArrowRight, ChevronDown, Menu, Heart, Sparkles, X } from "lucide-react"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 
-import heroImg from "@assets/image_1778315719938.png";
-import gaiaHeroCardImg from "@assets/image_1778315686654.png";
-import programHeroCardImg from "@assets/image_1778315697754.png";
-import identificationImg from "@assets/image_1778315705414.png";
-import symptomsImg from "@assets/image_1778315709097.png";
-import coupleImg from "@assets/image_1778315740606.png";
-import contrastImg from "@assets/image_1778315692371.png";
-import gaiaPortraitImg from "@assets/image_1778315729204.png";
-import closingImg from "@assets/image_1778315750725.png";
+import heroImg from "@/assets/image_1778315719938.png";
+import gaiaHeroCardImg from "@/assets/image_1778315686654.png";
+import programHeroCardImg from "@/assets/image_1778315697754.png";
+import identificationImg from "@/assets/image_1778315705414.png";
+import symptomsImg from "@/assets/image_1778315709097.png";
+import coupleImg from "@/assets/image_1778315740606.png";
+import contrastImg from "@/assets/image_1778315692371.png";
+import gaiaPortraitImg from "@/assets/image_1778315729204.png";
+import closingImg from "@/assets/image_1778315750725.png";
 
 const PrimaryButton = ({ children, href, className = "", variant = "solid" }: { children: React.ReactNode, href: string, className?: string, variant?: "solid" | "ghost" }) => {
   const base = "inline-flex items-center justify-center rounded-full px-8 py-4 text-base font-medium transition-all duration-500 ease-out";
