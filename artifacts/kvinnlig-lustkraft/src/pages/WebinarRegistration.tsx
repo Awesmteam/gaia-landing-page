@@ -120,76 +120,149 @@ export default function WebinarRegistration() {
       </header>
 
       <main>
-        {/* HERO — centered editorial campaign style (no big image overlay) */}
-        <section className="relative px-6 pt-12 md:pt-20 pb-12 md:pb-16 overflow-hidden">
+        {/* HERO — editorial poster: centered headline anchored by a large
+            circular portrait of Gaia, with two tilted polaroid satellites */}
+        <section className="relative px-6 pt-10 md:pt-16 pb-14 md:pb-20 overflow-hidden">
           {/* soft accent blobs */}
           <div
-            className="absolute -top-32 -left-24 w-[420px] h-[420px] rounded-full bg-secondary/70 blur-3xl pointer-events-none"
+            className="absolute -top-32 -left-24 w-[460px] h-[460px] rounded-full bg-secondary/70 blur-3xl pointer-events-none"
             aria-hidden
           />
           <div
-            className="absolute -top-20 -right-32 w-[380px] h-[380px] rounded-full bg-accent/10 blur-3xl pointer-events-none"
+            className="absolute top-40 -right-40 w-[420px] h-[420px] rounded-full bg-accent/10 blur-3xl pointer-events-none"
             aria-hidden
           />
 
-          <div className="relative max-w-4xl mx-auto text-center">
-            <FadeIn>
-              <div className="inline-flex items-center gap-2 bg-white border border-border/60 text-primary text-xs font-bold tracking-[0.22em] uppercase rounded-full px-4 py-2 shadow-sm mb-7">
-                <Flower2 className="w-3.5 h-3.5 text-accent" />
-                <span>Gratis live-webinar</span>
-                <span className="w-1 h-1 rounded-full bg-primary/30" />
-                <span className="font-mono tracking-normal">{WEBINAR_DATE_SHORT}</span>
-              </div>
-
-              <h1 className="font-serif text-primary text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.05] tracking-tight mb-6">
-                Din kropp vet vägen.
-                <br />
-                <span className="italic font-light text-accent">
-                  Återväck din lust och livskraft.
-                </span>
-              </h1>
-
-              <p className="font-serif italic text-primary/75 text-lg md:text-2xl max-w-2xl mx-auto leading-snug mb-10">
-                Ett gratis webinar för dig som längtar efter att känna dig levande,
-                sedd och närvarande – i din kropp, i dina relationer och i ditt liv.
-              </p>
-            </FadeIn>
-
-            {/* Countdown */}
-            <FadeIn delay={0.1}>
-              <p className="text-[11px] tracking-[0.28em] uppercase text-primary/60 font-semibold mb-4">
-                Webbinariet startar om
-              </p>
-              <Countdown targetIso={WEBINAR_TARGET_ISO} className="mb-10" />
-            </FadeIn>
-
-            <FadeIn delay={0.2}>
-              <CtaButton />
-              <p className="text-xs text-primary/50 mt-4">
-                100% kostnadsfritt · Inga förkunskaper behövs
-              </p>
-            </FadeIn>
-
-            {/* small portrait strip — different visual treatment than sales hero */}
-            <FadeIn delay={0.3}>
-              <div className="mt-12 flex items-center justify-center gap-4">
-                <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-white shadow-md ring-2 ring-secondary">
+          <div className="relative max-w-5xl mx-auto">
+            {/* Polaroid satellites — desktop only, asymmetric placement */}
+            <motion.div
+              initial={{ opacity: 0, y: 20, rotate: -10 }}
+              animate={{ opacity: 1, y: 0, rotate: -7 }}
+              transition={{ duration: 0.9, delay: 0.2, ease: "easeOut" }}
+              className="hidden lg:block absolute left-0 top-24 z-10 w-[180px] origin-bottom-right"
+              aria-hidden
+            >
+              <div className="bg-white p-2.5 pb-10 rounded-md shadow-xl rotate-[-6deg]">
+                <div className="aspect-[3/4] overflow-hidden rounded-sm bg-secondary/40">
                   <img
-                    src={speakerImg}
-                    alt="Gaia Lindroos"
+                    src={bioImg2}
+                    alt=""
                     className="w-full h-full object-cover object-top"
                   />
                 </div>
-                <div className="text-left">
-                  <p className="text-xs tracking-[0.22em] uppercase text-primary/55 font-semibold">
-                    Med
-                  </p>
-                  <p className="font-serif italic text-primary text-lg leading-tight">
-                    Gaia Lindroos
-                  </p>
-                </div>
+                <p className="absolute bottom-2 left-0 right-0 text-center font-serif italic text-primary/70 text-sm">
+                  närvaro
+                </p>
               </div>
-            </FadeIn>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20, rotate: 10 }}
+              animate={{ opacity: 1, y: 0, rotate: 6 }}
+              transition={{ duration: 0.9, delay: 0.35, ease: "easeOut" }}
+              className="hidden lg:block absolute right-2 top-44 z-10 w-[170px] origin-bottom-left"
+              aria-hidden
+            >
+              <div className="bg-white p-2.5 pb-10 rounded-md shadow-xl">
+                <div className="aspect-[3/4] overflow-hidden rounded-sm bg-secondary/40">
+                  <img
+                    src={quoteImg}
+                    alt=""
+                    className="w-full h-full object-cover object-top"
+                  />
+                </div>
+                <p className="absolute bottom-2 left-0 right-0 text-center font-serif italic text-primary/70 text-sm">
+                  hemkomst
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Center editorial column */}
+            <div className="relative z-20 max-w-3xl mx-auto text-center">
+              {/* Magazine masthead row */}
+              <FadeIn>
+                <div className="flex items-center justify-center gap-3 mb-6">
+                  <span className="hidden sm:block h-px w-12 bg-primary/25" aria-hidden />
+                  <div className="inline-flex items-center gap-2 bg-white border border-border/60 text-primary text-[11px] font-bold tracking-[0.24em] uppercase rounded-full px-4 py-2 shadow-sm">
+                    <Flower2 className="w-3.5 h-3.5 text-accent" />
+                    <span>Gratis live-webinar</span>
+                    <span className="w-1 h-1 rounded-full bg-primary/30" aria-hidden />
+                    <span className="font-mono tracking-normal">{WEBINAR_DATE_SHORT}</span>
+                  </div>
+                  <span className="hidden sm:block h-px w-12 bg-primary/25" aria-hidden />
+                </div>
+              </FadeIn>
+
+              {/* Headline line 1 */}
+              <FadeIn delay={0.05}>
+                <h1 className="font-serif text-primary text-4xl sm:text-5xl md:text-6xl lg:text-[5rem] leading-[1.02] tracking-tight">
+                  Din kropp vet vägen.
+                </h1>
+              </FadeIn>
+
+              {/* Circular portrait — anchor of the composition */}
+              <FadeIn delay={0.15}>
+                <div className="relative my-6 md:my-8 mx-auto w-[210px] h-[210px] sm:w-[240px] sm:h-[240px] md:w-[280px] md:h-[280px]">
+                  {/* decorative ring */}
+                  <div
+                    className="absolute -inset-3 rounded-full border border-accent/25"
+                    aria-hidden
+                  />
+                  <div
+                    className="absolute -inset-6 rounded-full border border-primary/10"
+                    aria-hidden
+                  />
+                  <div className="absolute inset-0 rounded-full overflow-hidden bg-secondary/60 shadow-[0_30px_60px_-20px_rgba(40,60,55,0.35)] ring-4 ring-white">
+                    <img
+                      src={speakerImg}
+                      alt="Gaia Lindroos"
+                      className="w-full h-full object-cover object-top"
+                    />
+                  </div>
+                  {/* "Med Gaia" sticker */}
+                  <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-primary text-white rounded-full px-4 py-1.5 shadow-lg flex items-baseline gap-1.5 whitespace-nowrap">
+                    <span className="text-[9px] tracking-[0.22em] uppercase font-bold opacity-70">
+                      Med
+                    </span>
+                    <span className="font-serif italic text-base leading-none">Gaia</span>
+                  </div>
+                </div>
+              </FadeIn>
+
+              {/* Headline line 2 wraps under the portrait */}
+              <FadeIn delay={0.2}>
+                <p className="font-serif italic font-light text-accent text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight">
+                  Återväck din lust
+                  <br className="sm:hidden" />
+                  <span className="sm:ml-3">och livskraft.</span>
+                </p>
+              </FadeIn>
+
+              {/* Sub */}
+              <FadeIn delay={0.28}>
+                <p className="font-serif italic text-primary/75 text-lg md:text-xl max-w-xl mx-auto leading-snug mt-7 mb-9">
+                  Ett gratis webinar för dig som längtar efter att känna dig
+                  levande, sedd och närvarande – i din kropp, i dina relationer
+                  och i ditt liv.
+                </p>
+              </FadeIn>
+
+              {/* Countdown overlapping the lower poster */}
+              <FadeIn delay={0.36}>
+                <p className="text-[11px] tracking-[0.28em] uppercase text-primary/60 font-semibold mb-4">
+                  Webbinariet startar om
+                </p>
+                <Countdown targetIso={WEBINAR_TARGET_ISO} className="mb-9" />
+              </FadeIn>
+
+              {/* CTA */}
+              <FadeIn delay={0.44}>
+                <CtaButton />
+                <p className="text-xs text-primary/50 mt-4">
+                  100% kostnadsfritt · Inga förkunskaper behövs
+                </p>
+              </FadeIn>
+            </div>
           </div>
         </section>
 
