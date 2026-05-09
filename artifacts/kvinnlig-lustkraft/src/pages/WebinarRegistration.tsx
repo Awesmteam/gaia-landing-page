@@ -177,7 +177,7 @@ export default function WebinarRegistration() {
                   <img
                     src={speakerImg}
                     alt="Gaia Lindroos"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover object-top"
                   />
                 </div>
                 <div className="text-left">
@@ -282,7 +282,7 @@ export default function WebinarRegistration() {
                 <img
                   src={quoteImg}
                   alt="Kvinna i mjuk närvaro"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-top"
                 />
               </div>
             </FadeIn>
@@ -417,14 +417,14 @@ export default function WebinarRegistration() {
                 <img
                   src={speakerImg}
                   alt="Gaia Lindroos"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-top"
                 />
               </div>
-              <div className="relative rounded-[2rem] overflow-hidden aspect-[4/3] shadow-md hidden md:block">
+              <div className="relative rounded-[2rem] overflow-hidden aspect-[3/4] shadow-md hidden md:block bg-secondary/40">
                 <img
                   src={bioImg}
                   alt="Gaia leder grupp"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain"
                 />
               </div>
             </FadeIn>
@@ -455,11 +455,12 @@ export default function WebinarRegistration() {
                   </p>
                 </div>
 
-                <div className="my-10 rounded-[1.75rem] overflow-hidden aspect-[16/10] md:hidden">
-                  <img src={bioImg2} alt="Gaia i närvaro" className="w-full h-full object-cover" />
-                </div>
-                <div className="my-10 rounded-[1.75rem] overflow-hidden aspect-[16/9] hidden md:block">
-                  <img src={bioImg2} alt="Gaia i närvaro" className="w-full h-full object-cover" />
+                <div className="my-10 rounded-[1.75rem] overflow-hidden aspect-[4/5] sm:aspect-[3/4] bg-secondary/40">
+                  <img
+                    src={bioImg2}
+                    alt="Gaia i närvaro"
+                    className="w-full h-full object-contain"
+                  />
                 </div>
 
                 <div className="space-y-5 text-lg text-primary/80 leading-relaxed mb-10">
