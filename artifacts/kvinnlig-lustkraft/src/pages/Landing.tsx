@@ -9,6 +9,8 @@ import heroImg from "@assets/image_1778315719938.png";
 import gaiaHeroCardImg from "@assets/image_1778315686654.png";
 import programHeroCardImg from "@assets/image_1778315697754.png";
 import identificationImg from "@assets/image_1778315705414.png";
+import symptomsImg from "@assets/image_1778315709097.png";
+import coupleImg from "@assets/image_1778315740606.png";
 import contrastImg from "@assets/image_1778315692371.png";
 import gaiaPortraitImg from "@assets/image_1778315729204.png";
 import closingImg from "@assets/image_1778315750725.png";
@@ -165,6 +167,12 @@ export default function Landing() {
             <FadeIn className="order-2 lg:order-1 relative">
               <div className="relative rounded-[2rem] overflow-hidden aspect-[4/5]">
                 <img src={identificationImg} alt="Överlevnadsläge" className="w-full h-full object-cover" />
+              </div>
+              <div className="hidden md:block absolute -bottom-10 -right-6 w-44 lg:w-56 rounded-[1.5rem] overflow-hidden aspect-[3/4] shadow-xl border-4 border-background">
+                <img src={symptomsImg} alt="Symtom kring kvinnan" className="w-full h-full object-cover" />
+              </div>
+              <div className="md:hidden mt-6 rounded-[1.5rem] overflow-hidden aspect-[4/5]">
+                <img src={symptomsImg} alt="Symtom kring kvinnan" className="w-full h-full object-cover" />
               </div>
             </FadeIn>
             
@@ -493,6 +501,9 @@ export default function Landing() {
             <FadeIn className="relative">
               <div className="relative rounded-[2rem] overflow-hidden aspect-[3/4]">
                 <img src={gaiaPortraitImg} alt="Gaia Qiliv Lindroos" className="w-full h-full object-cover" />
+              </div>
+              <div className="hidden md:block absolute -bottom-10 -left-6 w-44 lg:w-52 rounded-[1.5rem] overflow-hidden aspect-[4/3] shadow-xl border-4 border-background">
+                <img src={coupleImg} alt="Par i vardagen" className="w-full h-full object-cover" />
               </div>
             </FadeIn>
             
