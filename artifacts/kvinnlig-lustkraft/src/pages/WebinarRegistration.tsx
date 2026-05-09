@@ -97,7 +97,7 @@ export default function WebinarRegistration() {
     }
     setError(null);
     setSubmitting(true);
-    setTimeout(() => navigate("/webinar/tack"), 300);
+    setTimeout(() => navigate("/tack"), 300);
   };
 
   return (
@@ -537,10 +537,10 @@ export default function WebinarRegistration() {
           <p className="font-serif text-primary text-xl">Kram, Gaia</p>
           <div className="mt-8">
             <Link
-              href="/"
+              href="/sales"
               className="text-sm tracking-[0.2em] uppercase text-primary/60 hover:text-accent transition-colors"
             >
-              Tillbaka till Kvinnlig Lustkraft
+              Läs mer om Kvinnlig Lustkraft®
             </Link>
           </div>
         </footer>

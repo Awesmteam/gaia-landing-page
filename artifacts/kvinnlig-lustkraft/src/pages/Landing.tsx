@@ -719,7 +719,7 @@ export default function Landing() {
                     <span>100% garanti — pengarna tillbaka.</span>
                   </div>
                   
-                  <Link href="/tack" className="flex items-center justify-center rounded-full bg-primary px-8 py-5 text-lg font-medium text-primary-foreground hover:bg-primary/90 transition-all duration-300 w-full shadow-xl shadow-primary/10 hover:shadow-primary/20 hover:scale-[1.02]">
+                  <Link href="/sales/tack" className="flex items-center justify-center rounded-full bg-primary px-8 py-5 text-lg font-medium text-primary-foreground hover:bg-primary/90 transition-all duration-300 w-full shadow-xl shadow-primary/10 hover:shadow-primary/20 hover:scale-[1.02]">
                     Ja, jag vill börja nu
                   </Link>
                 </div>
