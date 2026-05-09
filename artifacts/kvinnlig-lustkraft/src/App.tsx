@@ -1,6 +1,8 @@
 import { Switch, Route, Router as WouterRouter } from "wouter";
 import Landing from "@/pages/Landing";
 import ThankYou from "@/pages/ThankYou";
+import WebinarRegistration from "@/pages/WebinarRegistration";
+import WebinarThankYou from "@/pages/WebinarThankYou";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -8,6 +10,8 @@ function Router() {
     <Switch>
       <Route path="/" component={Landing} />
       <Route path="/tack" component={ThankYou} />
+      <Route path="/webinar" component={WebinarRegistration} />
+      <Route path="/webinar/tack" component={WebinarThankYou} />
       <Route component={NotFound} />
     </Switch>
   );
