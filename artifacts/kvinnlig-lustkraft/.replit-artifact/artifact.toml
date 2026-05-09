@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Kvinnlig Lustkraft"
+version = "1.0.0"
+id = "artifacts/kvinnlig-lustkraft"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 20273
+
+[services.development]
+run = "pnpm --filter @workspace/kvinnlig-lustkraft run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/kvinnlig-lustkraft", "run", "build" ]
+publicDir = "artifacts/kvinnlig-lustkraft/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "20273"
+BASE_PATH = "/"
