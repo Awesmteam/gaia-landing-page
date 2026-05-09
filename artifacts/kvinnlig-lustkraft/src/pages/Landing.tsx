@@ -106,89 +106,75 @@ export default function Landing() {
       <main>
         {/* HERO */}
         <section className="pt-28 md:pt-32 pb-12 px-4 md:px-8 max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-10 items-stretch">
-
-            <FadeIn className="lg:col-span-7 order-1">
-              <div className="h-full bg-white rounded-[2rem] p-8 md:p-12 lg:p-16 border border-border/30 shadow-sm flex flex-col justify-center">
-
-                <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-8 text-xs md:text-sm tracking-[0.18em] uppercase text-primary/80 font-semibold">
-                  <span className="text-accent">Sedan 1999</span>
-                  <span className="w-1 h-1 rounded-full bg-primary/40" />
-                  <span>400+ ljudböcker</span>
-                  <span className="w-1 h-1 rounded-full bg-primary/40" />
-                  <span>Hundratusentals kvinnor</span>
-                </div>
-
-                <h1 className="font-serif text-primary leading-[1.02] tracking-tight mb-6 text-5xl md:text-6xl lg:text-7xl">
-                  Kvinnlig
-                  <span className="block italic font-light text-accent mt-1">Lustkraft<span className="text-primary/70 not-italic font-serif text-2xl md:text-3xl align-top ml-1">®</span></span>
-                </h1>
-
-                <p className="font-serif italic text-primary text-xl md:text-2xl leading-snug mb-8 max-w-xl">
-                  Du är inte trasig. Din kropp väntar bara på att du ska komma tillbaka.
-                </p>
-
-                <p className="text-primary/80 text-base md:text-lg leading-relaxed mb-8 max-w-xl">
-                  En 8-stegs resa tillbaka till din kropp, din kraft och ditt liv. För dig som fungerar, levererar och håller ihop — men inte längre känner dig levande i det.
-                </p>
-
-                <ul className="space-y-3 mb-10 max-w-xl">
-                  {[
-                    "8 moduler · 12 månaders tillgång",
-                    "Live-seminar med Gaia varje månad",
-                    "Tillgång till första modulen direkt efter köp",
-                  ].map((line) => (
-                    <li key={line} className="flex items-start gap-3 text-primary">
-                      <span className="mt-2 w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
-                      <span className="font-medium text-[15px] md:text-base">{line}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-6">
-                  <PrimaryButton href="#pris" className="text-base shadow-lg shadow-primary/10">
-                    Boka din plats
-                  </PrimaryButton>
-                  <PrimaryButton href="#moduler" variant="ghost" className="text-base">
-                    Se programmet
-                  </PrimaryButton>
-                </div>
-
-                <p className="text-sm text-primary/75 flex flex-wrap items-center gap-x-4 gap-y-1">
-                  <span>Delbetalning med Klarna</span>
-                  <span className="w-1 h-1 rounded-full bg-primary/40" />
-                  <span>100% garanti — pengarna tillbaka</span>
-                </p>
+          <FadeIn>
+            <div className="bg-white rounded-[2rem] border border-border/30 shadow-sm px-6 py-12 md:px-12 md:py-16 lg:px-20 lg:py-20 text-center">
+              <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 mb-8 text-xs md:text-sm tracking-[0.18em] uppercase text-primary/80 font-semibold">
+                <span className="text-accent">Sedan 1999</span>
+                <span className="w-1 h-1 rounded-full bg-primary/40" />
+                <span>400+ ljudböcker</span>
+                <span className="w-1 h-1 rounded-full bg-primary/40" />
+                <span>Hundratusentals kvinnor</span>
               </div>
-            </FadeIn>
 
-            <FadeIn delay={0.15} className="lg:col-span-5 order-2">
-              <div className="relative h-full min-h-[420px] lg:min-h-[640px]">
-                <div className="relative h-full rounded-[2rem] overflow-hidden bg-secondary">
-                  <img
-                    src={heroImg}
-                    alt="Kvinna med hand över hjärtat"
-                    className="w-full h-full object-cover object-center"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary/30 via-transparent to-transparent"></div>
-                </div>
+              <h1 className="font-serif text-primary leading-[1.02] tracking-tight mb-6 text-5xl md:text-7xl lg:text-8xl">
+                Kvinnlig{" "}
+                <span className="italic font-light text-accent">
+                  Lustkraft
+                  <span className="text-primary/70 not-italic font-serif text-2xl md:text-3xl align-top ml-1">®</span>
+                </span>
+              </h1>
 
-                <div className="hidden md:block absolute -bottom-6 -left-6 lg:-left-10 max-w-[280px] bg-white rounded-2xl p-5 shadow-xl border border-border/40">
-                  <div className="flex items-center gap-1 mb-2 text-accent">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <Sparkles key={i} className="w-3.5 h-3.5 fill-current" strokeWidth={1} />
-                    ))}
-                  </div>
-                  <p className="font-serif italic text-primary text-sm leading-snug mb-3">
-                    "Här har jag gått i terapi i åratal. Och så var det så här lätt?"
-                  </p>
-                  <p className="text-[11px] tracking-widest uppercase text-primary/50 font-semibold">
-                    Deltagare
-                  </p>
-                </div>
+              <p className="font-serif italic text-primary text-xl md:text-2xl lg:text-3xl leading-snug mb-6 max-w-2xl mx-auto">
+                Du är inte trasig. Din kropp väntar bara på att du ska komma tillbaka.
+              </p>
+
+              <p className="text-primary/80 text-base md:text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
+                En 8-stegs resa tillbaka till din kropp, din kraft och ditt liv. För dig som fungerar, levererar och håller ihop — men inte längre känner dig levande i det.
+              </p>
+
+              <ul className="flex flex-col sm:flex-row sm:flex-wrap items-center justify-center gap-x-6 gap-y-3 mb-10 max-w-3xl mx-auto">
+                {[
+                  "8 moduler · 12 månaders tillgång",
+                  "Live-seminar med Gaia varje månad",
+                  "Tillgång till första modulen direkt efter köp",
+                ].map((line) => (
+                  <li key={line} className="flex items-center gap-2 text-primary">
+                    <span className="w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
+                    <span className="font-medium text-[15px] md:text-base">{line}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4 mb-6">
+                <PrimaryButton href="#pris" className="text-base shadow-lg shadow-primary/10">
+                  Boka din plats
+                </PrimaryButton>
+                <PrimaryButton href="#moduler" variant="ghost" className="text-base">
+                  Se programmet
+                </PrimaryButton>
               </div>
-            </FadeIn>
-          </div>
+
+              <p className="text-sm text-primary/75 flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
+                <span>Delbetalning med Klarna</span>
+                <span className="w-1 h-1 rounded-full bg-primary/40" />
+                <span>100% garanti — pengarna tillbaka</span>
+              </p>
+            </div>
+          </FadeIn>
+
+          <FadeIn delay={0.15}>
+            <div className="grid grid-cols-3 gap-3 md:gap-5 mt-6 md:mt-8 h-[260px] md:h-[420px] lg:h-[480px]">
+              <div className="relative rounded-[1.5rem] md:rounded-[2rem] overflow-hidden bg-secondary">
+                <img src={embraceImg} alt="Två kvinnor i närvaro" className="w-full h-full object-cover object-center" />
+              </div>
+              <div className="relative rounded-[1.5rem] md:rounded-[2rem] overflow-hidden bg-secondary">
+                <img src={heroImg} alt="Kvinna med hand över hjärtat" className="w-full h-full object-cover object-center" />
+              </div>
+              <div className="relative rounded-[1.5rem] md:rounded-[2rem] overflow-hidden bg-secondary">
+                <img src={liveImg} alt="Live-seminar med Gaia" className="w-full h-full object-cover object-top" />
+              </div>
+            </div>
+          </FadeIn>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 mt-10 md:mt-14">
             <a href="#om-gaia" className="group relative rounded-[1.75rem] overflow-hidden aspect-[4/5] md:aspect-[3/4] bg-secondary">
