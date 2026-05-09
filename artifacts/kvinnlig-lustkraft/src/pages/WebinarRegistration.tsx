@@ -493,11 +493,11 @@ export default function WebinarRegistration() {
                   className="w-full h-full object-cover object-top"
                 />
               </div>
-              <div className="relative rounded-[2rem] overflow-hidden aspect-[3/4] shadow-md hidden md:block bg-secondary/40">
+              <div className="relative rounded-[2rem] overflow-hidden aspect-[4/5] shadow-md hidden md:block bg-secondary/40">
                 <img
                   src={bioImg}
                   alt="Gaia leder grupp"
-                  className="w-full h-full object-contain"
+                  className="w-full h-full object-cover object-top"
                 />
               </div>
             </FadeIn>
@@ -528,11 +528,11 @@ export default function WebinarRegistration() {
                   </p>
                 </div>
 
-                <div className="my-10 rounded-[1.75rem] overflow-hidden aspect-[4/5] sm:aspect-[3/4] bg-secondary/40">
+                <div className="my-10 rounded-[1.75rem] overflow-hidden aspect-[16/10] bg-secondary/40">
                   <img
                     src={bioImg2}
                     alt="Gaia i närvaro"
-                    className="w-full h-full object-contain"
+                    className="w-full h-full object-cover object-top"
                   />
                 </div>
 
