@@ -8,9 +8,12 @@ import speakerImg from "@/assets/image_1778316645808.png";
 import quoteImg from "@/assets/image_1778316613497.png";
 import bioImg from "@/assets/image_1778315729204.png";
 import bioImg2 from "@/assets/image_1778315750725.png";
-
-const WEBINAR_DATE = "torsdag 7. mai";
-const WEBINAR_TIME = "18.00";
+import {
+  WEBINAR_DATE,
+  WEBINAR_TIME,
+  WEBINAR_TIMEZONE_LABEL,
+  WEBINAR_LOCATION_PUBLIC,
+} from "@/lib/webinar";
 
 const FadeIn = ({
   children,
@@ -54,8 +57,8 @@ const DateTimeBlock = ({ className = "" }: { className?: string }) => (
   <div className={`grid grid-cols-1 sm:grid-cols-3 gap-4 ${className}`}>
     {[
       { icon: Calendar, label: "Datum", value: WEBINAR_DATE },
-      { icon: Clock, label: "Tid", value: `${WEBINAR_TIME} svensk tid` },
-      { icon: MapPin, label: "Plats", value: "Online – du får länken på mejlen" },
+      { icon: Clock, label: "Tid", value: `${WEBINAR_TIME} ${WEBINAR_TIMEZONE_LABEL}` },
+      { icon: MapPin, label: "Plats", value: WEBINAR_LOCATION_PUBLIC },
     ].map(({ icon: Icon, label, value }) => (
       <div
         key={label}
@@ -518,7 +521,7 @@ export default function WebinarRegistration() {
                   <Calendar className="w-4 h-4" /> {WEBINAR_DATE}
                 </span>
                 <span className="inline-flex items-center gap-2">
-                  <Clock className="w-4 h-4" /> {WEBINAR_TIME} svensk tid
+                  <Clock className="w-4 h-4" /> {WEBINAR_TIME} {WEBINAR_TIMEZONE_LABEL}
                 </span>
                 <span className="inline-flex items-center gap-2">
                   <MapPin className="w-4 h-4" /> Online

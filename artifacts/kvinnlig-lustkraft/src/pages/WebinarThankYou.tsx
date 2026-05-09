@@ -1,17 +1,20 @@
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { Calendar, Clock, MapPin, CalendarPlus, PartyPopper } from "lucide-react";
-
-const WEBINAR_DATE = "torsdag 7. mai";
-const WEBINAR_TIME = "18.00";
-const WEBINAR_TITLE = "Kvinnlig Lustkraft – Gratis webinar med Gaia";
-const WEBINAR_DESCRIPTION =
-  "Din kropp vet vägen. Återväck din lust och livskraft. Gratis webinar med Gaia Lindroos.";
+import {
+  WEBINAR_DATE,
+  WEBINAR_TIME,
+  WEBINAR_TIMEZONE_LABEL,
+  WEBINAR_LOCATION_CONFIRMED,
+  WEBINAR_TITLE,
+  WEBINAR_DESCRIPTION,
+  WEBINAR_ICS_DTSTART_UTC,
+  WEBINAR_ICS_DTEND_UTC,
+} from "@/lib/webinar";
 
 function buildIcs(): string {
-  // Thursday 7 May 2026 at 18.00 Stockholm time = 16:00 UTC; 90 min duration
-  const dtStart = "20260507T160000Z";
-  const dtEnd = "20260507T173000Z";
+  const dtStart = WEBINAR_ICS_DTSTART_UTC;
+  const dtEnd = WEBINAR_ICS_DTEND_UTC;
   const dtStamp = new Date()
     .toISOString()
     .replace(/[-:]/g, "")
@@ -30,7 +33,7 @@ function buildIcs(): string {
     `DTEND:${dtEnd}`,
     `SUMMARY:${WEBINAR_TITLE}`,
     `DESCRIPTION:${WEBINAR_DESCRIPTION}`,
-    "LOCATION:Online via Zoom",
+    `LOCATION:${WEBINAR_LOCATION_CONFIRMED}`,
     "END:VEVENT",
     "END:VCALENDAR",
   ].join("\r\n");
@@ -101,8 +104,8 @@ export default function WebinarThankYou() {
             <div className="space-y-4">
               {[
                 { icon: Calendar, label: "Datum", value: WEBINAR_DATE },
-                { icon: Clock, label: "Tid", value: `${WEBINAR_TIME} svensk tid` },
-                { icon: MapPin, label: "Plats", value: "Online via Zoom" },
+                { icon: Clock, label: "Tid", value: `${WEBINAR_TIME} ${WEBINAR_TIMEZONE_LABEL}` },
+                { icon: MapPin, label: "Plats", value: WEBINAR_LOCATION_CONFIRMED },
               ].map(({ icon: Icon, label, value }) => (
                 <div key={label} className="flex items-center gap-4">
                   <div className="w-10 h-10 rounded-full bg-secondary text-accent flex items-center justify-center shrink-0">
