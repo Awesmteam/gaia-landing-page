@@ -142,7 +142,7 @@ export default function WebinarRegistration() {
               className="hidden lg:block absolute left-0 top-24 z-10 w-[180px] origin-bottom-right"
               aria-hidden
             >
-              <div className="bg-white p-2.5 pb-10 rounded-md shadow-xl rotate-[-6deg]">
+              <div className="relative bg-white p-2.5 pb-10 rounded-md shadow-xl">
                 <div className="aspect-[3/4] overflow-hidden rounded-sm bg-secondary/40">
                   <img
                     src={bioImg2}
@@ -163,7 +163,7 @@ export default function WebinarRegistration() {
               className="hidden lg:block absolute right-2 top-44 z-10 w-[170px] origin-bottom-left"
               aria-hidden
             >
-              <div className="bg-white p-2.5 pb-10 rounded-md shadow-xl">
+              <div className="relative bg-white p-2.5 pb-10 rounded-md shadow-xl">
                 <div className="aspect-[3/4] overflow-hidden rounded-sm bg-secondary/40">
                   <img
                     src={quoteImg}
