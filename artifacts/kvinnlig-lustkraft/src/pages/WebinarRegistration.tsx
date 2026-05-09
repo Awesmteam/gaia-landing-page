@@ -412,68 +412,22 @@ export default function WebinarRegistration() {
         {/* SPEAKER */}
         <section className="py-20 md:py-24 px-6 md:px-12 max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-            <div className="lg:col-span-5 lg:sticky lg:top-28 self-start">
-              <FadeIn>
-                <div className="relative rounded-[2rem] overflow-hidden aspect-[4/5] shadow-lg mb-5">
-                  <img
-                    src={speakerImg}
-                    alt="Gaia Lindroos"
-                    className="w-full h-full object-cover object-top"
-                  />
-                </div>
-
-                {/* Sticky info / CTA card */}
-                <div className="relative rounded-[2rem] bg-primary text-white p-6 md:p-7 shadow-xl overflow-hidden">
-                  <div
-                    className="absolute -top-12 -right-12 w-40 h-40 rounded-full bg-accent/30 blur-2xl pointer-events-none"
-                    aria-hidden
-                  />
-                  <div className="relative">
-                    <span className="text-white/70 text-[10px] font-bold tracking-[0.22em] uppercase block mb-3">
-                      Gratis live-webinar
-                    </span>
-                    <p className="font-serif text-2xl leading-tight mb-1">
-                      0 kr
-                    </p>
-                    <p className="text-white/70 text-xs mb-5">
-                      Helt kostnadsfritt. Ingen bindning.
-                    </p>
-
-                    <ul className="space-y-2.5 text-sm text-white/85 mb-6">
-                      <li className="flex items-center gap-2.5">
-                        <Calendar className="w-4 h-4 text-accent shrink-0" strokeWidth={1.6} />
-                        <span>{WEBINAR_DATE}</span>
-                      </li>
-                      <li className="flex items-center gap-2.5">
-                        <Clock className="w-4 h-4 text-accent shrink-0" strokeWidth={1.6} />
-                        <span>
-                          {WEBINAR_TIME} {WEBINAR_TIMEZONE_LABEL}
-                        </span>
-                      </li>
-                      <li className="flex items-center gap-2.5">
-                        <MapPin className="w-4 h-4 text-accent shrink-0" strokeWidth={1.6} />
-                        <span>Online via Zoom</span>
-                      </li>
-                    </ul>
-
-                    <Countdown
-                      targetIso={WEBINAR_TARGET_ISO}
-                      variant="compact"
-                      className="text-white/85 mb-5 justify-center w-full"
-                    />
-
-                    <button
-                      type="button"
-                      onClick={openPopup}
-                      className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-white text-primary px-5 py-3 text-sm font-semibold shadow-md hover:bg-white/90 transition-colors"
-                    >
-                      Anmäl dig nu
-                      <ArrowRight className="w-4 h-4" />
-                    </button>
-                  </div>
-                </div>
-              </FadeIn>
-            </div>
+            <FadeIn className="lg:col-span-5 lg:sticky lg:top-28">
+              <div className="relative rounded-[2rem] overflow-hidden aspect-[4/5] shadow-lg mb-5">
+                <img
+                  src={speakerImg}
+                  alt="Gaia Lindroos"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="relative rounded-[2rem] overflow-hidden aspect-[4/3] shadow-md hidden md:block">
+                <img
+                  src={bioImg}
+                  alt="Gaia leder grupp"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </FadeIn>
 
             <div className="lg:col-span-7">
               <FadeIn>
@@ -502,18 +456,10 @@ export default function WebinarRegistration() {
                 </div>
 
                 <div className="my-10 rounded-[1.75rem] overflow-hidden aspect-[16/10] md:hidden">
-                  <img
-                    src={bioImg2}
-                    alt="Gaia i närvaro"
-                    className="w-full h-full object-cover object-top"
-                  />
+                  <img src={bioImg2} alt="Gaia i närvaro" className="w-full h-full object-cover" />
                 </div>
                 <div className="my-10 rounded-[1.75rem] overflow-hidden aspect-[16/9] hidden md:block">
-                  <img
-                    src={bioImg2}
-                    alt="Gaia i närvaro"
-                    className="w-full h-full object-cover object-top"
-                  />
+                  <img src={bioImg2} alt="Gaia i närvaro" className="w-full h-full object-cover" />
                 </div>
 
                 <div className="space-y-5 text-lg text-primary/80 leading-relaxed mb-10">
