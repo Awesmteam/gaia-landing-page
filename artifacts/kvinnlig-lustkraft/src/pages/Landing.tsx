@@ -4,9 +4,11 @@ import { ArrowRight, Menu, Heart, Sparkles } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 
-import heroImg from "@/assets/image_1778315719938.png";
-import gaiaHeroCardImg from "@/assets/image_1778315686654.png";
+import heroImg from "@/assets/image_1778316613497.png";
 import programHeroCardImg from "@/assets/image_1778315697754.png";
+import embraceImg from "@/assets/image_1778316635107.png";
+import liveImg from "@/assets/image_1778316662183.png";
+import portraitImg from "@/assets/image_1778316645808.png";
 import identificationImg from "@/assets/image_1778315705414.png";
 import symptomsImg from "@/assets/image_1778315709097.png";
 import coupleImg from "@/assets/image_1778315740606.png";
@@ -103,57 +105,130 @@ export default function Landing() {
 
       <main>
         {/* HERO */}
-        <section className="pt-32 pb-12 px-4 md:px-8 max-w-7xl mx-auto">
-          <div className="relative rounded-[2rem] overflow-hidden bg-secondary aspect-[4/5] md:aspect-[21/9] flex items-center">
-            <div className="absolute inset-0">
-              <img src={heroImg} alt="Kvinna vid havet" className="w-full h-full object-cover object-center" />
-              <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent"></div>
-            </div>
-            
-            <div className="relative z-10 p-8 md:p-16 lg:p-24 max-w-3xl text-white">
-              <FadeIn>
-                <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif leading-tight mb-6">
-                  Kvinnlig <span className="text-accent italic">Lustkraft</span>
+        <section className="pt-28 md:pt-32 pb-12 px-4 md:px-8 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-10 items-stretch">
+
+            <FadeIn className="lg:col-span-7 order-1">
+              <div className="h-full bg-white rounded-[2rem] p-8 md:p-12 lg:p-16 border border-border/30 shadow-sm flex flex-col justify-center">
+
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-8 text-xs md:text-sm tracking-[0.18em] uppercase text-primary/80 font-semibold">
+                  <span className="text-accent">Sedan 1999</span>
+                  <span className="w-1 h-1 rounded-full bg-primary/40" />
+                  <span>400+ ljudböcker</span>
+                  <span className="w-1 h-1 rounded-full bg-primary/40" />
+                  <span>Hundratusentals kvinnor</span>
+                </div>
+
+                <h1 className="font-serif text-primary leading-[1.02] tracking-tight mb-6 text-5xl md:text-6xl lg:text-7xl">
+                  Kvinnlig
+                  <span className="block italic font-light text-accent mt-1">Lustkraft<span className="text-primary/70 not-italic font-serif text-2xl md:text-3xl align-top ml-1">®</span></span>
                 </h1>
-                <p className="text-xl md:text-3xl font-serif mb-6 opacity-90">
+
+                <p className="font-serif italic text-primary text-xl md:text-2xl leading-snug mb-8 max-w-xl">
                   Du är inte trasig. Din kropp väntar bara på att du ska komma tillbaka.
                 </p>
-                <p className="text-base md:text-lg mb-10 max-w-xl text-white/80 leading-relaxed font-sans">
+
+                <p className="text-primary/80 text-base md:text-lg leading-relaxed mb-8 max-w-xl">
                   En 8-stegs resa tillbaka till din kropp, din kraft och ditt liv. För dig som fungerar, levererar och håller ihop — men inte längre känner dig levande i det.
                 </p>
-                <PrimaryButton href="#pris">
-                  Boka din plats
-                </PrimaryButton>
-              </FadeIn>
-            </div>
-          </div>
-          
-          {/* Hero Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mt-4 md:mt-6 relative z-20">
-            <a href="#om-gaia" className="group block relative rounded-[2rem] overflow-hidden aspect-[16/9] md:aspect-[16/10] bg-secondary">
-              <img src={gaiaHeroCardImg} alt="Möt Gaia" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-500"></div>
-              <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between text-white">
-                <div>
-                  <h3 className="text-2xl font-serif mb-1">Möt Gaia</h3>
-                  <p className="text-sm text-white/80 font-medium">En 34-årig resa hem till kroppen</p>
+
+                <ul className="space-y-3 mb-10 max-w-xl">
+                  {[
+                    "8 moduler · 12 månaders tillgång",
+                    "Live-seminar med Gaia varje månad",
+                    "Tillgång till första modulen direkt efter köp",
+                  ].map((line) => (
+                    <li key={line} className="flex items-start gap-3 text-primary">
+                      <span className="mt-2 w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
+                      <span className="font-medium text-[15px] md:text-base">{line}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-6">
+                  <PrimaryButton href="#pris" className="text-base shadow-lg shadow-primary/10">
+                    Boka din plats
+                  </PrimaryButton>
+                  <PrimaryButton href="#moduler" variant="ghost" className="text-base">
+                    Se programmet
+                  </PrimaryButton>
                 </div>
-                <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:bg-white group-hover:text-primary transition-all duration-300">
-                  <ArrowRight className="w-5 h-5" />
+
+                <p className="text-sm text-primary/75 flex flex-wrap items-center gap-x-4 gap-y-1">
+                  <span>Delbetalning med Klarna</span>
+                  <span className="w-1 h-1 rounded-full bg-primary/40" />
+                  <span>100% garanti — pengarna tillbaka</span>
+                </p>
+              </div>
+            </FadeIn>
+
+            <FadeIn delay={0.15} className="lg:col-span-5 order-2">
+              <div className="relative h-full min-h-[420px] lg:min-h-[640px]">
+                <div className="relative h-full rounded-[2rem] overflow-hidden bg-secondary">
+                  <img
+                    src={heroImg}
+                    alt="Kvinna med hand över hjärtat"
+                    className="w-full h-full object-cover object-center"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/30 via-transparent to-transparent"></div>
+                </div>
+
+                <div className="hidden md:block absolute -bottom-6 -left-6 lg:-left-10 max-w-[280px] bg-white rounded-2xl p-5 shadow-xl border border-border/40">
+                  <div className="flex items-center gap-1 mb-2 text-accent">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <Sparkles key={i} className="w-3.5 h-3.5 fill-current" strokeWidth={1} />
+                    ))}
+                  </div>
+                  <p className="font-serif italic text-primary text-sm leading-snug mb-3">
+                    "Här har jag gått i terapi i åratal. Och så var det så här lätt?"
+                  </p>
+                  <p className="text-[11px] tracking-widest uppercase text-primary/50 font-semibold">
+                    Deltagare
+                  </p>
+                </div>
+              </div>
+            </FadeIn>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 mt-10 md:mt-14">
+            <a href="#om-gaia" className="group relative rounded-[1.75rem] overflow-hidden aspect-[4/5] md:aspect-[3/4] bg-secondary">
+              <img src={portraitImg} alt="Gaia Qiliv Lindroos" className="w-full h-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]" />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/85 via-primary/30 to-transparent"></div>
+              <div className="absolute inset-x-0 bottom-0 p-6 text-white">
+                <span className="text-[10px] tracking-[0.22em] uppercase text-white/70 font-semibold mb-2 block">Vem är jag?</span>
+                <div className="flex items-end justify-between gap-4">
+                  <h3 className="font-serif text-2xl leading-tight">Möt Gaia</h3>
+                  <span className="w-10 h-10 rounded-full border border-white/40 flex items-center justify-center transition-all duration-300 group-hover:bg-white group-hover:text-primary group-hover:border-white">
+                    <ArrowRight className="w-4 h-4" />
+                  </span>
                 </div>
               </div>
             </a>
-            
-            <a href="#moduler" className="group block relative rounded-[2rem] overflow-hidden aspect-[16/9] md:aspect-[16/10] bg-secondary">
-              <img src={programHeroCardImg} alt="Programmet" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-500"></div>
-              <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between text-white">
-                <div>
-                  <h3 className="text-2xl font-serif mb-1">Programmet</h3>
-                  <p className="text-sm text-white/80 font-medium">8 moduler · 12 månaders tillgång</p>
+
+            <a href="#moduler" className="group relative rounded-[1.75rem] overflow-hidden aspect-[4/5] md:aspect-[3/4] bg-secondary">
+              <img src={embraceImg} alt="Två kvinnor i närvaro" className="w-full h-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]" />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/85 via-primary/30 to-transparent"></div>
+              <div className="absolute inset-x-0 bottom-0 p-6 text-white">
+                <span className="text-[10px] tracking-[0.22em] uppercase text-white/70 font-semibold mb-2 block">8 steg</span>
+                <div className="flex items-end justify-between gap-4">
+                  <h3 className="font-serif text-2xl leading-tight">Programmet</h3>
+                  <span className="w-10 h-10 rounded-full border border-white/40 flex items-center justify-center transition-all duration-300 group-hover:bg-white group-hover:text-primary group-hover:border-white">
+                    <ArrowRight className="w-4 h-4" />
+                  </span>
                 </div>
-                <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:bg-white group-hover:text-primary transition-all duration-300">
-                  <ArrowRight className="w-5 h-5" />
+              </div>
+            </a>
+
+            <a href="#pris" className="group relative rounded-[1.75rem] overflow-hidden aspect-[4/5] md:aspect-[3/4] bg-secondary">
+              <img src={liveImg} alt="Live-seminar med Gaia" className="w-full h-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]" />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/85 via-primary/30 to-transparent"></div>
+              <div className="absolute inset-x-0 bottom-0 p-6 text-white">
+                <span className="text-[10px] tracking-[0.22em] uppercase text-white/70 font-semibold mb-2 block">Varje månad</span>
+                <div className="flex items-end justify-between gap-4">
+                  <h3 className="font-serif text-2xl leading-tight">Live med Gaia</h3>
+                  <span className="w-10 h-10 rounded-full border border-white/40 flex items-center justify-center transition-all duration-300 group-hover:bg-white group-hover:text-primary group-hover:border-white">
+                    <ArrowRight className="w-4 h-4" />
+                  </span>
                 </div>
               </div>
             </a>
