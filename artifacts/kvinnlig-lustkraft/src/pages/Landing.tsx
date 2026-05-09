@@ -334,7 +334,7 @@ export default function Landing() {
                     <div className="h-px w-full bg-border/50" />
                     
                     <div>
-                      <h4 className="font-serif text-xl text-primary mb-2">Bonus 2 – Vägledd hypnos: Återvändandet till MATKA - kvinnans urminne och den livgivande kraften</h4>
+                      <h4 className="font-serif text-xl text-primary mb-2">Bonus 2 – Vägledd hypnos: Återvändandet till MATKA- kvinnans urminne och den livgivande kraften</h4>
                       <p className="text-primary/70 text-sm md:text-base leading-relaxed">
                         En ceremoniell vägledd hypnos där du leds genom kroppen, ner i livmoderns centrum, och in i kontakten mellan lust, hjärta och livskraft. Detta är inte kunskap för huvudet. Det är minne för kroppen.
                       </p>
