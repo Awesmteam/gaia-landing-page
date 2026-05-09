@@ -202,7 +202,7 @@ export default function WebinarRegistration() {
 
               {/* Circular portrait — anchor of the composition */}
               <FadeIn delay={0.15}>
-                <div className="relative my-6 md:my-8 mx-auto w-[210px] h-[210px] sm:w-[240px] sm:h-[240px] md:w-[280px] md:h-[280px]">
+                <div className="relative my-8 md:my-10 mx-auto w-[220px] h-[220px] sm:w-[250px] sm:h-[250px] md:w-[280px] md:h-[280px]">
                   {/* decorative ring */}
                   <div
                     className="absolute -inset-3 rounded-full border border-accent/25"
@@ -219,8 +219,46 @@ export default function WebinarRegistration() {
                       className="w-full h-full object-cover object-top"
                     />
                   </div>
+
+                  {/* Mobile/tablet polaroid overlays — magazine layered feel */}
+                  <div
+                    className="lg:hidden absolute -left-10 sm:-left-14 -bottom-4 w-[88px] sm:w-[100px] -rotate-[10deg] z-0"
+                    aria-hidden
+                  >
+                    <div className="relative bg-white p-1.5 pb-6 rounded-sm shadow-xl">
+                      <div className="aspect-[3/4] overflow-hidden bg-secondary/40">
+                        <img
+                          src={bioImg2}
+                          alt=""
+                          className="w-full h-full object-cover object-top"
+                        />
+                      </div>
+                      <p className="absolute bottom-1 left-0 right-0 text-center font-serif italic text-primary/70 text-[10px]">
+                        närvaro
+                      </p>
+                    </div>
+                  </div>
+
+                  <div
+                    className="lg:hidden absolute -right-10 sm:-right-14 -top-4 w-[82px] sm:w-[94px] rotate-[8deg] z-0"
+                    aria-hidden
+                  >
+                    <div className="relative bg-white p-1.5 pb-6 rounded-sm shadow-xl">
+                      <div className="aspect-[3/4] overflow-hidden bg-secondary/40">
+                        <img
+                          src={quoteImg}
+                          alt=""
+                          className="w-full h-full object-cover object-top"
+                        />
+                      </div>
+                      <p className="absolute bottom-1 left-0 right-0 text-center font-serif italic text-primary/70 text-[10px]">
+                        hemkomst
+                      </p>
+                    </div>
+                  </div>
+
                   {/* "Med Gaia" sticker */}
-                  <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-primary text-white rounded-full px-4 py-1.5 shadow-lg flex items-baseline gap-1.5 whitespace-nowrap">
+                  <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-primary text-white rounded-full px-4 py-1.5 shadow-lg flex items-baseline gap-1.5 whitespace-nowrap z-10">
                     <span className="text-[9px] tracking-[0.22em] uppercase font-bold opacity-70">
                       Med
                     </span>
