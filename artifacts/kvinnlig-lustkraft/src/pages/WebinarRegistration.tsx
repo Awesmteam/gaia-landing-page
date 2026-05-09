@@ -1,19 +1,23 @@
-import { useState, type FormEvent } from "react";
-import { Link, useLocation } from "wouter";
+import { useState } from "react";
+import { Link } from "wouter";
 import { motion } from "framer-motion";
-import { ArrowRight, Calendar, Clock, MapPin, Flower2 } from "lucide-react";
+import { ArrowRight, Calendar, Clock, MapPin, Flower2, Sparkles } from "lucide-react";
 
-import heroImg from "@/assets/image_1778316635107.png";
 import speakerImg from "@/assets/image_1778316645808.png";
 import quoteImg from "@/assets/image_1778316613497.png";
 import bioImg from "@/assets/image_1778315729204.png";
 import bioImg2 from "@/assets/image_1778315750725.png";
+import accentImg from "@/assets/image_1778316635107.png";
 import {
   WEBINAR_DATE,
+  WEBINAR_DATE_SHORT,
   WEBINAR_TIME,
   WEBINAR_TIMEZONE_LABEL,
   WEBINAR_LOCATION_PUBLIC,
+  WEBINAR_TARGET_ISO,
 } from "@/lib/webinar";
+import { Countdown } from "@/components/Countdown";
+import { RegistrationPopup } from "@/components/RegistrationPopup";
 
 const FadeIn = ({
   children,
@@ -33,24 +37,6 @@ const FadeIn = ({
   >
     {children}
   </motion.div>
-);
-
-const CtaButton = ({
-  children = "Ja, anmäl mig till webinaret",
-  className = "",
-}: {
-  children?: React.ReactNode;
-  className?: string;
-}) => (
-  <a
-    href="#anmal"
-    className={`group inline-flex items-center justify-center gap-3 rounded-full bg-accent text-white px-8 py-4 text-base font-semibold tracking-wide shadow-md hover:bg-accent/90 hover:scale-[1.02] transition-all duration-300 ${className}`}
-  >
-    <span>{children}</span>
-    <span className="w-9 h-9 rounded-full bg-white/15 flex items-center justify-center group-hover:translate-x-0.5 transition-transform">
-      <ArrowRight className="w-4 h-4" />
-    </span>
-  </a>
 );
 
 const DateTimeBlock = ({ className = "" }: { className?: string }) => (
@@ -79,95 +65,136 @@ const DateTimeBlock = ({ className = "" }: { className?: string }) => (
 );
 
 export default function WebinarRegistration() {
-  const [, navigate] = useLocation();
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [error, setError] = useState<string | null>(null);
-  const [submitting, setSubmitting] = useState(false);
+  const [popupOpen, setPopupOpen] = useState(false);
+  const openPopup = () => setPopupOpen(true);
+  const closePopup = () => setPopupOpen(false);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!name.trim()) {
-      setError("Skriv ditt förnamn.");
-      return;
-    }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      setError("Skriv en giltig e-postadress.");
-      return;
-    }
-    setError(null);
-    setSubmitting(true);
-    setTimeout(() => navigate("/tack"), 300);
-  };
+  const CtaButton = ({
+    children = "Ja, anmäl mig till webinaret",
+    className = "",
+  }: {
+    children?: React.ReactNode;
+    className?: string;
+  }) => (
+    <button
+      type="button"
+      onClick={openPopup}
+      className={`group inline-flex items-center justify-center gap-3 rounded-full bg-accent text-white px-8 py-4 text-base font-semibold tracking-wide shadow-md hover:bg-accent/90 hover:scale-[1.02] transition-all duration-300 ${className}`}
+    >
+      <span>{children}</span>
+      <span className="w-9 h-9 rounded-full bg-white/15 flex items-center justify-center group-hover:translate-x-0.5 transition-transform">
+        <ArrowRight className="w-4 h-4" />
+      </span>
+    </button>
+  );
 
   return (
-    <div className="min-h-screen bg-background overflow-x-hidden">
-      {/* Header */}
-      <header className="fixed top-0 inset-x-0 z-40 p-4">
-        <div className="mx-auto max-w-5xl bg-white/85 backdrop-blur-md border border-white/40 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-full px-6 py-3 flex items-center justify-between">
+    <div className="min-h-screen bg-background overflow-x-hidden pb-24 md:pb-0">
+      {/* Header — slim, centered, distinct from sales page pill nav */}
+      <header className="border-b border-border/50 bg-background/90 backdrop-blur-md sticky top-0 z-40">
+        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-baseline gap-2">
-            <span className="font-serif text-base tracking-widest uppercase text-primary">
+            <span className="font-serif text-base tracking-[0.22em] uppercase text-primary">
               Kvinnlig Lustkraft
             </span>
-            <span className="font-serif italic text-primary/70 text-sm hidden sm:inline-block">
+            <span className="font-serif italic text-primary/60 text-sm hidden sm:inline-block">
               med Gaia
             </span>
           </Link>
-          <a
-            href="#anmal"
-            className="hidden sm:inline-flex items-center gap-2 rounded-full bg-accent text-white px-5 py-2 text-sm font-semibold hover:bg-accent/90 transition-colors"
-          >
-            Anmäl dig
-          </a>
+          <div className="flex items-center gap-4">
+            <Link
+              href="/sales"
+              className="hidden sm:inline-block text-xs tracking-[0.2em] uppercase text-primary/60 hover:text-accent transition-colors"
+            >
+              Programmet
+            </Link>
+            <button
+              type="button"
+              onClick={openPopup}
+              className="inline-flex items-center gap-2 rounded-full bg-accent text-white px-4 sm:px-5 py-2 text-xs sm:text-sm font-semibold hover:bg-accent/90 transition-colors"
+            >
+              Anmäl dig
+            </button>
+          </div>
         </div>
       </header>
 
       <main>
-        {/* HERO */}
-        <section className="pt-28 md:pt-32 pb-12 md:pb-16 px-4 md:px-8 max-w-7xl mx-auto">
-          <FadeIn>
-            <div className="relative rounded-[2rem] md:rounded-[2.5rem] overflow-hidden aspect-[4/5] md:aspect-[16/10] lg:aspect-[21/10] bg-secondary">
-              <img
-                src={heroImg}
-                alt="Kvinnor i nära närvaro"
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/85 via-primary/45 to-primary/30" />
-              <div className="absolute inset-0 bg-gradient-to-r from-primary/40 to-transparent" />
+        {/* HERO — centered editorial campaign style (no big image overlay) */}
+        <section className="relative px-6 pt-12 md:pt-20 pb-12 md:pb-16 overflow-hidden">
+          {/* soft accent blobs */}
+          <div
+            className="absolute -top-32 -left-24 w-[420px] h-[420px] rounded-full bg-secondary/70 blur-3xl pointer-events-none"
+            aria-hidden
+          />
+          <div
+            className="absolute -top-20 -right-32 w-[380px] h-[380px] rounded-full bg-accent/10 blur-3xl pointer-events-none"
+            aria-hidden
+          />
 
-              <div className="absolute top-5 left-5 md:top-7 md:left-7 z-10">
-                <span className="inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm text-primary text-xs md:text-sm font-bold tracking-[0.22em] uppercase rounded-full px-4 py-2 shadow-lg">
-                  <Flower2 className="w-3.5 h-3.5 text-accent" />
-                  Gratis webinar
+          <div className="relative max-w-4xl mx-auto text-center">
+            <FadeIn>
+              <div className="inline-flex items-center gap-2 bg-white border border-border/60 text-primary text-xs font-bold tracking-[0.22em] uppercase rounded-full px-4 py-2 shadow-sm mb-7">
+                <Flower2 className="w-3.5 h-3.5 text-accent" />
+                <span>Gratis live-webinar</span>
+                <span className="w-1 h-1 rounded-full bg-primary/30" />
+                <span className="font-mono tracking-normal">{WEBINAR_DATE_SHORT}</span>
+              </div>
+
+              <h1 className="font-serif text-primary text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.05] tracking-tight mb-6">
+                Din kropp vet vägen.
+                <br />
+                <span className="italic font-light text-accent">
+                  Återväck din lust och livskraft.
                 </span>
-              </div>
+              </h1>
 
-              <div className="hidden md:flex absolute top-7 right-7 z-10 flex-col items-end text-white/90 text-[10px] tracking-[0.3em] uppercase font-semibold leading-tight">
-                <span>Med</span>
-                <span className="font-serif italic text-lg tracking-normal normal-case mt-1">
-                  Gaia
-                </span>
-              </div>
+              <p className="font-serif italic text-primary/75 text-lg md:text-2xl max-w-2xl mx-auto leading-snug mb-10">
+                Ett gratis webinar för dig som längtar efter att känna dig levande,
+                sedd och närvarande – i din kropp, i dina relationer och i ditt liv.
+              </p>
+            </FadeIn>
 
-              <div className="absolute inset-x-0 bottom-0 z-10 px-6 pb-8 md:px-12 md:pb-12 lg:px-16 lg:pb-14 text-white">
-                <h1 className="font-serif leading-[1.0] tracking-tight text-white text-4xl md:text-6xl lg:text-7xl mb-5 md:mb-6 max-w-4xl">
-                  Din kropp vet vägen.{" "}
-                  <span className="italic font-light">
-                    Återväck din lust och livskraft.
-                  </span>
-                </h1>
-                <p className="font-serif italic text-white/95 text-lg md:text-2xl leading-snug max-w-3xl mb-6 md:mb-8">
-                  Ett gratis webinar för dig som längtar efter att känna dig levande, sedd
-                  och närvarande – i din kropp, i dina relationer och i ditt liv.
-                </p>
-                <CtaButton />
+            {/* Countdown */}
+            <FadeIn delay={0.1}>
+              <p className="text-[11px] tracking-[0.28em] uppercase text-primary/60 font-semibold mb-4">
+                Webbinariet startar om
+              </p>
+              <Countdown targetIso={WEBINAR_TARGET_ISO} className="mb-10" />
+            </FadeIn>
+
+            <FadeIn delay={0.2}>
+              <CtaButton />
+              <p className="text-xs text-primary/50 mt-4">
+                100% kostnadsfritt · Inga förkunskaper behövs
+              </p>
+            </FadeIn>
+
+            {/* small portrait strip — different visual treatment than sales hero */}
+            <FadeIn delay={0.3}>
+              <div className="mt-12 flex items-center justify-center gap-4">
+                <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-white shadow-md ring-2 ring-secondary">
+                  <img
+                    src={speakerImg}
+                    alt="Gaia Lindroos"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="text-left">
+                  <p className="text-xs tracking-[0.22em] uppercase text-primary/55 font-semibold">
+                    Med
+                  </p>
+                  <p className="font-serif italic text-primary text-lg leading-tight">
+                    Gaia Lindroos
+                  </p>
+                </div>
               </div>
-            </div>
-          </FadeIn>
+            </FadeIn>
+          </div>
         </section>
 
-        {/* DATE/TIME bar (top of fold) */}
-        <section className="px-4 md:px-8 max-w-6xl mx-auto pb-16 md:pb-20">
+        {/* Date/time row */}
+        <section className="px-4 md:px-8 max-w-5xl mx-auto pb-16 md:pb-20">
           <FadeIn>
             <DateTimeBlock />
           </FadeIn>
@@ -298,17 +325,38 @@ export default function WebinarRegistration() {
           </div>
         </section>
 
-        {/* DATE/TIME RESTATED */}
-        <section className="py-16 md:py-20 px-6 md:px-12 max-w-5xl mx-auto text-center">
+        {/* COUNTDOWN BAND — dark, restating urgency */}
+        <section className="py-16 md:py-20 px-6 md:px-12 max-w-6xl mx-auto">
           <FadeIn>
-            <span className="text-accent text-xs font-bold tracking-[0.22em] uppercase block mb-4">
-              Boka tiden
-            </span>
-            <h2 className="font-serif text-3xl md:text-4xl text-primary mb-10">
-              Datum och tid för webbinariet
-            </h2>
-            <DateTimeBlock className="mb-10 text-left" />
-            <CtaButton />
+            <div className="relative rounded-[2.5rem] overflow-hidden bg-primary text-white p-10 md:p-14 text-center">
+              <div
+                className="absolute inset-0 opacity-20 pointer-events-none"
+                style={{
+                  backgroundImage: `url(${accentImg})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+                aria-hidden
+              />
+              <div className="absolute inset-0 bg-gradient-to-b from-primary/70 to-primary" aria-hidden />
+
+              <div className="relative">
+                <span className="text-white/70 text-xs font-bold tracking-[0.22em] uppercase block mb-4">
+                  Reservera din plats
+                </span>
+                <h2 className="font-serif text-3xl md:text-5xl mb-3 leading-tight">
+                  Det börjar snart
+                </h2>
+                <p className="text-white/75 text-lg mb-10 max-w-xl mx-auto">
+                  {WEBINAR_DATE} kl. {WEBINAR_TIME} {WEBINAR_TIMEZONE_LABEL}.
+                  Platserna är begränsade.
+                </p>
+                <Countdown targetIso={WEBINAR_TARGET_ISO} variant="dark" className="mb-10" />
+                <CtaButton className="!bg-white !text-primary hover:!bg-white/90">
+                  <span className="mr-1">Ja, anmäl mig till webinaret</span>
+                </CtaButton>
+              </div>
+            </div>
           </FadeIn>
         </section>
 
@@ -436,103 +484,18 @@ export default function WebinarRegistration() {
                     — Kursdeltagare
                   </footer>
                 </blockquote>
+
+                <div className="mt-10">
+                  <CtaButton />
+                </div>
               </FadeIn>
             </div>
           </div>
         </section>
 
-        {/* REGISTRATION FORM */}
-        <section
-          id="anmal"
-          className="py-20 md:py-28 px-6 md:px-12 bg-primary rounded-[3rem] mx-4 md:mx-8 mb-12 shadow-lg scroll-mt-24"
-        >
-          <div className="max-w-2xl mx-auto text-center text-white">
-            <FadeIn>
-              <span className="text-white/70 text-xs font-bold tracking-[0.22em] uppercase block mb-4">
-                Anmäl dig nu — kostnadsfritt
-              </span>
-              <h2 className="font-serif text-3xl md:text-5xl leading-tight mb-4">
-                Ja, jag vill vara med
-              </h2>
-              <p className="text-white/80 text-lg mb-10 max-w-lg mx-auto">
-                Fyll i ditt namn och e-post så får du länken till webinaret direkt på
-                mejlen.
-              </p>
-
-              <form
-                onSubmit={handleSubmit}
-                className="bg-white rounded-[1.75rem] p-6 md:p-8 text-left shadow-xl space-y-5"
-              >
-                <div>
-                  <label
-                    htmlFor="name"
-                    className="block text-xs font-bold tracking-[0.18em] uppercase text-primary/60 mb-2"
-                  >
-                    Förnamn
-                  </label>
-                  <input
-                    id="name"
-                    type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder="Ditt förnamn"
-                    className="w-full bg-secondary/40 border border-border/60 rounded-full px-5 py-3.5 text-primary placeholder:text-primary/40 focus:outline-none focus:border-accent focus:bg-white transition-colors"
-                  />
-                </div>
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="block text-xs font-bold tracking-[0.18em] uppercase text-primary/60 mb-2"
-                  >
-                    E-post
-                  </label>
-                  <input
-                    id="email"
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="din@epost.se"
-                    className="w-full bg-secondary/40 border border-border/60 rounded-full px-5 py-3.5 text-primary placeholder:text-primary/40 focus:outline-none focus:border-accent focus:bg-white transition-colors"
-                  />
-                </div>
-
-                {error && (
-                  <p className="text-sm text-destructive font-medium">{error}</p>
-                )}
-
-                <button
-                  type="submit"
-                  disabled={submitting}
-                  className="w-full inline-flex items-center justify-center gap-3 rounded-full bg-accent text-white px-8 py-4 text-base font-semibold tracking-wide shadow-md hover:bg-accent/90 transition-colors disabled:opacity-60"
-                >
-                  <span>
-                    {submitting ? "Skickar…" : "Ja, anmäl mig till webinaret"}
-                  </span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-
-                <p className="text-xs text-primary/50 text-center pt-2">
-                  Genom att anmäla dig godkänner du att vi mejlar dig om webinaret.
-                </p>
-              </form>
-
-              <div className="mt-10 flex flex-wrap justify-center gap-x-6 gap-y-2 text-white/70 text-sm">
-                <span className="inline-flex items-center gap-2">
-                  <Calendar className="w-4 h-4" /> {WEBINAR_DATE}
-                </span>
-                <span className="inline-flex items-center gap-2">
-                  <Clock className="w-4 h-4" /> {WEBINAR_TIME} {WEBINAR_TIMEZONE_LABEL}
-                </span>
-                <span className="inline-flex items-center gap-2">
-                  <MapPin className="w-4 h-4" /> Online
-                </span>
-              </div>
-            </FadeIn>
-          </div>
-        </section>
-
         {/* Footer */}
         <footer className="py-12 px-6 text-center">
+          <Sparkles className="w-5 h-5 text-accent mx-auto mb-4" />
           <p className="font-serif italic text-primary/70 text-lg mb-2">Vi ses snart.</p>
           <p className="font-serif text-primary text-xl">Kram, Gaia</p>
           <div className="mt-8">
@@ -545,6 +508,32 @@ export default function WebinarRegistration() {
           </div>
         </footer>
       </main>
+
+      {/* Sticky bottom CTA bar with mini countdown */}
+      <div className="fixed bottom-0 inset-x-0 z-30 border-t border-border/50 bg-background/95 backdrop-blur-md md:hidden">
+        <div className="px-4 py-3 flex items-center justify-between gap-3">
+          <div className="min-w-0">
+            <p className="text-[10px] tracking-[0.2em] uppercase text-primary/60 font-semibold">
+              Startar om
+            </p>
+            <Countdown
+              targetIso={WEBINAR_TARGET_ISO}
+              variant="compact"
+              className="text-primary"
+            />
+          </div>
+          <button
+            type="button"
+            onClick={openPopup}
+            className="shrink-0 inline-flex items-center gap-2 rounded-full bg-accent text-white px-5 py-2.5 text-sm font-semibold shadow-md"
+          >
+            Anmäl dig
+            <ArrowRight className="w-4 h-4" />
+          </button>
+        </div>
+      </div>
+
+      <RegistrationPopup open={popupOpen} onClose={closePopup} />
     </div>
   );
 }
