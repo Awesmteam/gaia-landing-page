@@ -1,6 +1,7 @@
+import { useRef } from "react";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
-import { ArrowRight, Menu, Heart, Sparkles } from "lucide-react";
+import { ArrowRight, ArrowLeft, Menu, Heart, Sparkles } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 
@@ -49,6 +50,155 @@ const FadeIn = ({ children, delay = 0, className = "" }: { children: React.React
     {children}
   </motion.div>
 );
+
+const HeroSection = () => (
+  <section className="pt-28 md:pt-32 pb-6 px-4 md:px-8 max-w-7xl mx-auto">
+    <FadeIn>
+      <div className="relative rounded-[2rem] md:rounded-[2.5rem] overflow-hidden aspect-[4/5] md:aspect-[16/10] lg:aspect-[21/10] bg-secondary">
+        <img
+          src={embraceImg}
+          alt="Två kvinnor i nära närvaro"
+          className="absolute inset-0 w-full h-full object-cover object-center"
+        />
+
+        <div className="absolute inset-0 bg-gradient-to-t from-primary/85 via-primary/45 to-primary/30"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/40 to-transparent"></div>
+
+        <div className="absolute top-5 left-5 md:top-7 md:left-7 z-10">
+          <a
+            href="#pris"
+            className="group inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm text-primary text-sm md:text-base font-semibold rounded-full pl-5 pr-2 py-2 shadow-lg hover:bg-white transition-colors"
+          >
+            <span>Boka din plats</span>
+            <span className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center transition-transform group-hover:translate-x-0.5">
+              <ArrowRight className="w-4 h-4" />
+            </span>
+          </a>
+        </div>
+
+        <div className="hidden md:flex absolute top-7 right-7 z-10 flex-col items-end text-white/90 text-[10px] tracking-[0.3em] uppercase font-semibold leading-tight">
+          <span>Med</span>
+          <span className="font-serif italic text-lg tracking-normal normal-case mt-1">Gaia</span>
+        </div>
+
+        <div className="absolute inset-x-0 bottom-0 z-10 px-6 pb-8 md:px-12 md:pb-12 lg:px-16 lg:pb-16 text-white">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-4 md:mb-6 text-[11px] md:text-xs tracking-[0.22em] uppercase text-white/85 font-semibold">
+            <span>Sedan 1999</span>
+            <span className="w-1 h-1 rounded-full bg-white/60" />
+            <span>400+ ljudböcker</span>
+            <span className="w-1 h-1 rounded-full bg-white/60" />
+            <span className="hidden sm:inline">Hundratusentals kvinnor</span>
+          </div>
+
+          <h1 className="font-serif leading-[0.95] tracking-tight text-white text-5xl md:text-7xl lg:text-8xl mb-4 md:mb-6">
+            Kvinnlig{" "}
+            <span className="italic font-light">
+              Lustkraft
+              <span className="not-italic font-serif text-2xl md:text-3xl align-top ml-1 text-white/70">®</span>
+            </span>
+          </h1>
+
+          <p className="font-serif italic text-white/95 text-lg md:text-2xl lg:text-3xl leading-snug max-w-2xl">
+            Du är inte trasig. Din kropp väntar bara på att du ska komma tillbaka.
+          </p>
+        </div>
+      </div>
+    </FadeIn>
+  </section>
+);
+
+type HeroCard = {
+  href: string;
+  img: string;
+  alt: string;
+  eyebrow: string;
+  title: string;
+};
+
+const HERO_CARDS: HeroCard[] = [
+  { href: "#om-gaia", img: portraitImg, alt: "Gaia Qiliv Lindroos", eyebrow: "Vem är jag?", title: "Möt Gaia" },
+  { href: "#moduler", img: heroImg, alt: "Kvinna med hand över hjärtat", eyebrow: "8 steg", title: "Programmet" },
+  { href: "#pris", img: liveImg, alt: "Live-seminar med Gaia", eyebrow: "Varje månad", title: "Live med Gaia" },
+  { href: "#om-gaia", img: embraceImg, alt: "Två kvinnor i närvaro", eyebrow: "Hundratusentals", title: "Kvinnor som du" },
+];
+
+const HeroCarousel = () => {
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  const scrollByCard = (dir: 1 | -1) => {
+    const el = trackRef.current;
+    if (!el) return;
+    const card = el.querySelector<HTMLElement>("[data-card]");
+    const step = card ? card.offsetWidth + 20 : el.clientWidth * 0.75;
+    el.scrollBy({ left: step * dir, behavior: "smooth" });
+  };
+
+  return (
+    <section className="pb-12 md:pb-16 max-w-7xl mx-auto">
+      <div className="flex items-end justify-between px-4 md:px-8 mb-5 md:mb-7">
+        <div>
+          <p className="text-[11px] md:text-xs tracking-[0.22em] uppercase text-primary/70 font-semibold mb-2">
+            Kvinnlig Lustkraft
+          </p>
+          <h2 className="font-serif text-primary text-3xl md:text-4xl lg:text-5xl leading-tight">
+            Hitta din väg in
+          </h2>
+        </div>
+
+        <div className="flex items-center gap-3">
+          <button
+            type="button"
+            aria-label="Föregående"
+            onClick={() => scrollByCard(-1)}
+            className="w-11 h-11 md:w-12 md:h-12 rounded-full border border-primary/25 text-primary flex items-center justify-center hover:bg-primary hover:text-white hover:border-primary transition-colors"
+          >
+            <ArrowLeft className="w-4 h-4" />
+          </button>
+          <button
+            type="button"
+            aria-label="Nästa"
+            onClick={() => scrollByCard(1)}
+            className="w-11 h-11 md:w-12 md:h-12 rounded-full border border-primary/25 text-primary flex items-center justify-center hover:bg-primary hover:text-white hover:border-primary transition-colors"
+          >
+            <ArrowRight className="w-4 h-4" />
+          </button>
+        </div>
+      </div>
+
+      <div
+        ref={trackRef}
+        className="flex gap-4 md:gap-5 overflow-x-auto snap-x snap-mandatory pb-4 px-4 md:px-8 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+      >
+        {HERO_CARDS.map((c) => (
+          <a
+            key={c.title}
+            href={c.href}
+            data-card
+            className="group relative shrink-0 snap-start w-[78%] sm:w-[58%] md:w-[42%] lg:w-[32%] aspect-[4/5] rounded-[1.75rem] overflow-hidden bg-secondary"
+          >
+            <img
+              src={c.img}
+              alt={c.alt}
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-primary/85 via-primary/30 to-transparent"></div>
+            <div className="absolute inset-x-0 bottom-0 p-5 md:p-6 text-white">
+              <span className="text-[10px] tracking-[0.22em] uppercase text-white/75 font-semibold mb-2 block">
+                {c.eyebrow}
+              </span>
+              <div className="flex items-end justify-between gap-4">
+                <h3 className="font-serif text-2xl leading-tight">{c.title}</h3>
+                <span className="w-10 h-10 rounded-full border border-white/40 flex items-center justify-center transition-all duration-300 group-hover:bg-white group-hover:text-primary group-hover:border-white">
+                  <ArrowRight className="w-4 h-4" />
+                </span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+  );
+};
 
 export default function Landing() {
   return (
@@ -105,121 +255,11 @@ export default function Landing() {
 
       <main>
         {/* HERO */}
-        <section className="pt-28 md:pt-32 pb-12 px-4 md:px-8 max-w-7xl mx-auto">
-          <FadeIn>
-            <div className="bg-white rounded-[2rem] border border-border/30 shadow-sm px-6 py-12 md:px-12 md:py-16 lg:px-20 lg:py-20 text-center">
-              <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 mb-8 text-xs md:text-sm tracking-[0.18em] uppercase text-primary/80 font-semibold">
-                <span className="text-accent">Sedan 1999</span>
-                <span className="w-1 h-1 rounded-full bg-primary/40" />
-                <span>400+ ljudböcker</span>
-                <span className="w-1 h-1 rounded-full bg-primary/40" />
-                <span>Hundratusentals kvinnor</span>
-              </div>
+        <HeroSection />
 
-              <h1 className="font-serif text-primary leading-[1.02] tracking-tight mb-6 text-5xl md:text-7xl lg:text-8xl">
-                Kvinnlig{" "}
-                <span className="italic font-light text-accent">
-                  Lustkraft
-                  <span className="text-primary/70 not-italic font-serif text-2xl md:text-3xl align-top ml-1">®</span>
-                </span>
-              </h1>
+        {/* HERO CARDS — horizontal carousel */}
+        <HeroCarousel />
 
-              <p className="font-serif italic text-primary text-xl md:text-2xl lg:text-3xl leading-snug mb-6 max-w-2xl mx-auto">
-                Du är inte trasig. Din kropp väntar bara på att du ska komma tillbaka.
-              </p>
-
-              <p className="text-primary/80 text-base md:text-lg leading-relaxed mb-8 max-w-2xl mx-auto">
-                En 8-stegs resa tillbaka till din kropp, din kraft och ditt liv. För dig som fungerar, levererar och håller ihop — men inte längre känner dig levande i det.
-              </p>
-
-              <ul className="flex flex-col sm:flex-row sm:flex-wrap items-center justify-center gap-x-6 gap-y-3 mb-10 max-w-3xl mx-auto">
-                {[
-                  "8 moduler · 12 månaders tillgång",
-                  "Live-seminar med Gaia varje månad",
-                  "Tillgång till första modulen direkt efter köp",
-                ].map((line) => (
-                  <li key={line} className="flex items-center gap-2 text-primary">
-                    <span className="w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
-                    <span className="font-medium text-[15px] md:text-base">{line}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4 mb-6">
-                <PrimaryButton href="#pris" className="text-base shadow-lg shadow-primary/10">
-                  Boka din plats
-                </PrimaryButton>
-                <PrimaryButton href="#moduler" variant="ghost" className="text-base">
-                  Se programmet
-                </PrimaryButton>
-              </div>
-
-              <p className="text-sm text-primary/75 flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
-                <span>Delbetalning med Klarna</span>
-                <span className="w-1 h-1 rounded-full bg-primary/40" />
-                <span>100% garanti — pengarna tillbaka</span>
-              </p>
-            </div>
-          </FadeIn>
-
-          <FadeIn delay={0.15}>
-            <div className="grid grid-cols-3 gap-3 md:gap-5 mt-6 md:mt-8 h-[260px] md:h-[420px] lg:h-[480px]">
-              <div className="relative rounded-[1.5rem] md:rounded-[2rem] overflow-hidden bg-secondary">
-                <img src={embraceImg} alt="Två kvinnor i närvaro" className="w-full h-full object-cover object-center" />
-              </div>
-              <div className="relative rounded-[1.5rem] md:rounded-[2rem] overflow-hidden bg-secondary">
-                <img src={heroImg} alt="Kvinna med hand över hjärtat" className="w-full h-full object-cover object-center" />
-              </div>
-              <div className="relative rounded-[1.5rem] md:rounded-[2rem] overflow-hidden bg-secondary">
-                <img src={liveImg} alt="Live-seminar med Gaia" className="w-full h-full object-cover object-top" />
-              </div>
-            </div>
-          </FadeIn>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 mt-10 md:mt-14">
-            <a href="#om-gaia" className="group relative rounded-[1.75rem] overflow-hidden aspect-[4/5] md:aspect-[3/4] bg-secondary">
-              <img src={portraitImg} alt="Gaia Qiliv Lindroos" className="w-full h-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]" />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/85 via-primary/30 to-transparent"></div>
-              <div className="absolute inset-x-0 bottom-0 p-6 text-white">
-                <span className="text-[10px] tracking-[0.22em] uppercase text-white/70 font-semibold mb-2 block">Vem är jag?</span>
-                <div className="flex items-end justify-between gap-4">
-                  <h3 className="font-serif text-2xl leading-tight">Möt Gaia</h3>
-                  <span className="w-10 h-10 rounded-full border border-white/40 flex items-center justify-center transition-all duration-300 group-hover:bg-white group-hover:text-primary group-hover:border-white">
-                    <ArrowRight className="w-4 h-4" />
-                  </span>
-                </div>
-              </div>
-            </a>
-
-            <a href="#moduler" className="group relative rounded-[1.75rem] overflow-hidden aspect-[4/5] md:aspect-[3/4] bg-secondary">
-              <img src={embraceImg} alt="Två kvinnor i närvaro" className="w-full h-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]" />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/85 via-primary/30 to-transparent"></div>
-              <div className="absolute inset-x-0 bottom-0 p-6 text-white">
-                <span className="text-[10px] tracking-[0.22em] uppercase text-white/70 font-semibold mb-2 block">8 steg</span>
-                <div className="flex items-end justify-between gap-4">
-                  <h3 className="font-serif text-2xl leading-tight">Programmet</h3>
-                  <span className="w-10 h-10 rounded-full border border-white/40 flex items-center justify-center transition-all duration-300 group-hover:bg-white group-hover:text-primary group-hover:border-white">
-                    <ArrowRight className="w-4 h-4" />
-                  </span>
-                </div>
-              </div>
-            </a>
-
-            <a href="#pris" className="group relative rounded-[1.75rem] overflow-hidden aspect-[4/5] md:aspect-[3/4] bg-secondary">
-              <img src={liveImg} alt="Live-seminar med Gaia" className="w-full h-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]" />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/85 via-primary/30 to-transparent"></div>
-              <div className="absolute inset-x-0 bottom-0 p-6 text-white">
-                <span className="text-[10px] tracking-[0.22em] uppercase text-white/70 font-semibold mb-2 block">Varje månad</span>
-                <div className="flex items-end justify-between gap-4">
-                  <h3 className="font-serif text-2xl leading-tight">Live med Gaia</h3>
-                  <span className="w-10 h-10 rounded-full border border-white/40 flex items-center justify-center transition-all duration-300 group-hover:bg-white group-hover:text-primary group-hover:border-white">
-                    <ArrowRight className="w-4 h-4" />
-                  </span>
-                </div>
-              </div>
-            </a>
-          </div>
-        </section>
 
         {/* SECTION 4: Är det här du? */}
         <section className="py-24 px-6 md:px-12 bg-white rounded-[3rem] mx-4 md:mx-8 mb-8 md:mb-12 shadow-sm border border-border/30">
