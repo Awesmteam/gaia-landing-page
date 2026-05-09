@@ -377,8 +377,8 @@ export default function Landing() {
         {/* SECTION 6: What you get */}
         <section className="py-24 px-6 md:px-12 bg-secondary rounded-[3rem] mx-4 md:mx-8 mb-8 md:mb-12 shadow-sm">
           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16">
-            <div className="lg:col-span-5">
-              <FadeIn className="sticky top-32">
+            <div className="lg:col-span-5 lg:sticky lg:top-32 lg:self-start">
+              <FadeIn>
                 <div className="relative rounded-[2rem] overflow-hidden aspect-[4/5] shadow-lg">
                   <img src={programHeroCardImg} alt="Kvinnor omfamnar varandra" className="w-full h-full object-cover" />
                 </div>
