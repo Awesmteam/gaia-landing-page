@@ -1,7 +1,6 @@
-import { useEffect } from "react";
 import { Link } from "wouter";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, ChevronDown, Menu, Heart, Sparkles, X } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowRight, Menu, Heart, Sparkles } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 
