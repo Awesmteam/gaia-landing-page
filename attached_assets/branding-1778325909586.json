@@ -1,0 +1,108 @@
+{
+  "colorScheme": "light",
+  "fonts": [
+    {
+      "family": "Inter",
+      "role": "body"
+    },
+    {
+      "family": "Times New Roman",
+      "role": "unknown"
+    },
+    {
+      "family": "Poppins",
+      "role": "unknown"
+    }
+  ],
+  "colors": {
+    "primary": "#565A7C",
+    "secondary": "#F2E4D4",
+    "accent": "#2F4F4F",
+    "background": "#FFFFFF",
+    "textPrimary": "#2F4F4F",
+    "link": "#2F4F4F"
+  },
+  "typography": {
+    "fontFamilies": {
+      "primary": "Inter",
+      "heading": "Inter"
+    },
+    "fontStacks": {
+      "heading": [
+        "Inter"
+      ],
+      "body": [
+        "Times New Roman"
+      ],
+      "paragraph": [
+        "Inter"
+      ]
+    },
+    "fontSizes": {
+      "h1": "50px",
+      "h2": "25px",
+      "body": "20px"
+    }
+  },
+  "spacing": {
+    "baseUnit": 4,
+    "borderRadius": "4px"
+  },
+  "components": {
+    "buttonPrimary": {
+      "background": "#2F4F4F",
+      "textColor": "#FFFFFF",
+      "borderRadius": "50px",
+      "borderRadiusCorners": {
+        "topLeft": "50px",
+        "topRight": "50px",
+        "bottomRight": "50px",
+        "bottomLeft": "50px"
+      },
+      "shadow": "none"
+    }
+  },
+  "images": {
+    "logo": null,
+    "favicon": "File saved at: attached_assets/favicon.ico",
+    "ogImage": null
+  },
+  "__llm_button_reasoning": {
+    "primary": {
+      "index": 0,
+      "text": "Ja, anmäl mig till webinaret",
+      "reasoning": "Button #0 is selected as the primary CTA because it uses a vibrant brand color (#2F4F4F) and has action-oriented text ('Ja, anmäl mig till webinaret'), which is consistent across all buttons. It is the first in the sequence, suggesting prominence."
+    },
+    "secondary": {
+      "index": -1,
+      "text": "N/A",
+      "reasoning": "All buttons share the same background color (#2F4F4F), making it impossible to select a secondary button with a different color. Thus, no valid secondary button exists."
+    },
+    "confidence": 0.9
+  },
+  "personality": {
+    "tone": "professional",
+    "energy": "medium",
+    "targetAudience": "individuals interested in personal development and wellness"
+  },
+  "designSystem": {
+    "framework": "custom",
+    "componentLibrary": ""
+  },
+  "confidence": {
+    "buttons": 0.9,
+    "colors": 0.9,
+    "overall": 0.9
+  },
+  "__llm_metadata": {
+    "logoSelection": {
+      "llmCalled": false,
+      "llmSucceeded": false,
+      "finalSource": "none"
+    },
+    "buttonClassification": {
+      "llmCalled": true,
+      "llmSucceeded": true
+    }
+  }
+}
