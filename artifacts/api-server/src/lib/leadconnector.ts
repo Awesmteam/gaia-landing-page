@@ -34,7 +34,7 @@ export function buildPayload(input: {
     phone: input.phone,
     source: input.source,
     webinar_date: "2026-05-20",
-    webinar_time: "06:00",
+    webinar_time: "18:00",
     timezone: "Europe/Stockholm",
     submitted_at: new Date().toISOString(),
     tags: ["kvinnlig-lustkraft", input.source],
