@@ -208,54 +208,56 @@ export default function Checkout() {
             </div>
 
             {/* Bonus block */}
-            <div
-              className={`relative rounded-2xl md:rounded-3xl p-5 md:p-7 mb-8 border transition-all duration-500 ${
-                expired
-                  ? "bg-secondary/20 border-border/40 opacity-60"
-                  : "bg-secondary/50 border-accent/20"
-              }`}
-            >
-              {expired && (
-                <div className="absolute top-3 right-3 text-[10px] font-bold tracking-[0.18em] uppercase text-destructive bg-white/90 px-2 py-1 rounded-full">
+            {expired ? (
+              <div className="relative rounded-2xl md:rounded-3xl p-5 md:p-7 mb-8 border border-border/40 bg-secondary/20 text-center">
+                <span className="text-[11px] font-bold tracking-[0.22em] uppercase text-destructive block mb-2">
                   Bonusen har gått ut
-                </div>
-              )}
-              <span className="text-accent text-[11px] font-bold tracking-[0.22em] uppercase block mb-5 text-center">
-                Webinarbonus — endast under webbinariedagen
-              </span>
+                </span>
+                <p className="font-serif italic text-primary/60 text-sm md:text-base">
+                  Webinarbonusen var tillgänglig endast under webbinariedagen.
+                </p>
+              </div>
+            ) : (
+              <div className="relative rounded-2xl md:rounded-3xl p-5 md:p-7 mb-8 border border-accent/20 bg-secondary/50 transition-all duration-500">
+                <span className="text-accent text-[11px] font-bold tracking-[0.22em] uppercase block mb-5 text-center">
+                  Webinarbonus — endast under webbinariedagen
+                </span>
 
-              <div className="space-y-4">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-4 py-2 border-b border-border/40">
-                  <div className="flex items-start gap-3">
-                    <Sparkles className="w-4 h-4 text-accent mt-1 shrink-0" />
-                    <span className="text-primary/90 font-medium">
-                      BONUS 1: 1 års medlemskap — 12 st LIVE webinar
-                    </span>
+                <div className="space-y-4">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-4 py-2 border-b border-border/40">
+                    <div className="flex items-start gap-3">
+                      <Sparkles className="w-4 h-4 text-accent mt-1 shrink-0" />
+                      <span className="text-primary/90 font-medium">
+                        BONUS 1: 1 års medlemskap — 12 st LIVE webinar
+                      </span>
+                    </div>
+                    <div className="text-sm font-medium text-primary/50 shrink-0 uppercase tracking-wide pl-7 sm:pl-0">
+                      Värde 11 880:-
+                    </div>
                   </div>
-                  <div className="text-sm font-medium text-primary/50 shrink-0 uppercase tracking-wide pl-7 sm:pl-0">
-                    Värde 11 880:-
-                  </div>
-                </div>
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-4 py-2">
-                  <div className="flex items-start gap-3">
-                    <Sparkles className="w-4 h-4 text-accent mt-1 shrink-0" />
-                    <span className="text-primary/90 font-medium">
-                      BONUS 2: MATKA — InnerMedicineWoman PAKET
-                      (föreläsning + hypnos)
-                    </span>
-                  </div>
-                  <div className="text-sm font-medium text-primary/50 shrink-0 uppercase tracking-wide pl-7 sm:pl-0">
-                    Värde 3 500:-
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-4 py-2">
+                    <div className="flex items-start gap-3">
+                      <Sparkles className="w-4 h-4 text-accent mt-1 shrink-0" />
+                      <span className="text-primary/90 font-medium">
+                        BONUS 2: MATKA — InnerMedicineWoman PAKET
+                        (föreläsning + hypnos)
+                      </span>
+                    </div>
+                    <div className="text-sm font-medium text-primary/50 shrink-0 uppercase tracking-wide pl-7 sm:pl-0">
+                      Värde 3 500:-
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            )}
 
             {/* Price */}
             <div className="text-center mb-6">
-              <div className="text-xl md:text-2xl font-serif text-primary/40 line-through mb-1">
-                TOTALT VÄRDE: 26 450:-
-              </div>
+              {!expired && (
+                <div className="text-xl md:text-2xl font-serif text-primary/40 line-through mb-1">
+                  TOTALT VÄRDE: 26 450:-
+                </div>
+              )}
               <div className="text-[11px] tracking-[0.28em] uppercase text-accent font-bold mb-3">
                 Ditt pris idag
               </div>
