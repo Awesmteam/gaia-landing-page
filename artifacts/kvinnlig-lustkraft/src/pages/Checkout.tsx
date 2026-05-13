@@ -38,7 +38,6 @@ function useCheckoutCountdown() {
   }, []);
 
   useEffect(() => {
-    if (secondsLeft <= 0) return;
     const id = window.setInterval(() => {
       setSecondsLeft((prev) => {
         if (prev <= 1) {
@@ -49,7 +48,7 @@ function useCheckoutCountdown() {
       });
     }, 1000);
     return () => window.clearInterval(id);
-  }, [secondsLeft > 0]);
+  }, []);
 
   return secondsLeft;
 }
