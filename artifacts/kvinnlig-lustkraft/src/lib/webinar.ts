@@ -12,3 +12,8 @@ export const WEBINAR_DESCRIPTION =
 export const WEBINAR_TARGET_ISO = "2026-05-20T18:00:00+02:00";
 export const WEBINAR_ICS_DTSTART_UTC = "20260520T160000Z";
 export const WEBINAR_ICS_DTEND_UTC = "20260520T173000Z";
+
+// Replay window: 48h after webinar end (19:30 Stockholm) → closes 22 May 2026 19:30
+export const REPLAY_DEADLINE_ISO = "2026-05-22T19:30:00+02:00";
+// Optional: embed URL for the recording (YouTube / Vimeo). Leave empty for placeholder.
+export const REPLAY_EMBED_URL = "";
