@@ -35,7 +35,7 @@ export function RegistrationPopup({ open, onClose }: RegistrationPopupProps) {
     };
   }, [open, onClose]);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!name.trim()) {
       setError("Skriv ditt förnamn.");
@@ -47,7 +47,29 @@ export function RegistrationPopup({ open, onClose }: RegistrationPopupProps) {
     }
     setError(null);
     setSubmitting(true);
-    setTimeout(() => navigate("/tack"), 250);
+    try {
+      const res = await fetch(`${import.meta.env.BASE_URL}api/registrations`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: name.trim(),
+          email: email.trim(),
+          source: "webinar",
+        }),
+      });
+      const data = (await res.json().catch(() => null)) as
+        | { ok?: boolean; error?: string }
+        | null;
+      if (!res.ok || !data?.ok) {
+        setError(data?.error ?? "Något gick fel, försök igen.");
+        setSubmitting(false);
+        return;
+      }
+      navigate("/tack");
+    } catch {
+      setError("Något gick fel, försök igen.");
+      setSubmitting(false);
+    }
   };
 
   return (
