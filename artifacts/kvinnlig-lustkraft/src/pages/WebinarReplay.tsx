@@ -3,7 +3,7 @@ import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { ArrowRight, Clock, Maximize2, Volume2, Sparkles } from "lucide-react";
 import { Countdown } from "@/components/Countdown";
-import { REPLAY_DEADLINE_ISO, REPLAY_EMBED_URL } from "@/lib/webinar";
+import { REPLAY_DEADLINE_ISO, REPLAY_EMBED_URL, PAYMENT_LINK } from "@/lib/webinar";
 
 const FadeIn = ({
   children,
@@ -152,13 +152,15 @@ export default function WebinarReplay() {
 
             {/* Inline mid-CTA */}
             <FadeIn delay={0.28} className="mt-10 text-center">
-              <Link
-                href="/sales#pris"
+              <a
+                href={PAYMENT_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-accent font-semibold tracking-[0.18em] uppercase text-xs border-b border-accent/40 hover:border-accent pb-1 transition-colors"
               >
                 Köp din kursplats här
                 <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
+              </a>
             </FadeIn>
 
             {/* Benefits */}
@@ -193,13 +195,15 @@ export default function WebinarReplay() {
                 <br className="sm:hidden" />
                 <span className="sm:ml-2">i begränsad tid.</span>
               </p>
-              <Link
-                href="/sales#pris"
+              <a
+                href={PAYMENT_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-3 rounded-full bg-accent text-white px-9 py-4 text-base md:text-lg font-semibold tracking-wide shadow-lg hover:bg-accent/90 hover:scale-[1.02] transition-all"
               >
                 <span>TA MIG TILL KURSEN</span>
                 <ArrowRight className="w-4 h-4" />
-              </Link>
+              </a>
               <p className="text-xs text-primary/50 mt-4">
                 Erbjudandet stängs när inspelningen tas ner
               </p>
@@ -224,13 +228,15 @@ function ExpiredState() {
         Inspelningen var tillgänglig i 48 timmar. Men du kan fortfarande ta
         nästa steg — kursen är öppen i begränsad tid.
       </p>
-      <Link
-        href="/sales#pris"
+      <a
+        href={PAYMENT_LINK}
+        target="_blank"
+        rel="noopener noreferrer"
         className="inline-flex items-center justify-center gap-3 rounded-full bg-accent text-white px-9 py-4 text-base md:text-lg font-semibold tracking-wide shadow-lg hover:bg-accent/90 transition-all"
       >
         <span>TA MIG TILL KURSEN</span>
         <ArrowRight className="w-4 h-4" />
-      </Link>
+      </a>
     </FadeIn>
   );
 }

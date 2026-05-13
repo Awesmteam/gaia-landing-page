@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, ArrowLeft, Menu, Heart, Sparkles } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
+import { PAYMENT_LINK } from "@/lib/webinar";
 
 import heroImg from "@/assets/image_1778316613497.png";
 import programHeroCardImg from "@/assets/image_1778315697754.png";
@@ -24,6 +25,19 @@ const PrimaryButton = ({ children, href, className = "", variant = "solid" }: { 
     ghost: "border border-primary text-primary hover:bg-primary/5"
   };
   
+  if (href.startsWith("http")) {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`${base} ${variants[variant]} ${className}`}
+      >
+        {children}
+      </a>
+    );
+  }
+
   if (href.startsWith("#")) {
     return (
       <a href={href} className={`${base} ${variants[variant]} ${className}`}>
@@ -31,7 +45,7 @@ const PrimaryButton = ({ children, href, className = "", variant = "solid" }: { 
       </a>
     );
   }
-  
+
   return (
     <Link href={href} className={`${base} ${variants[variant]} ${className}`}>
       {children}
@@ -66,7 +80,9 @@ const HeroSection = () => (
 
         <div className="absolute top-5 left-5 md:top-7 md:left-7 z-10">
           <a
-            href="#pris"
+            href={PAYMENT_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
             className="group inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm text-primary text-sm md:text-base font-semibold rounded-full pl-5 pr-2 py-2 shadow-lg hover:bg-white transition-colors"
           >
             <span>Boka din plats</span>
@@ -220,7 +236,7 @@ export default function Landing() {
           </nav>
 
           <div className="flex items-center gap-4">
-            <PrimaryButton href="#pris" className="hidden md:flex px-6 py-2.5 text-sm">
+            <PrimaryButton href={PAYMENT_LINK} className="hidden md:flex px-6 py-2.5 text-sm">
               Boka din plats
             </PrimaryButton>
             
@@ -241,7 +257,7 @@ export default function Landing() {
                   </nav>
                   <div className="mt-auto flex justify-center">
                     <SheetClose asChild>
-                      <PrimaryButton href="#pris" className="w-full max-w-[280px]">
+                      <PrimaryButton href={PAYMENT_LINK} className="w-full max-w-[280px]">
                         Boka din plats
                       </PrimaryButton>
                     </SheetClose>
@@ -360,7 +376,7 @@ export default function Landing() {
                   <p>Och det är enklare än du tror.</p>
                 </div>
 
-                <PrimaryButton href="#pris">
+                <PrimaryButton href={PAYMENT_LINK}>
                   Jag vill känna mig levande igen
                 </PrimaryButton>
               </FadeIn>
@@ -448,7 +464,7 @@ export default function Landing() {
                   </div>
                 </div>
 
-                <PrimaryButton href="#pris">
+                <PrimaryButton href={PAYMENT_LINK}>
                   Ja, jag vill vara med
                 </PrimaryButton>
               </FadeIn>
@@ -539,7 +555,7 @@ export default function Landing() {
           </div>
 
           <div className="mt-16 text-center">
-            <PrimaryButton href="#pris">
+            <PrimaryButton href={PAYMENT_LINK}>
               Jag är redo att börja min resa
             </PrimaryButton>
           </div>
@@ -588,7 +604,7 @@ export default function Landing() {
             </div>
 
             <div className="text-center">
-              <PrimaryButton href="#pris">
+              <PrimaryButton href={PAYMENT_LINK}>
                 Ja, jag vill uppleva det här
               </PrimaryButton>
             </div>
@@ -634,7 +650,7 @@ export default function Landing() {
                   </p>
                 </div>
 
-                <PrimaryButton href="#pris" variant="ghost">
+                <PrimaryButton href={PAYMENT_LINK} variant="ghost">
                   Jag vill göra resan med Gaia
                 </PrimaryButton>
               </FadeIn>
@@ -719,9 +735,14 @@ export default function Landing() {
                     <span>100% garanti — pengarna tillbaka.</span>
                   </div>
                   
-                  <Link href="/sales/tack" className="flex items-center justify-center rounded-full bg-primary px-8 py-5 text-lg font-medium text-primary-foreground hover:bg-primary/90 transition-all duration-300 w-full shadow-xl shadow-primary/10 hover:shadow-primary/20 hover:scale-[1.02]">
+                  <a
+                    href={PAYMENT_LINK}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center rounded-full bg-primary px-8 py-5 text-lg font-medium text-primary-foreground hover:bg-primary/90 transition-all duration-300 w-full shadow-xl shadow-primary/10 hover:shadow-primary/20 hover:scale-[1.02]"
+                  >
                     Ja, jag vill börja nu
-                  </Link>
+                  </a>
                 </div>
               </div>
             </FadeIn>
@@ -778,7 +799,7 @@ export default function Landing() {
             </Accordion>
             
             <div className="mt-16 text-center">
-              <PrimaryButton href="#pris" variant="ghost">
+              <PrimaryButton href={PAYMENT_LINK} variant="ghost">
                 Jag är redo – ta mig dit
               </PrimaryButton>
             </div>
@@ -807,7 +828,7 @@ export default function Landing() {
               </div>
               
               <div className="mb-16">
-                <PrimaryButton href="#pris" className="text-lg px-10 py-5">
+                <PrimaryButton href={PAYMENT_LINK} className="text-lg px-10 py-5">
                   Ja, jag tar steget nu
                 </PrimaryButton>
               </div>

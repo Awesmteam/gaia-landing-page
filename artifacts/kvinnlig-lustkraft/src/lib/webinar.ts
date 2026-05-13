@@ -17,3 +17,6 @@ export const WEBINAR_ICS_DTEND_UTC = "20260520T173000Z";
 export const REPLAY_DEADLINE_ISO = "2026-05-22T19:30:00+02:00";
 // Optional: embed URL for the recording (YouTube / Vimeo). Leave empty for placeholder.
 export const REPLAY_EMBED_URL = "";
+
+// GHL / FastPayDirect checkout link for "Kvinnlig Lustkraft" course
+export const PAYMENT_LINK = "https://link.fastpaydirect.com/payment-link/6a0498ff8c3f15f97515aee0";
