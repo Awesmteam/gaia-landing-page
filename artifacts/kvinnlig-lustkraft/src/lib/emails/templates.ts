@@ -26,7 +26,7 @@ export interface EmailTemplate {
 const registrationConfirmation: EmailTemplate = {
   id: "00-registration",
   label: "Bekräftelse efter anmälan",
-  subject: "Du är anmäld – vi ses snart 💛",
+  subject: "Du är med! 💛",
   preheader:
     "Du är anmäld till Kvinnlig Lustkraft – här är allt du behöver inför vårt webbinarium.",
   html: wrapEmail({
@@ -41,7 +41,7 @@ const registrationConfirmation: EmailTemplate = {
       ${italic("Här är vad som väntar dig:")}
       ${infoBox([
         { label: "📅&nbsp; Datum", value: "{{custom_values.date_of_the_webinar}}" },
-        { label: "🕖&nbsp; Tid", value: "{{custom_values.time_of_the_webinar}}" },
+        { label: "🕖&nbsp; Tid", value: "{{custom_values.time_of_the_webinar}} svensk tid" },
         {
           label: "🔗&nbsp; Länk",
           value: `<a href="{{custom_values.webinar_zoom_link}}" target="_blank" rel="noopener" style="color:#a87b6e;text-decoration:underline;font-weight:600;">{{custom_values.webinar_zoom_link}}</a>`,
@@ -55,6 +55,277 @@ const registrationConfirmation: EmailTemplate = {
       ${p("Jag ser verkligen fram emot att träffa dig.")}
       ${signOff()}
       ${psBox("Kolla att mejlet inte hamnade i skräppost – dra det till inkorgen så missar du ingenting inför vårt webbinarium.")}
+    `,
+  }),
+};
+
+/* ============== BEFORE WEBINAR EMAILS (BWE) ============== */
+
+const webinarInfoBox = () =>
+  infoBox([
+    { label: "📅&nbsp; Datum", value: "{{custom_values.date_of_the_webinar}}" },
+    { label: "🕖&nbsp; Tid", value: "{{custom_values.time_of_the_webinar}} svensk tid" },
+    {
+      label: "🔗&nbsp; Länk",
+      value: `<a href="{{custom_values.webinar_zoom_link}}" target="_blank" rel="noopener" style="color:#a87b6e;text-decoration:underline;font-weight:600;">{{custom_values.webinar_zoom_link}}</a>`,
+    },
+  ]);
+
+const ctaJoin = (label = "Klicka här för att gå med") => cta(label, "webinar_zoom_link");
+
+/* ----- BWE 1: 5 days before ----- */
+const bwe1: EmailTemplate = {
+  id: "bwe-01",
+  label: "BWE 1 · 5 dagar före",
+  subject: "Jag skickade mina vänner i tio år. Men själv vågade jag inte.",
+  preheader: "Mod föds inte innan du tar steget. Mod föds i steget.",
+  html: wrapEmail({
+    preheader: "Mod föds inte innan du tar steget. Mod föds i steget.",
+    body: `
+      ${eyebrow("5 dagar före webinaret")}
+      ${greet()}
+      ${p("I tio år skickade jag mina vänner på kurser. De kom tillbaka med glittrande ögon. Förändrade. Levande.")}
+      ${italic("Och jag stod kvar.")}
+      ${p("Jag tänkte: jag har ju man och barn och företag. Jag kan inte. Det där är inte för mig.")}
+      ${p("Men vet du vad det egentligen handlade om?")}
+      ${p("Jag var rädd. Rädd för vad jag skulle hitta. Rädd för att ta plats. Rädd för att det kanske skulle förändra allt.")}
+      ${p("Det är ju så vi ofta gör, eller hur? Vi väntar. Tills vi är redo. Tills det passar bättre. Tills barnen är större, tills jobbet lugnar sig, tills, tills, tills.")}
+      ${p("Men jag lärde mig något viktigt: <strong>Mod föds inte innan du tar steget. Mod föds i steget.</strong>")}
+      ${p("Så jag tog det. Och efteråt tänkte jag bara: <em>Jag är hemma. På riktigt.</em>")}
+      ${pLast("Inte för att jag blev någon annan. Utan för att jag äntligen fick vara jag.")}
+      ${italic("Det är därför vi ses på:")}
+      ${webinarInfoBox()}
+      ${p("Jag vill visa dig vad jag hittade. Inte för att du ska bli som mig. Utan för att du ska få tillgång till dig.")}
+      ${pLast("Vad längtar du mest efter just nu? Svara gärna. Jag läser allt.")}
+      ${signOff()}
+    `,
+  }),
+};
+
+/* ----- BWE 2: 4 days before ----- */
+const bwe2: EmailTemplate = {
+  id: "bwe-02",
+  label: "BWE 2 · 4 dagar före",
+  subject: "Hon hade gått till terapeut i åratal. Sen sa hon: ”Var det så här enkelt?”",
+  preheader: "Kroppen ljuger inte. Och den har inte glömt vägen hem till dig.",
+  html: wrapEmail({
+    preheader: "Kroppen ljuger inte. Och den har inte glömt vägen hem till dig.",
+    body: `
+      ${eyebrow("4 dagar före webinaret")}
+      ${greet()}
+      ${p("En kvinna kom till mig. Hon hade försökt allt.")}
+      ${p("Terapeut. Gynekolog. Läkare. Alla sa samma sak: det är klimakteriet, det är normalt, det finns inte så mycket att göra.")}
+      ${p("Hon hade nästan gett upp.")}
+      ${italic("Men vet du vad som hände?")}
+      ${p("Det tog inte lång tid. Inte för att jag gjorde något magiskt – utan för att vi gick tillbaka till kroppen. Och kroppen visste redan.")}
+      ${italic("Efteråt sa hon: &ldquo;Här har jag gått i terapi i åratal. Och så var det så här lätt?&rdquo;")}
+      ${p("Jag förstår att det kan låta konstigt. Men det är lite som att köra bil. När du väl kan det, glömmer du det aldrig. Körkortet är redan på plats – du har bara glömt att kroppen vet.")}
+      ${p("Vi har lärt oss att leta efter svar utanför oss själva. Hos experter. I böcker. På nätet.")}
+      ${pLast("Men kroppen ljuger inte. Och den har inte glömt vägen hem till dig.")}
+      ${italic("Det är precis det jag kommer visa dig på:")}
+      ${webinarInfoBox()}
+      ${p("Inte teori. Inte fluff. Utan hur du faktiskt kan börja känna det i din egen kropp.")}
+      ${pLast("Känner du igen dig i hennes historia? Svara gärna – jag läser allt.")}
+      ${signOff()}
+    `,
+  }),
+};
+
+/* ----- BWE 3: 3 days before ----- */
+const bwe3: EmailTemplate = {
+  id: "bwe-03",
+  label: "BWE 3 · 3 dagar före",
+  subject: "Varför det inte funkar att ”bara slappna av”",
+  preheader: "Det handlar inte om att slappna av. Det handlar om att komma tillbaka till kroppen.",
+  html: wrapEmail({
+    preheader:
+      "Det handlar inte om att slappna av. Det handlar om att komma tillbaka till kroppen.",
+    body: `
+      ${eyebrow("3 dagar före webinaret")}
+      ${greet()}
+      ${p("Har du hört det där? &ldquo;Du behöver bara slappna av.&rdquo; &ldquo;Ta det lugnt.&rdquo; &ldquo;Stressa inte.&rdquo;")}
+      ${p("Som om det vore så enkelt.")}
+      ${p("Du har försökt. Ta ett bad. Tända ett ljus. Dricka ett glas vin. Kanske till och med bokat en massage eller en weekend bort.")}
+      ${p("Men sen kommer du tillbaka till vardagen. Och allting känns likadant.")}
+      ${italic("Vet du varför?")}
+      ${p("För att det inte handlar om att slappna av. Det handlar om <strong>att komma tillbaka till kroppen</strong>.")}
+      ${italic("Det är skillnad.")}
+      ${p("Avslappning händer i huvudet. Du tänker att du ska slappna av. Du försöker släppa taget.")}
+      ${p("Men kroppen fungerar inte så. Den behöver inte att du tänker. Den behöver att du känner. Att du landar. Att du kommer hem.")}
+      ${p("Och det har ingen lärt oss.")}
+      ${pLast("Vi har lärt oss prestera. Ställa upp. Hålla ihop. Men inte hur vi kommer tillbaka till oss själva.")}
+      ${p("Det är det jag vill visa dig på torsdag. Inte fler tips om att slappna av. Utan hur du faktiskt landar i din egen kropp igen.")}
+      ${italic("Vi ses:")}
+      ${webinarInfoBox()}
+      ${signOff()}
+    `,
+  }),
+};
+
+/* ----- BWE 4: 2 days before ----- */
+const bwe4: EmailTemplate = {
+  id: "bwe-04",
+  label: "BWE 4 · 2 dagar före",
+  subject: "Det var inget nytt. Men ändå förändrades allt.",
+  preheader: "Du behöver inte bli någon annan. Du behöver komma hem till dig själv.",
+  html: wrapEmail({
+    preheader: "Du behöver inte bli någon annan. Du behöver komma hem till dig själv.",
+    body: `
+      ${eyebrow("2 dagar före webinaret")}
+      ${greet()}
+      ${p("En kvinna sa till mig efter att vi jobbat tillsammans:")}
+      ${italic("&ldquo;Det som förvånade mig mest var att det här har jag alltid haft. Det var inget nytt. Men förhållningssättet till det är helt nytt.&rdquo;")}
+      ${p("Hon hade trott att hon behövde bli någon annan. Fixa sig. Förändra sig.")}
+      ${p("Men det hon hittade var sig själv. Den hon alltid varit, under alla lager av att ställa upp, prestera, ta hand om alla andra.")}
+      ${italic("Stark. Hel. Levande.")}
+      ${p("Inte för att hon blev någon ny. Utan för att hon äntligen fick vara den hon är.")}
+      ${p("Det är det jag ser hända, gång på gång. Kvinnor som kommer till mig och tror att de är trasiga. Att något är fel. Att de har tappat bort något de aldrig kan få tillbaka.")}
+      ${pLast("Och sen upptäcker de att allt finns kvar. Kroppen har inte glömt. Den väntade bara på att de skulle komma tillbaka.")}
+      ${p("Det är det jag vill visa dig på torsdag.")}
+      ${p("Inte hur du blir någon annan. Utan hur du kommer hem till dig själv.")}
+      ${italic("Vi ses:")}
+      ${webinarInfoBox()}
+      ${pLast("Hur skulle det kännas att vakna och känna sig som du igen?")}
+      ${signOff()}
+    `,
+  }),
+};
+
+/* ----- BWE 5: 1 day before (morning) ----- */
+const bwe5: EmailTemplate = {
+  id: "bwe-05",
+  label: "BWE 5 · 1 dag före (morgon)",
+  subject: "Vad som brukar hända",
+  preheader: "Imorgon ses vi. Och jag vill berätta vad som brukar hända.",
+  html: wrapEmail({
+    preheader: "Imorgon ses vi. Och jag vill berätta vad som brukar hända.",
+    body: `
+      ${eyebrow("1 dag före · morgon")}
+      ${greet()}
+      ${p("Imorgon ses vi. Och jag vill berätta vad som brukar hända.")}
+      ${p("Först är folk nervösa. De vet inte riktigt vad de gett sig in på. De har kameran avstängd och sitter lite på avstånd.")}
+      ${italic("Sen börjar något hända.")}
+      ${p("Någon känner igen sig i det jag säger. Någon annan vågar skriva något i chatten. Och plötsligt är det inte längre ett webinar – det är ett rum fullt av kvinnor som bär på samma längtan.")}
+      ${p("Efter en stund märker jag det i kroppen. Energin förändras. Det blir mjukare. Varmare. Som om vi alla andas ut samtidigt.")}
+      ${p("Och när vi är klara skriver folk saker som:")}
+      <ul style="margin:0 0 24px 0;padding:0 0 0 22px;color:#3a4a4a;font-size:16px;line-height:1.8;">
+        <li style="margin-bottom:8px;font-style:italic;">&ldquo;Jag visste inte att det var det här jag behövde.&rdquo;</li>
+        <li style="margin-bottom:8px;font-style:italic;">&ldquo;Äntligen känner jag mig inte ensam med det här.&rdquo;</li>
+        <li style="margin-bottom:8px;font-style:italic;">&ldquo;Wow, nu ska det bli spännande att uppleva världen utanför.&rdquo;</li>
+      </ul>
+      ${italic("Det är det som väntar imorgon.")}
+      ${webinarInfoBox()}
+      ${pLast("Kom som du är. Du behöver inte ha kameran på. Bara kom.")}
+      ${signOff()}
+    `,
+  }),
+};
+
+/* ----- BWE 6: 1 day before (evening) ----- */
+const bwe6: EmailTemplate = {
+  id: "bwe-06",
+  label: "BWE 6 · 1 dag före (kväll)",
+  subject: "Vi ses imorgon 💛",
+  preheader: "Bara en snabb påminnelse – imorgon är det dags.",
+  html: wrapEmail({
+    preheader: "Bara en snabb påminnelse – imorgon är det dags.",
+    body: `
+      ${eyebrow("1 dag före · kväll")}
+      ${greet()}
+      ${p("Bara en snabb påminnelse – imorgon är det dags.")}
+      ${p("Jag vet hur lätt det är att glömma. Att något kommer emellan. Att man tänker &ldquo;jag tar det en annan gång&rdquo;.")}
+      ${p("Men det är något med att vara där. I rummet. Tillsammans med andra kvinnor som längtar efter samma sak.")}
+      ${p("Det går inte att förklara riktigt. Man måste uppleva det.")}
+      ${pLast("Så lägg in det i kalendern nu om du inte redan gjort det. Säg till familjen att du är upptagen en och en halv timme. Stäng dörren. Gör det här för dig.")}
+      ${italic("Imorgon kl. {{custom_values.time_of_the_webinar}}")}
+      ${webinarInfoBox()}
+      ${cta("Lägg till i din kalender", "webinar_add_to_calendar_link")}
+      ${pLast("Jag ser fram emot att se dig där.")}
+      ${signOff()}
+    `,
+  }),
+};
+
+/* ----- BWE 7: Morning of webinar ----- */
+const bwe7: EmailTemplate = {
+  id: "bwe-07",
+  label: "BWE 7 · Morgonen för webinaret",
+  subject: "En sak jag vill att du tar med dig ikväll",
+  preheader: "Hur levande vill du faktiskt vara?",
+  html: wrapEmail({
+    preheader: "Hur levande vill du faktiskt vara?",
+    body: `
+      ${eyebrow("Idag · webinardagen")}
+      ${greet()}
+      ${p("Idag är det dags. Och jag vill ge dig något att tänka på innan vi ses.")}
+      ${italic("Jag brukar fråga kvinnor: &ldquo;Hur levande vill du vara?&rdquo;")}
+      ${p("Inte hur levande du borde vara. Inte hur levande du kan vara om allt blir perfekt.")}
+      ${p("Utan <strong>hur levande vill du faktiskt vara?</strong> I din kropp. I ditt liv. I dina relationer.")}
+      ${p("De flesta har aldrig ställt sig den frågan. Vi är så vana vid att överleva vardagen att vi glömt att fråga oss vad vi egentligen längtar efter.")}
+      ${pLast("Ta med dig den frågan ikväll. Du behöver inte ha ett svar. Bara låt den vara där.")}
+      ${webinarInfoBox()}
+      ${pLast("Och en praktisk grej – testa länken innan så du vet att den funkar. Sådant tekniskt strul vill vi inte ha i sista sekunden.")}
+      ${signOff()}
+    `,
+  }),
+};
+
+/* ----- BWE 8: 1 hour before ----- */
+const bwe8: EmailTemplate = {
+  id: "bwe-08",
+  label: "BWE 8 · 1 timme före",
+  subject: "Om en timme börjar vi",
+  preheader: "Det här är din tid.",
+  html: wrapEmail({
+    preheader: "Det här är din tid.",
+    body: `
+      ${eyebrow("1 timme före start")}
+      ${greet()}
+      ${italic("En timme kvar.")}
+      ${p("Avsluta det du håller på med. Häll upp något gott att dricka. Hitta en plats där du får vara ifred en stund.")}
+      ${p("<strong>Det här är din tid.</strong>")}
+      ${ctaJoin("Klicka här för att komma in")}
+      ${italic("Vi börjar kl. {{custom_values.time_of_the_webinar}}.")}
+      ${pLast("Ses strax.")}
+      ${signOff()}
+    `,
+  }),
+};
+
+/* ----- BWE 9: 15 minutes before ----- */
+const bwe9: EmailTemplate = {
+  id: "bwe-09",
+  label: "BWE 9 · 15 min före",
+  subject: "Dörren är öppen – kom in",
+  preheader: "Nu är det dags. Jag väntar på dig.",
+  html: wrapEmail({
+    preheader: "Nu är det dags. Jag väntar på dig.",
+    body: `
+      ${eyebrow("15 min före start")}
+      ${greet()}
+      ${italic("Nu är det dags. Dörren är öppen.")}
+      ${ctaJoin("Klicka här för att komma in")}
+      ${pLast("Jag väntar på dig.")}
+      ${signOff()}
+    `,
+  }),
+};
+
+/* ----- BWE 10: 5 min after start ----- */
+const bwe10: EmailTemplate = {
+  id: "bwe-10",
+  label: "BWE 10 · 5 min efter start",
+  subject: "Vi har börjat – men du hinner fortfarande",
+  preheader: "Vi är igång. Men du hinner fortfarande.",
+  html: wrapEmail({
+    preheader: "Vi är igång. Men du hinner fortfarande.",
+    body: `
+      ${eyebrow("5 min efter start")}
+      ${greet()}
+      ${italic("Vi är igång. Men du hinner fortfarande.")}
+      ${ctaJoin("Klicka här och kom in nu")}
+      ${pLast("Jag vill att du ska vara med.")}
+      ${signOff()}
     `,
   }),
 };
@@ -310,6 +581,16 @@ const email10: EmailTemplate = {
 
 export const EMAIL_TEMPLATES: EmailTemplate[] = [
   registrationConfirmation,
+  bwe1,
+  bwe2,
+  bwe3,
+  bwe4,
+  bwe5,
+  bwe6,
+  bwe7,
+  bwe8,
+  bwe9,
+  bwe10,
   email1,
   email2,
   email3,
