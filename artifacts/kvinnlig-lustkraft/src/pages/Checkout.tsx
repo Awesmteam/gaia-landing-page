@@ -413,7 +413,7 @@ export default function Checkout() {
               }`}
             >
               <span>
-                {expired ? "Erbjudandet har stängt" : "Ja, jag tar steget nu"}
+                {expired ? "Erbjudandet har stängt" : "Ja, jag tar platsen nu"}
               </span>
               {!expired && <ArrowRight className="w-4 h-4" />}
             </a>
