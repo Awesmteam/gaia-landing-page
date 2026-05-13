@@ -312,8 +312,12 @@ export default function Checkout() {
                   "2 LIVE-seminarier med Gaia varje månad — möte i Gaia­community",
                   "12 månaders tillgång — du går i din egen takt",
                   "Tillgång till första modulen direkt efter köp",
-                  "BONUS: 1 års medlemskap — 12 st LIVE webinar",
-                  "BONUS: MATKA — InnerMedicineWoman paket (föreläsning + vägledd hypnos)",
+                  ...(expired
+                    ? []
+                    : [
+                        "BONUS: 1 års medlemskap — 12 st LIVE webinar",
+                        "BONUS: MATKA — InnerMedicineWoman paket (föreläsning + vägledd hypnos)",
+                      ]),
                 ].map((item, i) => (
                   <li
                     key={i}
@@ -406,7 +410,7 @@ export default function Checkout() {
               onClick={(e) => {
                 if (expired) e.preventDefault();
               }}
-              className={`inline-flex items-center justify-center gap-3 rounded-full px-10 py-5 text-base md:text-lg font-semibold tracking-wide transition-all ${
+              className={`flex w-full items-center justify-center gap-3 rounded-full px-10 py-5 text-base md:text-lg font-semibold tracking-wide transition-all ${
                 expired
                   ? "bg-primary/30 text-white/80 cursor-not-allowed"
                   : "bg-accent text-white shadow-lg hover:bg-accent/90 hover:scale-[1.02]"
