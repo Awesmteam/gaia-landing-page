@@ -30,6 +30,7 @@ router.post("/registrations", async (req, res) => {
       .values({
         name: input.name,
         email: input.email,
+        phone: input.phone,
         source: input.source,
       })
       .returning();

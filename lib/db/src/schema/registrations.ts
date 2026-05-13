@@ -6,6 +6,7 @@ export const registrationsTable = pgTable("registrations", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
   email: text("email").notNull(),
+  phone: text("phone").notNull().default(""),
   source: text("source").notNull(),
   createdAt: timestamp("created_at", { withTimezone: true })
     .notNull()
@@ -22,6 +23,7 @@ export const insertRegistrationSchema = createInsertSchema(
 ).pick({
   name: true,
   email: true,
+  phone: true,
   source: true,
 });
 
@@ -32,6 +34,11 @@ export const registrationInputSchema = z.object({
     .trim()
     .toLowerCase()
     .email("Skriv en giltig e-postadress."),
+  phone: z
+    .string()
+    .trim()
+    .min(6, "Skriv ditt telefonnummer.")
+    .max(32, "Telefonnumret är för långt."),
   source: z.enum(["webinar", "sales"]),
 });
 

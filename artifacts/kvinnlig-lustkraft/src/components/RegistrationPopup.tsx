@@ -1,7 +1,7 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { useLocation } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Calendar, Clock, MapPin, X } from "lucide-react";
+import { ArrowRight, Calendar, Clock, MapPin, Phone, X } from "lucide-react";
 import {
   WEBINAR_DATE,
   WEBINAR_TIME,
@@ -18,6 +18,7 @@ export function RegistrationPopup({ open, onClose }: RegistrationPopupProps) {
   const [, navigate] = useLocation();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
@@ -45,6 +46,11 @@ export function RegistrationPopup({ open, onClose }: RegistrationPopupProps) {
       setError("Skriv en giltig e-postadress.");
       return;
     }
+    const phoneTrimmed = phone.trim();
+    if (phoneTrimmed.replace(/[^\d]/g, "").length < 6) {
+      setError("Skriv ditt telefonnummer.");
+      return;
+    }
     setError(null);
     setSubmitting(true);
     try {
@@ -54,6 +60,7 @@ export function RegistrationPopup({ open, onClose }: RegistrationPopupProps) {
         body: JSON.stringify({
           name: name.trim(),
           email: email.trim(),
+          phone: phoneTrimmed,
           source: "webinar",
         }),
       });
@@ -168,6 +175,27 @@ export function RegistrationPopup({ open, onClose }: RegistrationPopupProps) {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="din@epost.se"
+                  className="w-full bg-secondary/40 border border-border/60 rounded-full px-5 py-3 text-primary placeholder:text-primary/40 focus:outline-none focus:border-accent focus:bg-white transition-colors"
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="popup-phone"
+                  className="block text-[11px] font-bold tracking-[0.18em] uppercase text-primary/60 mb-2"
+                >
+                  <span className="inline-flex items-center gap-1.5">
+                    <Phone className="w-3 h-3 text-accent" />
+                    Telefon
+                  </span>
+                </label>
+                <input
+                  id="popup-phone"
+                  type="tel"
+                  inputMode="tel"
+                  autoComplete="tel"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  placeholder="+46 70 123 45 67"
                   className="w-full bg-secondary/40 border border-border/60 rounded-full px-5 py-3 text-primary placeholder:text-primary/40 focus:outline-none focus:border-accent focus:bg-white transition-colors"
                 />
               </div>

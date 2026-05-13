@@ -13,6 +13,7 @@ export type WebhookResult = {
 export type RegistrationWebhookPayload = {
   name: string;
   email: string;
+  phone: string;
   source: "webinar" | "sales";
   webinar_date: string;
   webinar_time: string;
@@ -24,11 +25,13 @@ export type RegistrationWebhookPayload = {
 export function buildPayload(input: {
   name: string;
   email: string;
+  phone: string;
   source: "webinar" | "sales";
 }): RegistrationWebhookPayload {
   return {
     name: input.name,
     email: input.email,
+    phone: input.phone,
     source: input.source,
     webinar_date: "2026-05-20",
     webinar_time: "06:00",
