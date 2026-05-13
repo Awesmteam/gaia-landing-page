@@ -24,10 +24,21 @@ export const SAMPLE_VALUES: Record<string, string> = {
   our_email_adress: "gaia@innershift.se",
 };
 
+export const SAMPLE_CONTACT: Record<string, string> = {
+  first_name: "Anna",
+  last_name: "Lindberg",
+  full_name: "Anna Lindberg",
+  email: "anna@example.se",
+};
+
 export function applySampleValues(html: string): string {
-  return html.replace(/\{\{\s*custom_values\.([a-z_]+)\s*\}\}/gi, (_m, key) => {
-    return SAMPLE_VALUES[key] ?? `{{custom_values.${key}}}`;
-  });
+  return html
+    .replace(/\{\{\s*custom_values\.([a-z_]+)\s*\}\}/gi, (_m, key) => {
+      return SAMPLE_VALUES[key] ?? `{{custom_values.${key}}}`;
+    })
+    .replace(/\{\{\s*contact\.([a-z_]+)\s*\}\}/gi, (_m, key) => {
+      return SAMPLE_CONTACT[key] ?? `{{contact.${key}}}`;
+    });
 }
 
 /* ------------- HTML building blocks ------------- */
@@ -91,7 +102,7 @@ export const eyebrow = (text: string) => `
 export const h1 = (text: string) => `
   <h1 class="h1" style="margin:0 0 22px 0;font-family:Georgia,'Times New Roman',serif;font-size:32px;line-height:1.2;font-weight:500;color:${C.primary};letter-spacing:-0.4px;">${text}</h1>`;
 
-export const greet = () => h1("Hej,");
+export const greet = () => h1("Hej {{contact.first_name}},");
 
 /* ------------- Page shell ------------- */
 

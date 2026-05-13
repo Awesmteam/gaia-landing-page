@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "wouter";
 import { Check, Copy, Download, Eye, Code as CodeIcon, ExternalLink } from "lucide-react";
 import { EMAIL_TEMPLATES, type EmailTemplate } from "@/lib/emails/templates";
-import { applySampleValues, SAMPLE_VALUES } from "@/lib/emails/shell";
+import { applySampleValues, SAMPLE_VALUES, SAMPLE_CONTACT } from "@/lib/emails/shell";
 
 type Mode = "preview" | "raw";
 
@@ -105,9 +105,14 @@ export default function Emails() {
               GHL Custom Fields
             </p>
             <ul className="space-y-1.5 text-[11px] text-primary/65 font-mono leading-snug">
+              {Object.keys(SAMPLE_CONTACT).map((k) => (
+                <li key={k}>
+                  <span className="text-accent">{`{{contact.${k}}}`}</span>
+                </li>
+              ))}
               {Object.keys(SAMPLE_VALUES).map((k) => (
                 <li key={k}>
-                  <span className="text-mauve text-accent">{`{{custom_values.${k}}}`}</span>
+                  <span className="text-accent">{`{{custom_values.${k}}}`}</span>
                 </li>
               ))}
             </ul>
