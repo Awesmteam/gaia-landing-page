@@ -89,7 +89,7 @@ export default function WebinarRegistration() {
   );
 
   return (
-    <div className="min-h-screen bg-background overflow-x-hidden pb-24 md:pb-0">
+    <div className="min-h-screen bg-background pb-24 md:pb-0">
       {/* Header — slim, centered, distinct from sales page pill nav */}
       <header className="border-b border-border/50 bg-background/90 backdrop-blur-md sticky top-0 z-40">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">

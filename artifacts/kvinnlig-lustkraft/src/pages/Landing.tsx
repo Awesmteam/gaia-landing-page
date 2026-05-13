@@ -218,7 +218,7 @@ const HeroCarousel = () => {
 
 export default function Landing() {
   return (
-    <div className="min-h-screen bg-background overflow-x-hidden">
+    <div className="min-h-screen bg-background">
       {/* Navbar */}
       <div className="fixed top-0 left-0 right-0 z-50 p-4">
         <div className="mx-auto max-w-6xl bg-white/80 backdrop-blur-md border border-white/40 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-full px-6 py-3 flex items-center justify-between">
