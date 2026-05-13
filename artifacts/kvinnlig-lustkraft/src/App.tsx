@@ -4,6 +4,7 @@ import ThankYou from "@/pages/ThankYou";
 import WebinarRegistration from "@/pages/WebinarRegistration";
 import WebinarThankYou from "@/pages/WebinarThankYou";
 import WebinarReplay from "@/pages/WebinarReplay";
+import Emails from "@/pages/Emails";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -13,6 +14,7 @@ function Router() {
       <Route path="/tack" component={WebinarThankYou} />
       <Route path="/inspelning" component={WebinarReplay} />
       <Route path="/replay" component={WebinarReplay} />
+      <Route path="/emails" component={Emails} />
       <Route path="/sales" component={Landing} />
       <Route path="/sales/tack" component={ThankYou} />
       <Route component={NotFound} />
