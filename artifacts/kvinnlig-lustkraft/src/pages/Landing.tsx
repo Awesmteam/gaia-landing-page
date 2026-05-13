@@ -114,8 +114,14 @@ const HeroSection = () => (
             </span>
           </h1>
 
-          <p className="font-serif italic text-white/95 text-lg md:text-2xl lg:text-3xl leading-snug max-w-2xl">
-            Du är inte trasig. Din kropp väntar bara på att du ska komma tillbaka.
+          <p className="font-serif italic text-white/95 text-xl md:text-2xl lg:text-3xl leading-snug max-w-2xl mb-3 md:mb-4">
+            Kom hem till dig själv. Känn dig stark, hel och levande igen.
+          </p>
+          <p className="text-white/85 text-base md:text-lg leading-snug max-w-2xl mb-2">
+            En 8-stegs resa tillbaka till din kropp, din kraft och ditt liv.
+          </p>
+          <p className="text-white/75 text-sm md:text-base leading-snug max-w-2xl">
+            För dig som har gett så mycket till alla andra att du glömt dig själv på vägen.
           </p>
         </div>
       </div>
@@ -420,7 +426,7 @@ export default function Landing() {
                 <ul className="space-y-6 mb-12">
                   {[
                     "8 moduler som tar dig steg för steg hem till din kropp och din kraft – varje modul aktiverar, fördjupar och integrerar det som redan öppnats",
-                    "1 live-seminar med mig varje månad – Möte med Gaia, första måndagen kl. 18.00–19.30. Här möts vi oavsett var du är i kursen. Du kan ställa frågor, känna att du inte är ensam, och låta kroppen landa djupare.",
+                    "2 live-seminarier med mig varje månad – Möte med Gaia, första måndagen kl. 18.00–19.30. Här möts vi oavsett var du är i kursen. Du kan ställa frågor, känna att du inte är ensam, och låta kroppen landa djupare.",
                     "12 månaders tillgång så du kan gå i din egen takt – det här är inte något du ska stressa igenom",
                     "Tillgång till första modulen direkt efter köp – du kan börja redan idag"
                   ].map((item, i) => (
@@ -673,9 +679,8 @@ export default function Landing() {
                 <div className="space-y-6 mb-12">
                   {[
                     { text: "8 moduler med vägledning / 8 hypnoser", value: "8 890:-" },
-                    { text: "1 års medlemskap — 12 LIVE webinar", value: "11 880:-" },
-                    { text: "12 månaders tillgång till kursinnehållet", value: "2 000:-" },
-                    { text: "Tillgång till första modulen direkt efter köp, du kan börja redan ikväll", value: "" }
+                    { text: "2 LIVE webinar 90 min Gaiacommunity", value: "1 980:-" },
+                    { text: "12 månaders tillgång", value: "2 000:-" }
                   ].map((item, i) => (
                     <div key={i} className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 py-2 border-b border-border/30 last:border-0">
                       <div className="flex items-start gap-3">
@@ -691,33 +696,34 @@ export default function Landing() {
                   ))}
                   
                   <div className="text-right font-serif text-primary/60 italic pt-2">
-                    TOTALT VÄRDE 22 770:-
+                    TOTALT VÄRDE 12 870:-
                   </div>
                 </div>
 
                 <div className="bg-secondary/40 rounded-3xl p-6 md:p-8 mb-12 border border-border/50">
                   <span className="text-accent text-xs font-bold tracking-widest uppercase block mb-6 text-center">
-                    Webinarbonus — gäller endast till klockan 21.00 ikväll:
+                    Webinarbonus — gäller endast under webbinariedagen:
                   </span>
                   
-                  <div className="space-y-4 mb-6">
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                  <div className="space-y-4 mb-2">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 py-2 border-b border-border/40">
                       <div className="flex items-start gap-3">
                         <div className="w-1.5 h-1.5 rounded-full bg-accent mt-2 shrink-0" />
-                        <span className="text-primary/90 font-medium">BONUS 1: MATKA — föreläsning om kvinnans förmågor</span>
+                        <span className="text-primary/90 font-medium">BONUS 1: 1 års medlemskap — 12 st LIVE webinar</span>
+                      </div>
+                      <div className="text-sm font-medium text-primary/50 shrink-0 uppercase tracking-wide">
+                        Värde 11 880:-
                       </div>
                     </div>
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 py-2">
                       <div className="flex items-start gap-3">
                         <div className="w-1.5 h-1.5 rounded-full bg-accent mt-2 shrink-0" />
-                        <span className="text-primary/90 font-medium">BONUS 2: MATKA — specialdesignad vägledd hypnos</span>
+                        <span className="text-primary/90 font-medium">BONUS 2: MATKA — InnerMedicineWoman PAKET (föreläsning + hypnos)</span>
+                      </div>
+                      <div className="text-sm font-medium text-primary/50 shrink-0 uppercase tracking-wide">
+                        Värde 3 500:-
                       </div>
                     </div>
-                  </div>
-                  
-                  <div className="flex justify-between items-center pt-4 border-t border-border/50">
-                    <span className="text-sm font-medium text-primary/50 uppercase tracking-wide">Värde</span>
-                    <span className="text-sm font-medium text-primary/50 uppercase tracking-wide">3 500:-</span>
                   </div>
                 </div>
 
@@ -732,7 +738,7 @@ export default function Landing() {
                   <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-sm text-primary/70 mb-8">
                     <span>Delbetaling möjlig med Klarna.</span>
                     <span className="hidden sm:inline-block">•</span>
-                    <span>100% garanti — pengarna tillbaka.</span>
+                    <span>Tillgång till första modulen direkt efter köp.</span>
                   </div>
                   
                   <a
