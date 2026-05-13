@@ -20,3 +20,12 @@ export const REPLAY_EMBED_URL = "";
 
 // GHL / FastPayDirect checkout link for "Kvinnlig Lustkraft" course
 export const PAYMENT_LINK = "https://link.fastpaydirect.com/payment-link/6a0498ff8c3f15f97515aee0";
+
+// Webinar Zoom link (matches the link sent in confirmation emails)
+export const WEBINAR_ZOOM_LINK = "https://zoom.us/j/94430244908";
+// Add-to-calendar link (Google/Apple/Outlook via calendarlink.com — same as in emails)
+export const WEBINAR_CALENDAR_LINK = "https://calendarlink.com/event/d9GIA";
+
+// Course access — where buyers go to start Module 1 after purchase
+export const COURSE_LOGIN_LINK = "https://members.innershift.se";
+export const SUPPORT_EMAIL = "hej@innershift.se";

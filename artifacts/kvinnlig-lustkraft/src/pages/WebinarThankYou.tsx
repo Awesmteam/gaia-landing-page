@@ -1,6 +1,17 @@
 import { Link } from "wouter";
 import { motion } from "framer-motion";
-import { Calendar, Clock, MapPin, CalendarPlus, PartyPopper } from "lucide-react";
+import {
+  Calendar,
+  Clock,
+  MapPin,
+  CalendarPlus,
+  PartyPopper,
+  Video,
+  Copy,
+  Check,
+  ExternalLink,
+} from "lucide-react";
+import { useState } from "react";
 import {
   WEBINAR_DATE,
   WEBINAR_TIME,
@@ -10,11 +21,11 @@ import {
   WEBINAR_DESCRIPTION,
   WEBINAR_ICS_DTSTART_UTC,
   WEBINAR_ICS_DTEND_UTC,
+  WEBINAR_ZOOM_LINK,
+  WEBINAR_CALENDAR_LINK,
 } from "@/lib/webinar";
 
 function buildIcs(): string {
-  const dtStart = WEBINAR_ICS_DTSTART_UTC;
-  const dtEnd = WEBINAR_ICS_DTEND_UTC;
   const dtStamp = new Date()
     .toISOString()
     .replace(/[-:]/g, "")
@@ -29,18 +40,20 @@ function buildIcs(): string {
     "BEGIN:VEVENT",
     `UID:${uid}`,
     `DTSTAMP:${dtStamp}`,
-    `DTSTART:${dtStart}`,
-    `DTEND:${dtEnd}`,
+    `DTSTART:${WEBINAR_ICS_DTSTART_UTC}`,
+    `DTEND:${WEBINAR_ICS_DTEND_UTC}`,
     `SUMMARY:${WEBINAR_TITLE}`,
-    `DESCRIPTION:${WEBINAR_DESCRIPTION}`,
-    `LOCATION:${WEBINAR_LOCATION_CONFIRMED}`,
+    `DESCRIPTION:${WEBINAR_DESCRIPTION}\\n\\nZoom: ${WEBINAR_ZOOM_LINK}`,
+    `LOCATION:${WEBINAR_ZOOM_LINK}`,
     "END:VEVENT",
     "END:VCALENDAR",
   ].join("\r\n");
 }
 
 export default function WebinarThankYou() {
-  const handleAddToCalendar = () => {
+  const [copied, setCopied] = useState(false);
+
+  const handleDownloadIcs = () => {
     const blob = new Blob([buildIcs()], { type: "text/calendar;charset=utf-8" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
@@ -50,6 +63,16 @@ export default function WebinarThankYou() {
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
+  };
+
+  const handleCopyZoom = async () => {
+    try {
+      await navigator.clipboard.writeText(WEBINAR_ZOOM_LINK);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // ignore
+    }
   };
 
   return (
@@ -63,12 +86,12 @@ export default function WebinarThankYou() {
         </Link>
       </header>
 
-      <main className="flex-1 flex items-center justify-center py-20 px-6">
+      <main className="flex-1 flex items-center justify-center py-16 md:py-20 px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
-          className="max-w-2xl mx-auto text-center"
+          className="max-w-2xl mx-auto text-center w-full"
         >
           <div className="flex justify-center mb-6">
             <div className="w-16 h-16 rounded-full bg-secondary text-accent flex items-center justify-center">
@@ -97,7 +120,7 @@ export default function WebinarThankYou() {
           </div>
 
           {/* Date/time card */}
-          <div className="bg-white rounded-[1.75rem] p-7 md:p-9 text-left max-w-xl mx-auto mb-10 border border-border/40 shadow-sm">
+          <div className="bg-white rounded-[1.75rem] p-7 md:p-9 text-left max-w-xl mx-auto mb-6 border border-border/40 shadow-sm">
             <h2 className="text-xs font-bold tracking-[0.22em] uppercase text-primary/60 mb-5 text-center">
               När och var
             </h2>
@@ -124,30 +147,104 @@ export default function WebinarThankYou() {
             </div>
           </div>
 
-          <div className="space-y-4 text-primary/75 text-base max-w-xl mx-auto mb-10">
-            <p>
-              Jag har skickat dig ett mejl med all viktig information och länken till
-              webinaret.
-            </p>
-            <p className="text-sm text-primary/60">
-              Har du inte fått det inom några minuter? Kolla din skräppost eller
-              spam-mapp – ibland smyger det sig dit.
-            </p>
-            <p className="font-serif italic text-lg text-primary">
-              Lägg in det i kalendern nu – så du inte glömmer.
+          {/* Zoom link card */}
+          <div className="bg-white rounded-[1.75rem] p-7 md:p-9 text-left max-w-xl mx-auto mb-6 border border-accent/30 shadow-sm">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 rounded-full bg-accent/10 text-accent flex items-center justify-center shrink-0">
+                <Video className="w-5 h-5" strokeWidth={1.8} />
+              </div>
+              <div>
+                <p className="text-[10px] tracking-[0.2em] uppercase text-primary/50 font-semibold">
+                  Zoom-länk
+                </p>
+                <p className="font-serif text-primary text-lg leading-tight">
+                  Din ingång till webinaret
+                </p>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-2 mb-4">
+              <code className="flex-1 bg-secondary/40 rounded-xl px-4 py-3 text-sm text-primary/80 font-mono break-all border border-border/40">
+                {WEBINAR_ZOOM_LINK}
+              </code>
+              <button
+                type="button"
+                onClick={handleCopyZoom}
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-border bg-white px-4 py-3 text-sm font-medium text-primary hover:bg-secondary/40 transition-colors duration-200 shrink-0"
+                aria-label="Kopiera Zoom-länken"
+              >
+                {copied ? (
+                  <>
+                    <Check className="w-4 h-4" strokeWidth={2.2} />
+                    <span>Kopierad</span>
+                  </>
+                ) : (
+                  <>
+                    <Copy className="w-4 h-4" strokeWidth={1.8} />
+                    <span>Kopiera</span>
+                  </>
+                )}
+              </button>
+            </div>
+
+            <a
+              href={WEBINAR_ZOOM_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white px-6 py-3 text-sm font-semibold tracking-wide shadow-sm hover:bg-accent/90 transition-colors duration-200 w-full sm:w-auto"
+            >
+              <Video className="w-4 h-4" strokeWidth={2} />
+              <span>Öppna Zoom-länken</span>
+              <ExternalLink className="w-3.5 h-3.5 opacity-80" strokeWidth={2} />
+            </a>
+
+            <p className="text-xs text-primary/55 mt-4 leading-relaxed">
+              Öppna den här länken den 20 maj kl. 18:00. Spara den så du har den nära.
             </p>
           </div>
 
-          <button
-            type="button"
-            onClick={handleAddToCalendar}
-            className="inline-flex items-center justify-center gap-3 rounded-full bg-accent text-white px-8 py-4 text-base font-semibold tracking-wide shadow-md hover:bg-accent/90 hover:scale-[1.02] transition-all duration-300 mb-12"
-          >
-            <CalendarPlus className="w-5 h-5" />
-            <span>Lägg till i kalendern</span>
-          </button>
+          {/* Calendar card */}
+          <div className="bg-white rounded-[1.75rem] p-7 md:p-9 text-left max-w-xl mx-auto mb-12 border border-border/40 shadow-sm">
+            <div className="flex items-center gap-3 mb-5">
+              <div className="w-10 h-10 rounded-full bg-secondary text-accent flex items-center justify-center shrink-0">
+                <CalendarPlus className="w-5 h-5" strokeWidth={1.6} />
+              </div>
+              <div>
+                <p className="text-[10px] tracking-[0.2em] uppercase text-primary/50 font-semibold">
+                  Kalender
+                </p>
+                <p className="font-serif text-primary text-lg leading-tight">
+                  Lägg till i din kalender
+                </p>
+              </div>
+            </div>
 
-          <div className="text-center mb-12">
+            <div className="flex flex-col sm:flex-row gap-3">
+              <a
+                href={WEBINAR_CALENDAR_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-primary text-white px-6 py-3 text-sm font-semibold tracking-wide shadow-sm hover:bg-primary/90 transition-colors duration-200 flex-1"
+              >
+                <CalendarPlus className="w-4 h-4" strokeWidth={2} />
+                <span>Google / Apple / Outlook</span>
+              </a>
+              <button
+                type="button"
+                onClick={handleDownloadIcs}
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-primary/30 bg-transparent px-6 py-3 text-sm font-semibold tracking-wide text-primary hover:bg-primary/5 transition-colors duration-200 flex-1"
+              >
+                <Calendar className="w-4 h-4" strokeWidth={1.8} />
+                <span>Ladda ner .ics</span>
+              </button>
+            </div>
+
+            <p className="text-xs text-primary/55 mt-4 leading-relaxed">
+              Vi har även mejlat dig länken — kolla din skräppost om du inte ser mejlet.
+            </p>
+          </div>
+
+          <div className="text-center mb-10">
             <p className="font-serif italic text-xl text-primary/70 mb-2">Vi ses snart.</p>
             <p className="font-serif text-2xl text-primary">Kram, Gaia</p>
           </div>
