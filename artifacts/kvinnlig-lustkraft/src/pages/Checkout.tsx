@@ -340,11 +340,11 @@ export default function Checkout() {
             <div className="bg-white rounded-[2rem] p-6 md:p-10 border border-border/40 shadow-sm">
               <div className="flex flex-col sm:flex-row gap-6 md:gap-8 items-start">
                 <div className="shrink-0 mx-auto sm:mx-0">
-                  <div className="w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden border-4 border-secondary shadow-md">
+                  <div className="w-40 md:w-48 rounded-2xl overflow-hidden border border-secondary shadow-md bg-secondary/30">
                     <img
                       src={gaiaPortraitImg}
                       alt="Gaia Qiliv Lindroos"
-                      className="w-full h-full object-cover"
+                      className="w-full h-auto object-contain"
                     />
                   </div>
                 </div>
