@@ -32,7 +32,7 @@ _Populate as you build — short repo map plus pointers to the source-of-truth f
 - **Server-side dedupe**: `POST /api/registrations` rejects (returns `{ok:true, deduped:true}`) any second submission with the same email + source within 6 hours, skipping both GHL webhook and CAPI.
 - **Phone normalization**: `normalizePhone()` converts Swedish national format (`07…`) to E.164 (`+46…`); `country` is derived from the E.164 prefix and falls back to `cf-ipcountry`/`x-vercel-ip-country` headers, then `SE`.
 - **CAPI no-op**: If `META_CAPI_ACCESS_TOKEN` is missing, the CAPI helper logs a warning and returns `skipped:no_token` — registration flow continues unaffected.
-- **Meta Test Events**: Set `META_CAPI_TEST_EVENT_CODE` (e.g. `TEST20673`, copied from Events Manager → Test Events tab for pixel `2028445224551858`) to route server-side `Lead` events into the Test Events tab during QA. Without it, CAPI events go straight to the production stream. Verified 2026-05-14: smoke `POST /api/registrations` → Meta returned `events_received: 1`, `fbtrace_id: AGreP8KfyCbAhsk1LzzFdss`, DB `capi_status='sent'`.
+- **Meta Test Events**: Set `META_CAPI_TEST_EVENT_CODE` (copied from Events Manager → Test Events tab for pixel `2028445224551858`) to route server-side `Lead` events into the Test Events tab during QA. Without it, CAPI events go straight to the production stream. Smoke check: `POST /api/registrations` should return `200`, DB row should show `capi_status='sent'` and `capi_response.body.events_received=1`.
 
 ## Product
 
