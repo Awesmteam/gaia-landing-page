@@ -57,7 +57,7 @@ export function normalizePhone(
   let digits = trimmed.replace(/\D/g, "");
   if (trimmed.startsWith("00")) digits = digits.slice(2);
 
-  if (!digits) return { e164: "", country: defaultCountry };
+  if (!digits) return { e164: "", country: "" };
 
   if (hasPlus) {
     // e.g. "+46 (0)70..." -> digits "46070..." -> strip trunk 0 after country code
@@ -74,10 +74,10 @@ export function normalizePhone(
 
   // E.164 sanity: 8–15 digits total
   if (digits.length < 8 || digits.length > 15) {
-    return { e164: "+" + digits, country: defaultCountry };
+    return { e164: "+" + digits, country: "" };
   }
 
-  let country = defaultCountry;
+  let country = "";
   for (const { prefix, country: c } of COUNTRY_CODE_MAP) {
     if (digits.startsWith(prefix)) {
       country = c;
