@@ -8,6 +8,11 @@ import {
   WEBINAR_TIMEZONE_LABEL,
   WEBINAR_LOCATION_PUBLIC,
 } from "@/lib/webinar";
+import {
+  generateEventId,
+  getStoredAttribution,
+  getPixelCookies,
+} from "@/lib/attribution";
 
 export type RegistrationPopupProps = {
   open: boolean;
@@ -53,6 +58,9 @@ export function RegistrationPopup({ open, onClose }: RegistrationPopupProps) {
     }
     setError(null);
     setSubmitting(true);
+    const eventId = generateEventId();
+    const attribution = getStoredAttribution();
+    const { fbp, fbc } = getPixelCookies();
     try {
       const res = await fetch(`${import.meta.env.BASE_URL}api/registrations`, {
         method: "POST",
@@ -62,15 +70,33 @@ export function RegistrationPopup({ open, onClose }: RegistrationPopupProps) {
           email: email.trim(),
           phone: phoneTrimmed,
           source: "webinar",
+          event_id: eventId,
+          fbp,
+          fbc,
+          ...attribution,
         }),
       });
       const data = (await res.json().catch(() => null)) as
-        | { ok?: boolean; error?: string }
+        | { ok?: boolean; deduped?: boolean; error?: string }
         | null;
       if (!res.ok || !data?.ok) {
         setError(data?.error ?? "Något gick fel, försök igen.");
         setSubmitting(false);
         return;
+      }
+      // Skip browser Lead pixel when server detected a duplicate within
+      // the dedupe window — server already skipped CAPI, so firing the
+      // browser pixel here would create a one-sided duplicate event.
+      if (
+        !data.deduped &&
+        typeof window !== "undefined" &&
+        typeof window.fbq === "function"
+      ) {
+        try {
+          window.fbq("track", "Lead", {}, { eventID: eventId });
+        } catch {
+          // pixel errors must not block navigation
+        }
       }
       navigate("/tack");
     } catch {

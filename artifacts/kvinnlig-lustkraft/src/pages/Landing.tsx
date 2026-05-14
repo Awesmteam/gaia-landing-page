@@ -5,6 +5,7 @@ import { ArrowRight, ArrowLeft, Menu, Heart, Sparkles } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import { PAYMENT_LINK } from "@/lib/webinar";
+import { useAttribution } from "@/lib/attribution";
 
 import heroImg from "@/assets/image_1778316613497.png";
 import programHeroCardImg from "@/assets/image_1778315697754.png";
@@ -223,6 +224,7 @@ const HeroCarousel = () => {
 };
 
 export default function Landing() {
+  useAttribution();
   return (
     <div className="min-h-screen bg-background">
       {/* Navbar */}

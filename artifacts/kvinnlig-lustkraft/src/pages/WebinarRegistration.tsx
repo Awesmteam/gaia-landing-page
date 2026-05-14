@@ -18,6 +18,7 @@ import {
 } from "@/lib/webinar";
 import { Countdown } from "@/components/Countdown";
 import { RegistrationPopup } from "@/components/RegistrationPopup";
+import { useAttribution } from "@/lib/attribution";
 
 const FadeIn = ({
   children,
@@ -65,6 +66,7 @@ const DateTimeBlock = ({ className = "" }: { className?: string }) => (
 );
 
 export default function WebinarRegistration() {
+  useAttribution();
   const [popupOpen, setPopupOpen] = useState(false);
   const openPopup = () => setPopupOpen(true);
   const closePopup = () => setPopupOpen(false);
