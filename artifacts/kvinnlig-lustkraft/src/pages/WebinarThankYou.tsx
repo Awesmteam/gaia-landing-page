@@ -11,7 +11,7 @@ import {
   Check,
   ExternalLink,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   WEBINAR_DATE,
   WEBINAR_TIME,
@@ -50,8 +50,20 @@ function buildIcs(): string {
   ].join("\r\n");
 }
 
+declare global {
+  interface Window {
+    fbq?: (...args: unknown[]) => void;
+  }
+}
+
 export default function WebinarThankYou() {
   const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && typeof window.fbq === "function") {
+      window.fbq("track", "Lead");
+    }
+  }, []);
 
   const handleDownloadIcs = () => {
     const blob = new Blob([buildIcs()], { type: "text/calendar;charset=utf-8" });
