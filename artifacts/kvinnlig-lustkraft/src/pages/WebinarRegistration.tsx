@@ -104,12 +104,6 @@ export default function WebinarRegistration() {
             </span>
           </Link>
           <div className="flex items-center gap-4">
-            <Link
-              href="/sales"
-              className="hidden sm:inline-block text-xs tracking-[0.2em] uppercase text-primary/60 hover:text-accent transition-colors"
-            >
-              Programmet
-            </Link>
             <button
               type="button"
               onClick={openPopup}
@@ -612,14 +606,6 @@ export default function WebinarRegistration() {
           <Sparkles className="w-5 h-5 text-accent mx-auto mb-4" />
           <p className="font-serif italic text-primary/70 text-lg mb-2">Vi ses snart.</p>
           <p className="font-serif text-primary text-xl">Kram, Gaia</p>
-          <div className="mt-8">
-            <Link
-              href="/sales"
-              className="text-sm tracking-[0.2em] uppercase text-primary/60 hover:text-accent transition-colors"
-            >
-              Läs mer om Kvinnlig Lustkraft®
-            </Link>
-          </div>
         </footer>
       </main>
 
