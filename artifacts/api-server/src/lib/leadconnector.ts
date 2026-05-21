@@ -67,7 +67,7 @@ export function buildPayload(
     country: input.country,
     source: input.source,
     event_id: input.eventId,
-    webinar_date: "2026-05-20",
+    webinar_date: "2026-05-27",
     webinar_time: "18:00",
     timezone: "Europe/Stockholm",
     submitted_at: new Date().toISOString(),
