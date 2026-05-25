@@ -29,8 +29,12 @@ export const inv05WedAfternoon: EmailTemplate = {
       ${infoBox([
         { label: "🕖&nbsp; Ikväll", value: "{{custom_values.time_of_the_webinar}}" },
         {
-          label: "🔗&nbsp; Länk",
+          label: "🔗&nbsp; Zoom",
           value: `<a href="{{custom_values.webinar_zoom_link}}" target="_blank" rel="noopener" style="color:#a87b6e;text-decoration:underline;font-weight:600;">{{custom_values.webinar_zoom_link}}</a>`,
+        },
+        {
+          label: "📆&nbsp; Kalender",
+          value: `<a href="{{custom_values.webinar_add_to_calendar_link}}" target="_blank" rel="noopener" style="color:#a87b6e;text-decoration:underline;font-weight:600;">Lägg till i din kalender</a>`,
         },
       ])}
       ${cta("Jag är med ikväll", "webinar_registration_link")}

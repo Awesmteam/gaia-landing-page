@@ -585,11 +585,6 @@ const email10: EmailTemplate = {
 };
 
 export const EMAIL_TEMPLATES: EmailTemplate[] = [
-  inv01TodayEvening,
-  inv02FriMorning,
-  inv03FriEvening,
-  inv04WedMorning,
-  inv05WedAfternoon,
   registrationConfirmation,
   bwe1,
   bwe2,
@@ -611,4 +606,9 @@ export const EMAIL_TEMPLATES: EmailTemplate[] = [
   email8,
   email9,
   email10,
+  inv01TodayEvening,
+  inv02FriMorning,
+  inv03FriEvening,
+  inv04WedMorning,
+  inv05WedAfternoon,
 ];

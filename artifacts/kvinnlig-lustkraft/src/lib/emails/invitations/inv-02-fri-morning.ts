@@ -42,7 +42,14 @@ export const inv02FriMorning: EmailTemplate = {
       ${infoBox([
         { label: "📅&nbsp; Datum", value: "{{custom_values.date_of_the_webinar}}" },
         { label: "🕖&nbsp; Tid", value: "{{custom_values.time_of_the_webinar}} svensk tid" },
-        { label: "💛&nbsp; Pris", value: "Gratis" },
+        {
+          label: "🔗&nbsp; Zoom",
+          value: `<a href="{{custom_values.webinar_zoom_link}}" target="_blank" rel="noopener" style="color:#a87b6e;text-decoration:underline;font-weight:600;">{{custom_values.webinar_zoom_link}}</a>`,
+        },
+        {
+          label: "📆&nbsp; Kalender",
+          value: `<a href="{{custom_values.webinar_add_to_calendar_link}}" target="_blank" rel="noopener" style="color:#a87b6e;text-decoration:underline;font-weight:600;">Lägg till i din kalender</a>`,
+        },
       ])}
       ${cta("Jag vill vara med", "webinar_registration_link")}
       ${pLast("Vilken av de tre myterna kände du igen mest? Svara gärna på mejlet – jag läser allt.")}
