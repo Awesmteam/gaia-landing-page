@@ -21,6 +21,7 @@ export const SAMPLE_VALUES: Record<string, string> = {
   time_of_the_webinar: "18.00",
   webinar_add_to_calendar_link: "https://calendarlink.com/event/Jd0K4",
   webinar_zoom_link: "https://zoom.us/j/94430244908",
+  webinar_registration_link: "https://innershift.se/gratis-webbinarium",
   our_email_adress: "gaia@innershift.se",
 };
 

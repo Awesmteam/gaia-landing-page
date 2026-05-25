@@ -13,6 +13,11 @@ import {
   psBox,
   divider,
 } from "./shell";
+import { inv01TodayEvening } from "./invitations/inv-01-today-1900";
+import { inv02FriMorning } from "./invitations/inv-02-fri-morning";
+import { inv03FriEvening } from "./invitations/inv-03-fri-evening";
+import { inv04WedMorning } from "./invitations/inv-04-wed-1000";
+import { inv05WedAfternoon } from "./invitations/inv-05-wed-1500";
 
 export interface EmailTemplate {
   id: string;
@@ -580,6 +585,11 @@ const email10: EmailTemplate = {
 };
 
 export const EMAIL_TEMPLATES: EmailTemplate[] = [
+  inv01TodayEvening,
+  inv02FriMorning,
+  inv03FriEvening,
+  inv04WedMorning,
+  inv05WedAfternoon,
   registrationConfirmation,
   bwe1,
   bwe2,
