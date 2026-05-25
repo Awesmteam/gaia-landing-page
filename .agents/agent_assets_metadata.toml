@@ -36,3 +36,9 @@ id = "J-oHWFdS2JRWhQnNmjJ0q"
 uri = "file://artifacts/kvinnlig-lustkraft/src/lib/emails/invitations/inv-all-plaintext.md"
 type = "text"
 title = "Alla 5 inbjudningsmejl – plain text (samlat)"
+
+[[outputs]]
+id = "Wq1w12AToGYI-RfbffFC4"
+uri = "file://screenshots/mejl-1-html.jpg"
+type = "image"
+title = "Mejl 1 – HTML rendering (med exempelvärden)"
