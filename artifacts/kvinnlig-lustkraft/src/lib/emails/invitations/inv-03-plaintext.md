@@ -26,10 +26,7 @@ Maria är inte speciell. Hon är som du. Hon hade bara aldrig fått veta att det
    Datum: {{custom_values.date_of_the_webinar}}
    Tid: {{custom_values.time_of_the_webinar}} svensk tid
 
-Zoom-länk:
-{{custom_values.webinar_zoom_link}}
-
-Anmälan:
+Anmäl dig här (Zoom-länken kommer i bekräftelsemejlet direkt):
 {{custom_values.webinar_registration_link}}
 
 Du behöver inte vara redo. Du behöver bara vara nyfiken.

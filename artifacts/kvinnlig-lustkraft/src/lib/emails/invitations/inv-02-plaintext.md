@@ -23,10 +23,7 @@ På webbinariet visar jag dig vad som faktiskt händer i kroppen – och varför
    Datum: {{custom_values.date_of_the_webinar}}
    Tid: {{custom_values.time_of_the_webinar}} svensk tid
 
-Zoom-länk:
-{{custom_values.webinar_zoom_link}}
-
-Anmälan:
+Anmäl dig här (Zoom-länken kommer i bekräftelsen):
 {{custom_values.webinar_registration_link}}
 
 Vilken myt kände du igen mest? Svara gärna – jag läser allt.

@@ -40,14 +40,7 @@ export const inv03FriEvening: EmailTemplate = {
       ${infoBox([
         { label: "📅&nbsp; Datum", value: "{{custom_values.date_of_the_webinar}}" },
         { label: "🕖&nbsp; Tid", value: "{{custom_values.time_of_the_webinar}} svensk tid" },
-        {
-          label: "🔗&nbsp; Zoom",
-          value: `<a href="{{custom_values.webinar_zoom_link}}" target="_blank" rel="noopener" style="color:#a87b6e;text-decoration:underline;font-weight:600;">{{custom_values.webinar_zoom_link}}</a>`,
-        },
-        {
-          label: "📆&nbsp; Kalender",
-          value: `<a href="{{custom_values.webinar_add_to_calendar_link}}" target="_blank" rel="noopener" style="color:#a87b6e;text-decoration:underline;font-weight:600;">Lägg till i din kalender</a>`,
-        },
+        { label: "📍&nbsp; Var", value: "Online – du får länken efter anmälan" },
       ])}
       ${cta("Plocka din plats", "webinar_registration_link")}
       ${pLast("Du behöver inte vara redo. Du behöver bara vara nyfiken.")}

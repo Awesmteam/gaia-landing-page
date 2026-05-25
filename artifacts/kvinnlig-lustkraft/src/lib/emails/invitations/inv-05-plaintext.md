@@ -15,13 +15,10 @@ Du behöver inte komma med rätt frågor. Du behöver inte ha bestämt något. D
 
 Du behöver bara dyka upp och låta kroppen lyssna.
 
-   Ikväll: {{custom_values.time_of_the_webinar}}
+   Ikväll: {{custom_values.time_of_the_webinar}} svensk tid
 
-Zoom-länk:
-{{custom_values.webinar_zoom_link}}
-
-Lägg till i din kalender:
-{{custom_values.webinar_add_to_calendar_link}}
+Anmäl dig nu – Zoom-länken kommer direkt i bekräftelsemejlet:
+{{custom_values.webinar_registration_link}}
 
 Vi ses om några timmar.
 

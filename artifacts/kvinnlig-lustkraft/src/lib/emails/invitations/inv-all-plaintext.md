@@ -3,6 +3,9 @@
 Webbinarium: Kvinnlig Lustkraft med Gaia Lindroos
 Datum: onsdag 27 maj 2026, kl 18:00 svensk tid
 
+OBS: Zoom-länken skickas i bekräftelsemejlet direkt efter anmälan
+— därför nämns den inte här. Alla CTA leder till anmälningssidan.
+
 Sändschema:
 - Mejl 1 — tors 21 maj, 19:00
 - Mejl 2 — fre 22 maj, 09:00
@@ -46,10 +49,7 @@ Det är där vi börjar på webbinariet 💛
    Datum: {{custom_values.date_of_the_webinar}}
    Tid: {{custom_values.time_of_the_webinar}} svensk tid
 
-Zoom-länk (spara den – samma länk vi använder ikväll):
-{{custom_values.webinar_zoom_link}}
-
-Anmälan om du inte gjort det än:
+Anmäl dig här (Zoom-länken kommer i bekräftelsemejlet direkt):
 {{custom_values.webinar_registration_link}}
 
 Och om du bara gjorde övningen ovan? Då har du redan tagit ett steg. Det räcker långt.
@@ -87,10 +87,7 @@ På webbinariet visar jag dig vad som faktiskt händer i kroppen – och varför
    Datum: {{custom_values.date_of_the_webinar}}
    Tid: {{custom_values.time_of_the_webinar}} svensk tid
 
-Zoom-länk:
-{{custom_values.webinar_zoom_link}}
-
-Anmälan:
+Anmäl dig här (Zoom-länken kommer i bekräftelsen):
 {{custom_values.webinar_registration_link}}
 
 Vilken myt kände du igen mest? Svara gärna – jag läser allt.
@@ -131,10 +128,7 @@ Maria är inte speciell. Hon är som du. Hon hade bara aldrig fått veta att det
    Datum: {{custom_values.date_of_the_webinar}}
    Tid: {{custom_values.time_of_the_webinar}} svensk tid
 
-Zoom-länk:
-{{custom_values.webinar_zoom_link}}
-
-Anmälan:
+Anmäl dig här (Zoom-länken kommer i bekräftelsemejlet direkt):
 {{custom_values.webinar_registration_link}}
 
 Du behöver inte vara redo. Du behöver bara vara nyfiken.
@@ -171,13 +165,7 @@ Det här är inte teori. Det är vad jag sett fungera, gång på gång, med tuse
    Datum: {{custom_values.date_of_the_webinar}}
    Klockan: {{custom_values.time_of_the_webinar}}
 
-Zoom-länk (spara den – samma länk vi använder ikväll):
-{{custom_values.webinar_zoom_link}}
-
-Lägg till i din kalender:
-{{custom_values.webinar_add_to_calendar_link}}
-
-Anmälan om du inte gjort det än:
+Anmäl dig här – Zoom-länken kommer direkt i bekräftelsemejlet:
 {{custom_values.webinar_registration_link}}
 
 Lägg in det i kalendern nu om du inte redan gjort det. Stäng dörren. Häll upp något varmt. Det är din tid.
@@ -207,13 +195,10 @@ Du behöver inte komma med rätt frågor. Du behöver inte ha bestämt något. D
 
 Du behöver bara dyka upp och låta kroppen lyssna.
 
-   Ikväll: {{custom_values.time_of_the_webinar}}
+   Ikväll: {{custom_values.time_of_the_webinar}} svensk tid
 
-Zoom-länk:
-{{custom_values.webinar_zoom_link}}
-
-Lägg till i din kalender:
-{{custom_values.webinar_add_to_calendar_link}}
+Anmäl dig nu – Zoom-länken kommer direkt i bekräftelsemejlet:
+{{custom_values.webinar_registration_link}}
 
 Vi ses om några timmar.
 

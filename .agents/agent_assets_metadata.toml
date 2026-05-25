@@ -35,10 +35,10 @@ title = "Mejl 5 – plain text (ons 27/5 15:00)"
 id = "J-oHWFdS2JRWhQnNmjJ0q"
 uri = "file://artifacts/kvinnlig-lustkraft/src/lib/emails/invitations/inv-all-plaintext.md"
 type = "text"
-title = "Alla 5 inbjudningsmejl – plain text (samlat)"
+title = "Alla 5 mejl – plain text (uppdaterad)"
 
 [[outputs]]
 id = "Wq1w12AToGYI-RfbffFC4"
 uri = "file://screenshots/mejl-1-html.jpg"
 type = "image"
-title = "Mejl 1 – HTML rendering (med exempelvärden)"
+title = "Mejl 1 – HTML (uppdaterad: ingen Zoom före anmälan)"

@@ -22,13 +22,7 @@ Det här är inte teori. Det är vad jag sett fungera, gång på gång, med tuse
    Datum: {{custom_values.date_of_the_webinar}}
    Klockan: {{custom_values.time_of_the_webinar}}
 
-Zoom-länk (spara den – samma länk vi använder ikväll):
-{{custom_values.webinar_zoom_link}}
-
-Lägg till i din kalender:
-{{custom_values.webinar_add_to_calendar_link}}
-
-Anmälan om du inte gjort det än:
+Anmäl dig här – Zoom-länken kommer direkt i bekräftelsemejlet:
 {{custom_values.webinar_registration_link}}
 
 Lägg in det i kalendern nu om du inte redan gjort det. Stäng dörren. Häll upp något varmt. Det är din tid.

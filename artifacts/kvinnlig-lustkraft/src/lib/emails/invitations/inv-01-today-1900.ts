@@ -41,15 +41,9 @@ export const inv01TodayEvening: EmailTemplate = {
       ${infoBox([
         { label: "📅&nbsp; Datum", value: "{{custom_values.date_of_the_webinar}}" },
         { label: "🕖&nbsp; Tid", value: "{{custom_values.time_of_the_webinar}} svensk tid" },
-        {
-          label: "🔗&nbsp; Zoom",
-          value: `<a href="{{custom_values.webinar_zoom_link}}" target="_blank" rel="noopener" style="color:#a87b6e;text-decoration:underline;font-weight:600;">{{custom_values.webinar_zoom_link}}</a>`,
-        },
-        {
-          label: "📆&nbsp; Kalender",
-          value: `<a href="{{custom_values.webinar_add_to_calendar_link}}" target="_blank" rel="noopener" style="color:#a87b6e;text-decoration:underline;font-weight:600;">Lägg till i din kalender</a>`,
-        },
+        { label: "⏱&nbsp; Längd", value: "90 minuter, online" },
       ])}
+      ${italic("Zoom-länken får du i bekräftelsemejlet direkt efter att du anmält dig.")}
       ${cta("Plocka din plats – gratis", "webinar_registration_link")}
       ${pLast("Och om du bara gjorde övningen ovan ikväll? Då har du redan tagit ett steg. Det räcker långt.")}
       ${signOff()}
