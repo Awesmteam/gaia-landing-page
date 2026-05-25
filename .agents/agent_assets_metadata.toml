@@ -5,4 +5,28 @@ generated = []
 id = "XRJ-i0rwk-Y_vGMCBMhBd"
 uri = "file://artifacts/kvinnlig-lustkraft/src/lib/emails/invitations/inv-plaintext.md"
 type = "text"
-title = "Inbjudan – plain text (Mejl 1)"
+title = "Mejl 1 – plain text (tors 21/5 19:00)"
+
+[[outputs]]
+id = "YNgkUQkH30fXboTP_-bt3"
+uri = "file://artifacts/kvinnlig-lustkraft/src/lib/emails/invitations/inv-02-plaintext.md"
+type = "text"
+title = "Mejl 2 – plain text (fre 22/5 09:00)"
+
+[[outputs]]
+id = "LvtOcjZU5ySpmoCBmdcmB"
+uri = "file://artifacts/kvinnlig-lustkraft/src/lib/emails/invitations/inv-03-plaintext.md"
+type = "text"
+title = "Mejl 3 – plain text (fre 22/5 18:00)"
+
+[[outputs]]
+id = "p2jRa49geDsLE5e-zpdMs"
+uri = "file://artifacts/kvinnlig-lustkraft/src/lib/emails/invitations/inv-04-plaintext.md"
+type = "text"
+title = "Mejl 4 – plain text (ons 27/5 10:00)"
+
+[[outputs]]
+id = "0sBC5ykZW0xX3ME4TKBqd"
+uri = "file://artifacts/kvinnlig-lustkraft/src/lib/emails/invitations/inv-05-plaintext.md"
+type = "text"
+title = "Mejl 5 – plain text (ons 27/5 15:00)"
