@@ -1,0 +1,8 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "XRJ-i0rwk-Y_vGMCBMhBd"
+uri = "file://artifacts/kvinnlig-lustkraft/src/lib/emails/invitations/inv-plaintext.md"
+type = "text"
+title = "Inbjudan – plain text (Mejl 1)"
