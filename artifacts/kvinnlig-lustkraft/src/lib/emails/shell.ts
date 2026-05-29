@@ -14,7 +14,7 @@ export const C = {
 };
 
 export const SAMPLE_VALUES: Record<string, string> = {
-  date_of_the_webinar: "onsdag 27 maj 2026",
+  date_of_the_webinar: "onsdag 3 juni 2026",
   name_of_the_business: "send.innershift.se",
   recording_page_link: "https://innershift.se/inspelning-av-webbinariet",
   sale_page_link: "https://innershift.se/kvinnlig-lustkraft",

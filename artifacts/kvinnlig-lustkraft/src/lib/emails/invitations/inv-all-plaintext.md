@@ -1,20 +1,20 @@
 # Inbjudningssekvens – plain text (5 mejl)
 
 Webbinarium: Kvinnlig Lustkraft med Gaia Lindroos
-Datum: onsdag 27 maj 2026, kl 18:00 svensk tid
+Datum: onsdag 3 juni 2026, kl 18:00 svensk tid
 
 OBS: Zoom-länken skickas i bekräftelsemejlet direkt efter anmälan
 — därför nämns den inte här. Alla CTA leder till anmälningssidan.
 
 Sändschema:
-- Mejl 1 — tors 21 maj, 19:00
-- Mejl 2 — fre 22 maj, 09:00
-- Mejl 3 — fre 22 maj, 18:00
-- Mejl 4 — ons 27 maj, 10:00 (webinardagen)
-- Mejl 5 — ons 27 maj, 15:00 (3 tim före start)
+- Mejl 1 — tors 28 maj, 19:00
+- Mejl 2 — fre 29 maj, 09:00
+- Mejl 3 — fre 29 maj, 18:00
+- Mejl 4 — ons 3 juni, 10:00 (webinardagen)
+- Mejl 5 — ons 3 juni, 15:00 (3 tim före start)
 
 ================================================================
-MEJL 1 — tors 21/5 kl 19:00 · Värdeöppning
+MEJL 1 — tors 28/5 kl 19:00 · Värdeöppning
 ================================================================
 
 Subject: Det du tror är slut är ofta bara nedstängt
@@ -59,7 +59,7 @@ Gaia
 
 
 ================================================================
-MEJL 2 — fre 22/5 kl 09:00 · 3 myter
+MEJL 2 — fre 29/5 kl 09:00 · 3 myter
 ================================================================
 
 Subject: 3 myter som håller din lust gisslan
@@ -97,7 +97,7 @@ Gaia
 
 
 ================================================================
-MEJL 3 — fre 22/5 kl 18:00 · Mini-case
+MEJL 3 — fre 29/5 kl 18:00 · Mini-case
 ================================================================
 
 Subject: Maria, 47 – hittade tillbaka på 6 veckor
@@ -138,7 +138,7 @@ Gaia
 
 
 ================================================================
-MEJL 4 — ons 27/5 kl 10:00 · 4 takeaways
+MEJL 4 — ons 3/6 kl 10:00 · 4 takeaways
 ================================================================
 
 Subject: Ikväll kl 18 – det här får du med dig
@@ -175,7 +175,7 @@ Gaia
 
 
 ================================================================
-MEJL 5 — ons 27/5 kl 15:00 · Sista tanken
+MEJL 5 — ons 3/6 kl 15:00 · Sista tanken
 ================================================================
 
 Subject: 3 timmar kvar – en sista tanke

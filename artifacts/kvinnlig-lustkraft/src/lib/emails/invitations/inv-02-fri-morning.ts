@@ -14,7 +14,7 @@ import type { EmailTemplate } from "../templates";
 
 export const inv02FriMorning: EmailTemplate = {
   id: "11-inv-02-fri-morning",
-  label: "Inbjudan 2 · fre 22/5 09:00 · 3 myter",
+  label: "Inbjudan 2 · fre 29/5 09:00 · 3 myter",
   subject: "3 myter som håller din lust gisslan",
   preheader:
     "Det här har vi fått lära oss. Och det är därför så få kvinnor hittar tillbaka.",

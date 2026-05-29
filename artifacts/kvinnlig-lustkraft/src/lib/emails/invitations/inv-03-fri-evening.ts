@@ -14,7 +14,7 @@ import type { EmailTemplate } from "../templates";
 
 export const inv03FriEvening: EmailTemplate = {
   id: "12-inv-03-fri-evening",
-  label: "Inbjudan 3 · fre 22/5 18:00 · Mini-case",
+  label: "Inbjudan 3 · fre 29/5 18:00 · Mini-case",
   subject: "Maria, 47 – hittade tillbaka på 6 veckor",
   preheader: "Det här är inte en framgångssaga. Det är en helt vanlig kvinna.",
   html: wrapEmail({

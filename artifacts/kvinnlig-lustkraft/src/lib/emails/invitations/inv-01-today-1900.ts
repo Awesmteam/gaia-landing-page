@@ -15,7 +15,7 @@ import type { EmailTemplate } from "../templates";
 
 export const inv01TodayEvening: EmailTemplate = {
   id: "10-inv-01-today-1900",
-  label: "Inbjudan 1 · tors 21/5 19:00 · Värdeöppning",
+  label: "Inbjudan 1 · tors 28/5 19:00 · Värdeöppning",
   subject: "Det du tror är slut är ofta bara nedstängt",
   preheader:
     "En liten övning du kan göra ikväll – innan du läser något mer om webbinariet.",
