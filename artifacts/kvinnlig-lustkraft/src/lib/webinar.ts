@@ -1,5 +1,5 @@
-export const WEBINAR_DATE = "onsdag 3 juni 2026";
-export const WEBINAR_DATE_SHORT = "03.06.2026";
+export const WEBINAR_DATE = "tisdag 2 juni 2026";
+export const WEBINAR_DATE_SHORT = "02.06.2026";
 export const WEBINAR_TIME = "18:00";
 export const WEBINAR_TIMEZONE_LABEL = "svensk tid";
 export const WEBINAR_LOCATION_PUBLIC = "Online – du får länken på mejlen";
@@ -8,13 +8,13 @@ export const WEBINAR_TITLE = "Kvinnlig Lustkraft – Gratis webinar med Gaia";
 export const WEBINAR_DESCRIPTION =
   "Din kropp vet vägen. Återväck din lust och livskraft. Gratis webinar med Gaia Lindroos.";
 
-// 3 June 2026 18:00 Europe/Stockholm (CEST, UTC+2) = 16:00 UTC
-export const WEBINAR_TARGET_ISO = "2026-06-03T18:00:00+02:00";
-export const WEBINAR_ICS_DTSTART_UTC = "20260603T160000Z";
-export const WEBINAR_ICS_DTEND_UTC = "20260603T173000Z";
+// 2 June 2026 18:00 Europe/Stockholm (CEST, UTC+2) = 16:00 UTC
+export const WEBINAR_TARGET_ISO = "2026-06-02T18:00:00+02:00";
+export const WEBINAR_ICS_DTSTART_UTC = "20260602T160000Z";
+export const WEBINAR_ICS_DTEND_UTC = "20260602T173000Z";
 
-// Replay window: 48h after webinar end (19:30 Stockholm) → closes 5 June 2026 19:30
-export const REPLAY_DEADLINE_ISO = "2026-06-05T19:30:00+02:00";
+// Replay window: 48h after webinar end (19:30 Stockholm) → closes 4 June 2026 19:30
+export const REPLAY_DEADLINE_ISO = "2026-06-04T19:30:00+02:00";
 // Optional: embed URL for the recording (YouTube / Vimeo). Leave empty for placeholder.
 export const REPLAY_EMBED_URL = "";
 

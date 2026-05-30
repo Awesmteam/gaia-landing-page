@@ -13,7 +13,7 @@ import type { EmailTemplate } from "../templates";
 
 export const inv04WedMorning: EmailTemplate = {
   id: "13-inv-04-wed-1000",
-  label: "Inbjudan 4 · ons 3/6 10:00 · 4 takeaways",
+  label: "Inbjudan 4 · tis 2/6 10:00 · 4 takeaways",
   subject: "Ikväll kl 18 – det här får du med dig",
   preheader:
     "Fyra konkreta saker du tar med dig hem ikväll – även om du bara lyssnar.",

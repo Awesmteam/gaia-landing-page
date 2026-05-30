@@ -199,7 +199,7 @@ export default function WebinarThankYou() {
             </a>
 
             <p className="text-xs text-primary/55 mt-4 leading-relaxed">
-              Öppna den här länken den 3 juni kl. 18:00. Spara den så du har den nära.
+              Öppna den här länken den 2 juni kl. 18:00. Spara den så du har den nära.
             </p>
           </div>
 
