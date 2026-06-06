@@ -16,7 +16,8 @@ export const WEBINAR_ICS_DTEND_UTC = "20260609T173000Z";
 // Replay window: 48h after webinar end (19:30 Stockholm) → closes 11 June 2026 19:30
 export const REPLAY_DEADLINE_ISO = "2026-06-11T19:30:00+02:00";
 // Optional: embed URL for the recording (YouTube / Vimeo). Leave empty for placeholder.
-export const REPLAY_EMBED_URL = "";
+export const REPLAY_EMBED_URL =
+  "https://player.vimeo.com/video/1199014437?badge=0&autopause=0&player_id=0&app_id=58479";
 
 // GHL / FastPayDirect checkout link for "Kvinnlig Lustkraft" course
 export const PAYMENT_LINK = "https://link.fastpaydirect.com/payment-link/6a0498ff8c3f15f97515aee0";
