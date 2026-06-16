@@ -6,6 +6,10 @@ import WebinarThankYou from "@/pages/WebinarThankYou";
 import WebinarReplay from "@/pages/WebinarReplay";
 import Checkout from "@/pages/Checkout";
 import Emails from "@/pages/Emails";
+import PodcastPage from "@/pages/PodcastPage";
+import VideoPage from "@/pages/VideoPage";
+import BlogPage from "@/pages/BlogPage";
+import TestimonialPage from "@/pages/TestimonialPage";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -17,6 +21,10 @@ function Router() {
       <Route path="/replay" component={WebinarReplay} />
       <Route path="/checkout" component={Checkout} />
       <Route path="/emails" component={Emails} />
+      <Route path="/podcast" component={PodcastPage} />
+      <Route path="/video" component={VideoPage} />
+      <Route path="/blogg" component={BlogPage} />
+      <Route path="/testimonial" component={TestimonialPage} />
       <Route path="/sales" component={Landing} />
       <Route path="/sales/tack" component={ThankYou} />
       <Route component={NotFound} />

@@ -18,6 +18,12 @@ import { inv02FriMorning } from "./invitations/inv-02-fri-morning";
 import { inv03FriEvening } from "./invitations/inv-03-fri-evening";
 import { inv04WedMorning } from "./invitations/inv-04-wed-1000";
 import { inv05WedAfternoon } from "./invitations/inv-05-wed-1500";
+import { rem01Welcome } from "./reminders/rem-01-welcome";
+import { rem02Podcast } from "./reminders/rem-02-podcast";
+import { rem03Video } from "./reminders/rem-03-video";
+import { rem04Blogg } from "./reminders/rem-04-blogg";
+import { rem05Testimonial } from "./reminders/rem-05-testimonial";
+import { rem06Paminnelse } from "./reminders/rem-06-paminnelse";
 
 export interface EmailTemplate {
   id: string;
@@ -25,6 +31,8 @@ export interface EmailTemplate {
   subject: string;
   preheader: string;
   html: string;
+  /** Optional sidebar grouping on /emails. Falls back to "Övriga mejl". */
+  group?: string;
 }
 
 /* ----- 0. Registration confirmation ----- */
@@ -585,6 +593,13 @@ const email10: EmailTemplate = {
 };
 
 export const EMAIL_TEMPLATES: EmailTemplate[] = [
+  // Påminnelsesekvens efter anmälan (D-5 → D-1) — visas först på /emails
+  rem01Welcome,
+  rem02Podcast,
+  rem03Video,
+  rem04Blogg,
+  rem05Testimonial,
+  rem06Paminnelse,
   registrationConfirmation,
   bwe1,
   bwe2,

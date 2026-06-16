@@ -17,6 +17,21 @@ export default function Emails() {
     [active],
   );
 
+  // Group templates by `group` for the sidebar, preserving first-seen order.
+  const groups = useMemo(() => {
+    const order: string[] = [];
+    const map = new Map<string, EmailTemplate[]>();
+    for (const t of EMAIL_TEMPLATES) {
+      const g = t.group ?? "Övriga mejl";
+      if (!map.has(g)) {
+        map.set(g, []);
+        order.push(g);
+      }
+      map.get(g)!.push(t);
+    }
+    return order.map((g) => ({ group: g, items: map.get(g)! }));
+  }, []);
+
   const previewHtml = useMemo(
     () => (showSampleValues ? applySampleValues(current.html) : current.html),
     [current, showSampleValues],
@@ -74,30 +89,39 @@ export default function Emails() {
           <p className="text-[10px] tracking-[0.28em] uppercase text-primary/50 font-bold mb-3">
             Mejlserie
           </p>
-          <nav className="flex lg:flex-col gap-1.5 overflow-x-auto lg:overflow-visible -mx-4 px-4 lg:mx-0 lg:px-0">
-            {EMAIL_TEMPLATES.map((t) => {
-              const isActive = t.id === active;
-              return (
-                <button
-                  key={t.id}
-                  onClick={() => setActive(t.id)}
-                  className={`text-left rounded-xl px-3.5 py-2.5 text-[13px] leading-snug whitespace-nowrap lg:whitespace-normal transition-colors flex-shrink-0 lg:flex-shrink ${
-                    isActive
-                      ? "bg-primary text-primary-foreground"
-                      : "bg-white/60 text-primary/75 hover:bg-white"
-                  }`}
-                >
-                  <div className="font-semibold">{t.label}</div>
-                  <div
-                    className={`text-[11px] mt-0.5 italic font-serif ${
-                      isActive ? "text-white/75" : "text-primary/50"
-                    }`}
-                  >
-                    {t.subject}
-                  </div>
-                </button>
-              );
-            })}
+          <nav className="flex flex-col gap-4">
+            {groups.map(({ group, items }) => (
+              <div key={group}>
+                <p className="text-[10px] tracking-[0.22em] uppercase text-accent/80 font-bold mb-2 px-1">
+                  {group}
+                </p>
+                <div className="flex flex-col gap-1.5">
+                  {items.map((t) => {
+                    const isActive = t.id === active;
+                    return (
+                      <button
+                        key={t.id}
+                        onClick={() => setActive(t.id)}
+                        className={`text-left rounded-xl px-3.5 py-2.5 text-[13px] leading-snug transition-colors ${
+                          isActive
+                            ? "bg-primary text-primary-foreground"
+                            : "bg-white/60 text-primary/75 hover:bg-white"
+                        }`}
+                      >
+                        <div className="font-semibold">{t.label}</div>
+                        <div
+                          className={`text-[11px] mt-0.5 italic font-serif ${
+                            isActive ? "text-white/75" : "text-primary/50"
+                          }`}
+                        >
+                          {t.subject}
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
           </nav>
 
           <div className="mt-6 hidden lg:block bg-white/60 border border-border/40 rounded-xl p-4">
