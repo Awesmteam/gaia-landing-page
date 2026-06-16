@@ -14,13 +14,13 @@ export const C = {
 };
 
 export const SAMPLE_VALUES: Record<string, string> = {
-  date_of_the_webinar: "tisdag 9 juni 2026",
+  date_of_the_webinar: "tisdag 23 juni 2026",
   name_of_the_business: "send.innershift.se",
   recording_page_link: "https://innershift.se/inspelning-av-webbinariet",
   sale_page_link: "https://innershift.se/kvinnlig-lustkraft",
   time_of_the_webinar: "18.00",
   webinar_add_to_calendar_link:
-    "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Kvinnlig+Lustkraft+%E2%80%93+Gratis+webinar+med+Gaia&dates=20260609T160000Z/20260609T173000Z&details=Anslut+via+Zoom%3A+https%3A%2F%2Fzoom.us%2Fj%2F94430244908&location=https%3A%2F%2Fzoom.us%2Fj%2F94430244908",
+    "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Kvinnlig+Lustkraft+%E2%80%93+Gratis+webinar+med+Gaia&dates=20260623T160000Z/20260623T173000Z&details=Anslut+via+Zoom%3A+https%3A%2F%2Fzoom.us%2Fj%2F94430244908&location=https%3A%2F%2Fzoom.us%2Fj%2F94430244908",
   webinar_zoom_link: "https://zoom.us/j/94430244908",
   webinar_registration_link: "https://innershift.se/gratis-webbinarium",
   our_email_adress: "gaia@innershift.se",
