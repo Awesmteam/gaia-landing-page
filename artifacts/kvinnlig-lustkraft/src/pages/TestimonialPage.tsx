@@ -1,5 +1,5 @@
 import { Quote } from "lucide-react";
-import { PageHeader, PageTitle, WebinarCta, FadeIn } from "@/components/webinar-page-shell";
+import { PageHeader, PageTitle, WebinarCta, JourneyNav, FadeIn } from "@/components/webinar-page-shell";
 
 // D-2 nurture page · testimonials + handling of the "för sent"-objection.
 const TESTIMONIALS = [
@@ -92,6 +92,7 @@ export default function TestimonialPage() {
           </p>
         </FadeIn>
 
+        <JourneyNav current="testimonial" />
         <WebinarCta lead="Vi ses om två dagar:" label="Jag vill vara med" />
       </main>
     </div>

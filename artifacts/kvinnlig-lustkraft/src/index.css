@@ -28,6 +28,9 @@
   --color-secondary-foreground: hsl(var(--secondary-foreground));
   --color-secondary-border: var(--secondary-border);
 
+  /* Warm off-white used for soft section backgrounds (matches email design #f7f3ec) */
+  --color-cream: hsl(38 37% 95%);
+
   --color-muted: hsl(var(--muted));
   --color-muted-foreground: hsl(var(--muted-foreground));
   --color-muted-border: var(--muted-border);

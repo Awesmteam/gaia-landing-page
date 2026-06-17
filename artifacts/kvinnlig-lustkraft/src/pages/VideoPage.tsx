@@ -1,5 +1,5 @@
 import { Wind, Eye, HandHeart, Sparkles } from "lucide-react";
-import { PageHeader, PageTitle, WebinarCta, FadeIn } from "@/components/webinar-page-shell";
+import { PageHeader, PageTitle, WebinarCta, JourneyNav, FadeIn } from "@/components/webinar-page-shell";
 
 // D-4 nurture page · "Trygghetsövningen" — guided ~10 min video (Vimeo).
 const VIMEO_VIDEO_ID = "1201953714";
@@ -98,6 +98,7 @@ export default function VideoPage() {
           </p>
         </FadeIn>
 
+        <JourneyNav current="video" />
         <WebinarCta />
       </main>
     </div>

@@ -1,5 +1,5 @@
 import { Headphones, Sparkles, Moon, Flame, Users } from "lucide-react";
-import { PageHeader, PageTitle, WebinarCta, FadeIn } from "@/components/webinar-page-shell";
+import { PageHeader, PageTitle, WebinarCta, JourneyNav, FadeIn } from "@/components/webinar-page-shell";
 
 // D-5 nurture page · podcast "Den stilla tomheten" (~8 min).
 // Audio file lives in public/podcast/ and is served from the app base path.
@@ -124,6 +124,7 @@ export default function PodcastPage() {
           </p>
         </FadeIn>
 
+        <JourneyNav current="podcast" />
         <WebinarCta />
       </main>
     </div>
