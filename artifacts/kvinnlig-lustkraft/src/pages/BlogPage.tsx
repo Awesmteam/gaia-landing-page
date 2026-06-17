@@ -7,7 +7,6 @@ import {
   JourneyNav,
   FadeIn,
 } from "@/components/webinar-page-shell";
-import { VagusnervenInfographic } from "@/components/vagusnerven-infographic";
 
 // D-3 nurture page · full article "Vagusnerven – bron mellan kroppen, känslorna och tryggheten".
 // Full text preserved (Gaia Lindroos); infographic recreated natively below.
@@ -195,12 +194,21 @@ export default function BlogPage() {
           </article>
         </FadeIn>
 
-        {/* Native infographic */}
+        {/* Infografik (designad bild) */}
         <FadeIn delay={0.22} className="mt-10">
           <p className="text-[10px] tracking-[0.28em] uppercase text-primary/45 font-bold mb-4 text-center">
             Vagusnerven · en överblick
           </p>
-          <VagusnervenInfographic />
+          <figure className="rounded-[2rem] overflow-hidden border border-border/30 shadow-sm bg-cream/50">
+            <img
+              src={`${import.meta.env.BASE_URL}blog/vagusnerven-trygghetsnerv.png`}
+              alt="Infografik om vagusnerven – kroppens trygghetsnerv. Visar hur kroppen reagerar när nerven är aktiverad (trygghet) jämfört med hämmad (beredskap), att 80 % av signalerna går från kroppen till hjärnan, samt tre sätt att aktivera nerven: förlängd utandning, orientering och varm beröring."
+              width={1024}
+              height={1536}
+              loading="lazy"
+              className="block w-full h-auto"
+            />
+          </figure>
         </FadeIn>
 
         {/* Cross-links to podcast & video */}
