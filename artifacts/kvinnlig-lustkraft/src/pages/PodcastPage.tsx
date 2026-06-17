@@ -1,5 +1,13 @@
 import { Headphones, Sparkles, Moon, Flame, Users } from "lucide-react";
-import { PageHeader, PageTitle, WebinarCta, JourneyNav, FadeIn } from "@/components/webinar-page-shell";
+import {
+  PageHeader,
+  PageTitle,
+  WebinarCta,
+  JourneyNav,
+  FadeIn,
+  useJourneyGate,
+  JourneyLocked,
+} from "@/components/webinar-page-shell";
 
 // D-5 nurture page · podcast "Den stilla tomheten" (~8 min).
 // Audio file lives in public/podcast/ and is served from the app base path.
@@ -31,6 +39,17 @@ const HIGHLIGHTS = [
 ];
 
 export default function PodcastPage() {
+  const unlocked = useJourneyGate("podcast");
+  if (!unlocked) {
+    return (
+      <JourneyLocked
+        pageKey="podcast"
+        eyebrow="Podcast · D-5"
+        title="Den stilla tomheten"
+      />
+    );
+  }
+
   return (
     <div className="min-h-screen bg-background">
       <PageHeader />
@@ -41,22 +60,28 @@ export default function PodcastPage() {
           subtitle="”Jag som har det så bra. Jag borde inte klaga.”"
         />
 
-        {/* Audio player */}
+        {/* Audio player — the hero of the page */}
         <FadeIn delay={0.15} className="mt-10 md:mt-12">
-          <div className="bg-white rounded-[1.75rem] p-7 md:p-9 border border-border/30 shadow-sm">
-            <div className="flex items-center gap-3 mb-5">
-              <div className="w-11 h-11 rounded-full bg-secondary text-accent flex items-center justify-center shrink-0">
-                <Headphones className="w-5 h-5" strokeWidth={1.8} />
+          <div className="relative overflow-hidden rounded-[2rem] bg-primary text-white p-7 md:p-10 shadow-xl">
+            <div
+              className="pointer-events-none absolute -top-16 -right-12 w-56 h-56 rounded-full bg-accent/25 blur-3xl"
+              aria-hidden="true"
+            />
+            <div className="relative flex items-center gap-4 mb-6">
+              <div className="w-14 h-14 rounded-full bg-white/10 ring-1 ring-white/15 text-white flex items-center justify-center shrink-0">
+                <Headphones className="w-6 h-6" strokeWidth={1.8} />
               </div>
               <div>
-                <p className="font-serif text-lg text-primary leading-tight">Lyssna här</p>
-                <p className="text-xs text-primary/55">Cirka 8 minuter · med Gaia</p>
+                <p className="text-[11px] tracking-[0.22em] uppercase text-white/60 font-bold">
+                  Lyssna nu · 8 min med Gaia
+                </p>
+                <p className="font-serif text-2xl md:text-3xl leading-tight">Den stilla tomheten</p>
               </div>
             </div>
-            <audio controls preload="metadata" src={AUDIO_SRC} className="w-full">
+            <audio controls preload="metadata" src={AUDIO_SRC} className="relative w-full">
               Din webbläsare stödjer inte ljuduppspelning.
             </audio>
-            <p className="text-xs text-primary/55 mt-4 leading-relaxed">
+            <p className="relative text-sm text-white/65 mt-5 leading-relaxed max-w-xl">
               Lyssna gärna under en promenad eller medan du diskar. Lägg märke till vad som rör
               sig i din kropp medan du lyssnar – det är ofta där svaret börjar.
             </p>

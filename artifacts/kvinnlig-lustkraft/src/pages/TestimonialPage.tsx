@@ -1,5 +1,13 @@
 import { Quote } from "lucide-react";
-import { PageHeader, PageTitle, WebinarCta, JourneyNav, FadeIn } from "@/components/webinar-page-shell";
+import {
+  PageHeader,
+  PageTitle,
+  WebinarCta,
+  JourneyNav,
+  FadeIn,
+  useJourneyGate,
+  JourneyLocked,
+} from "@/components/webinar-page-shell";
 
 // D-2 nurture page · testimonials + handling of the "för sent"-objection.
 const TESTIMONIALS = [
@@ -33,6 +41,17 @@ const TESTIMONIALS = [
 ];
 
 export default function TestimonialPage() {
+  const unlocked = useJourneyGate("testimonial");
+  if (!unlocked) {
+    return (
+      <JourneyLocked
+        pageKey="testimonial"
+        eyebrow="Röster · D-2"
+        title="”Det är som om jag har fått ett liv”"
+      />
+    );
+  }
+
   return (
     <div className="min-h-screen bg-background">
       <PageHeader />

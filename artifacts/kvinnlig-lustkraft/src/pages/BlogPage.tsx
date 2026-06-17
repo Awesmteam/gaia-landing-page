@@ -6,6 +6,8 @@ import {
   WebinarCta,
   JourneyNav,
   FadeIn,
+  useJourneyGate,
+  JourneyLocked,
 } from "@/components/webinar-page-shell";
 
 // D-3 nurture page · full article "Vagusnerven – bron mellan kroppen, känslorna och tryggheten".
@@ -69,6 +71,17 @@ const Pull = ({ children }: { children: React.ReactNode }) => (
 );
 
 export default function BlogPage() {
+  const unlocked = useJourneyGate("blogg");
+  if (!unlocked) {
+    return (
+      <JourneyLocked
+        pageKey="blogg"
+        eyebrow="Artikel · D-3"
+        title="Vagusnerven – kroppens trygghetsnerv"
+      />
+    );
+  }
+
   return (
     <div className="min-h-screen bg-background">
       <PageHeader />

@@ -31,3 +31,42 @@ export const WEBINAR_CALENDAR_LINK =
 // Course access — where buyers go to start Module 1 after purchase
 export const COURSE_LOGIN_LINK = "https://members.innershift.se";
 export const SUPPORT_EMAIL = "hej@innershift.se";
+
+// --- "Din resa fram till webbinariet": drip-unlock schedule for the nurture pages ---
+// Each page unlocks at 00:00 Stockholm on its "D-N" day, derived from the webinar date
+// so the schedule stays correct if the webinar is moved.
+export type JourneyKey = "podcast" | "video" | "blogg" | "testimonial";
+
+function journeyUnlockIso(daysBefore: number): string {
+  const datePart = WEBINAR_TARGET_ISO.slice(0, 10); // e.g. "2026-06-23"
+  const base = new Date(`${datePart}T00:00:00Z`);
+  base.setUTCDate(base.getUTCDate() - daysBefore);
+  const y = base.getUTCFullYear();
+  const m = String(base.getUTCMonth() + 1).padStart(2, "0");
+  const d = String(base.getUTCDate()).padStart(2, "0");
+  // Stockholm summer time (CEST, UTC+2) — consistent with the webinar/replay constants above.
+  return `${y}-${m}-${d}T00:00:00+02:00`;
+}
+
+export const JOURNEY_UNLOCK_ISO: Record<JourneyKey, string> = {
+  podcast: journeyUnlockIso(5), // D-5
+  video: journeyUnlockIso(4), // D-4
+  blogg: journeyUnlockIso(3), // D-3
+  testimonial: journeyUnlockIso(2), // D-2
+};
+
+export function isJourneyUnlocked(key: JourneyKey, now: Date = new Date()): boolean {
+  return now.getTime() >= new Date(JOURNEY_UNLOCK_ISO[key]).getTime();
+}
+
+const SWEDISH_MONTHS = [
+  "januari", "februari", "mars", "april", "maj", "juni",
+  "juli", "augusti", "september", "oktober", "november", "december",
+];
+
+// "18 juni" — parsed straight from the ISO date part so it shows the Stockholm
+// calendar day regardless of the viewer's own timezone.
+export function formatSwedishDate(iso: string): string {
+  const [, m, d] = iso.slice(0, 10).split("-").map(Number);
+  return `${d} ${SWEDISH_MONTHS[m - 1]}`;
+}

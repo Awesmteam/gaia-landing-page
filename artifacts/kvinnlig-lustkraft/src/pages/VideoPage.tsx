@@ -1,5 +1,13 @@
 import { Wind, Eye, HandHeart, Sparkles } from "lucide-react";
-import { PageHeader, PageTitle, WebinarCta, JourneyNav, FadeIn } from "@/components/webinar-page-shell";
+import {
+  PageHeader,
+  PageTitle,
+  WebinarCta,
+  JourneyNav,
+  FadeIn,
+  useJourneyGate,
+  JourneyLocked,
+} from "@/components/webinar-page-shell";
 
 // D-4 nurture page · "Trygghetsövningen" — guided ~10 min video (Vimeo).
 const VIMEO_VIDEO_ID = "1201953714";
@@ -29,6 +37,13 @@ const BENEFITS = [
 ];
 
 export default function VideoPage() {
+  const unlocked = useJourneyGate("video");
+  if (!unlocked) {
+    return (
+      <JourneyLocked pageKey="video" eyebrow="Video · D-4" title="Trygghetsövningen" />
+    );
+  }
+
   return (
     <div className="min-h-screen bg-background">
       <PageHeader />
@@ -39,19 +54,41 @@ export default function VideoPage() {
           subtitle="En enkel övning som börjar lugna ditt nervsystem – redan innan vi ses."
         />
 
-        {/* Video (portrait) */}
+        {/* Video — the hero of the page */}
         <FadeIn delay={0.15} className="mt-10 md:mt-12">
-          <div
-            className="relative w-full max-w-sm mx-auto rounded-[1.75rem] overflow-hidden shadow-2xl border border-border/40 bg-primary"
-            style={{ paddingTop: "min(177.78%, 78vh)" }}
-          >
-            <iframe
-              src={`https://player.vimeo.com/video/${VIMEO_VIDEO_ID}?badge=0&autopause=0&player_id=0&app_id=58479`}
-              title="Trygghetsövningen"
-              allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-              allowFullScreen
-              className="absolute inset-0 w-full h-full"
+          <div className="relative overflow-hidden rounded-[2rem] bg-primary p-5 sm:p-8 md:p-10 shadow-xl">
+            <div
+              className="pointer-events-none absolute -bottom-16 -left-12 w-56 h-56 rounded-full bg-accent/25 blur-3xl"
+              aria-hidden="true"
             />
+            <div className="relative grid md:grid-cols-[1fr_auto] gap-7 md:gap-10 items-center">
+              <div className="text-white order-2 md:order-1 text-center md:text-left">
+                <p className="text-[11px] tracking-[0.22em] uppercase text-white/60 font-bold mb-3">
+                  Guidad övning · 10 min
+                </p>
+                <p className="font-serif text-2xl md:text-4xl leading-tight mb-4">
+                  Tryck på play och låt kroppen få landa
+                </p>
+                <p className="text-sm md:text-base text-white/65 leading-relaxed max-w-sm mx-auto md:mx-0">
+                  Sätt på hörlurar om du kan, slut ögonen mellan stegen och följ Gaias röst.
+                  Du behöver inte göra något ”rätt” – bara vara med.
+                </p>
+              </div>
+              <div className="order-1 md:order-2 mx-auto w-full max-w-[300px]">
+                <div
+                  className="relative w-full rounded-[1.5rem] overflow-hidden shadow-2xl ring-1 ring-white/15 bg-black"
+                  style={{ paddingTop: "177.78%" }}
+                >
+                  <iframe
+                    src={`https://player.vimeo.com/video/${VIMEO_VIDEO_ID}?badge=0&autopause=0&player_id=0&app_id=58479`}
+                    title="Trygghetsövningen"
+                    allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                    allowFullScreen
+                    className="absolute inset-0 w-full h-full"
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         </FadeIn>
 
