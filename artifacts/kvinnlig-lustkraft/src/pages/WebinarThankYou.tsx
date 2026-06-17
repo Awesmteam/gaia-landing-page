@@ -119,6 +119,35 @@ export default function WebinarThankYou() {
             <p>Jag ser så mycket fram emot att träffa dig.</p>
           </div>
 
+          {/* Välkomstvideo (Vimeo) — efter anmälan */}
+          <div className="bg-white rounded-[1.75rem] p-7 md:p-9 text-left max-w-xl mx-auto mb-6 border border-border/40 shadow-sm">
+            <div className="flex items-center gap-3 mb-5">
+              <div className="w-10 h-10 rounded-full bg-secondary text-accent flex items-center justify-center shrink-0">
+                <Video className="w-5 h-5" strokeWidth={1.6} />
+              </div>
+              <div>
+                <p className="text-[10px] tracking-[0.2em] uppercase text-primary/50 font-semibold">
+                  Ett välkomstord
+                </p>
+                <p className="font-serif text-primary text-lg leading-tight">
+                  Ett litet hej från Gaia
+                </p>
+              </div>
+            </div>
+            <div
+              className="relative w-full max-w-xs mx-auto rounded-[1.25rem] overflow-hidden border border-border/40 bg-primary"
+              style={{ paddingTop: "min(158.89%, 70vh)" }}
+            >
+              <iframe
+                src="https://player.vimeo.com/video/1201953715?badge=0&autopause=0&player_id=0&app_id=58479"
+                title="Välkomstvideo – Kvinnlig Lustkraft"
+                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                allowFullScreen
+                className="absolute inset-0 w-full h-full"
+              />
+            </div>
+          </div>
+
           {/* Date/time card */}
           <div className="bg-white rounded-[1.75rem] p-7 md:p-9 text-left max-w-xl mx-auto mb-6 border border-border/40 shadow-sm">
             <h2 className="text-xs font-bold tracking-[0.22em] uppercase text-primary/60 mb-5 text-center">
@@ -201,35 +230,6 @@ export default function WebinarThankYou() {
             <p className="text-xs text-primary/55 mt-4 leading-relaxed">
               Öppna den här länken den 23 juni kl. 18:00. Spara den så du har den nära.
             </p>
-          </div>
-
-          {/* Välkomstvideo (Vimeo) — efter anmälan */}
-          <div className="bg-white rounded-[1.75rem] p-7 md:p-9 text-left max-w-xl mx-auto mb-6 border border-border/40 shadow-sm">
-            <div className="flex items-center gap-3 mb-5">
-              <div className="w-10 h-10 rounded-full bg-secondary text-accent flex items-center justify-center shrink-0">
-                <Video className="w-5 h-5" strokeWidth={1.6} />
-              </div>
-              <div>
-                <p className="text-[10px] tracking-[0.2em] uppercase text-primary/50 font-semibold">
-                  Ett välkomstord
-                </p>
-                <p className="font-serif text-primary text-lg leading-tight">
-                  Ett litet hej från Gaia
-                </p>
-              </div>
-            </div>
-            <div
-              className="relative w-full max-w-xs mx-auto rounded-[1.25rem] overflow-hidden border border-border/40 bg-primary"
-              style={{ paddingTop: "min(158.89%, 70vh)" }}
-            >
-              <iframe
-                src="https://player.vimeo.com/video/1201953715?badge=0&autopause=0&player_id=0&app_id=58479"
-                title="Välkomstvideo – Kvinnlig Lustkraft"
-                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-                allowFullScreen
-                className="absolute inset-0 w-full h-full"
-              />
-            </div>
           </div>
 
           {/* Calendar card */}
