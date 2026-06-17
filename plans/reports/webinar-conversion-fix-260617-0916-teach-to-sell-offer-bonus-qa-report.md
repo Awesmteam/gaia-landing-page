@@ -1,7 +1,7 @@
 # Webinar Conversion Fix Report
 ### "Din kropp vet vägen" · Gaia Lindroos · Kvinnlig Lustkraft
 
-**Scope:** 4 conversion dimensions — (1) teaching→selling transition, (2) product selling (walk-through / CTA / demo / offer), (3) live-purchase bonuses, (4) Q&A.
+**Scope:** 5 conversion dimensions — (1) teaching→selling transition, (2) product selling (walk-through / CTA / demo / offer), (3) live-purchase bonuses, (4) Q&A, (5) testimonials / social proof.
 **Source:** full 90-min webinar transcript (15 Jun 2026). Timestamps cited. No live conversion data available → recommendations are structural.
 **Offer recap:** SEK 7,990 (70% off SEK 26,850 stack), 8 modules + 12-month membership / 12 live webinars + 2 "Matka" bonuses, bonus deadline 21:00 same night, Klarna instalments.
 
@@ -15,8 +15,9 @@
 | 2 | Product selling | 🟠 Described, not **demoed**; no guarantee | Live product **taste** (label the breathing exercise as "module 1 sample") + money-back guarantee |
 | 3 | Live bonuses | 🟠 Good mechanic, weak bonus type + value typo | Fix value inconsistency, add a *result-accelerating* bonus, split urgency layers |
 | 4 | Q&A | 🟠 Thin (4 self-asked), dodges biggest objections | 6–8 Qs, pre-empt price + "tried everything", attach guarantee, read live questions |
+| 5 | Testimonials / social proof | 🔴 Weak: read-aloud, emotion-only, duplicate names | Video/audio proof, concrete measurable outcomes, map to objections, fix name clashes |
 
-**Three leaks that recur across all four dimensions:** (a) **no product demo/taste**, (b) **no risk reversal/guarantee**, (c) **all urgency collapses to 21:00 tonight** → kills replay/post-webinar revenue.
+**Three leaks that recur across all five dimensions:** (a) **no product demo/taste**, (b) **no risk reversal/guarantee**, (c) **all urgency collapses to 21:00 tonight** → kills replay/post-webinar revenue. A fourth, dimension-specific leak: **social proof is told, not shown** (see §5).
 
 ---
 
@@ -116,6 +117,34 @@ She **pre-empts objections by self-asking** 4 questions after the close — effi
 
 ---
 
+## 5. Testimonials / social proof
+
+### Analysis
+Social proof is **told, not shown**. Every testimonial is *read aloud by Gaia herself* from messages/screenshots — there is no face, no voice, no visible screenshot, nothing the prospect can independently verify. The content is almost entirely **emotional and vague** ("I got a life back", "I feel alive") with few **concrete, measurable, time-bound** outcomes (which specific symptom resolved, in how many weeks). Worse, **names are reused/confusing** — two different "Anna" and two different "Sofia" appear — which makes the set look templated and can *trigger* the "is this even real?" reflex. For a high-emotion SEK 7,990 purchase, weak/unverifiable proof is a direct conversion leak, and clumsy proof can actively *reduce* trust.
+
+### Evidence
+- Read-aloud, no media: *"her er det riktige meddelande, og jeg har fått et godkjennende"* — she narrates messages; nothing is shown — **01:18:40**.
+- Emotion-only / vague: Sonja — *"Det kjennes som at jeg har fått et liv"* (**01:17:24**); Anna(42) — *"jeg kjenner meg lettere, gladere og mer levende"* (**01:19:44**); Maria(51) — husband: *"det er som at jeg har fått min fru tilbake"* (**01:20:45**). No measurable before/after.
+- **Duplicate / clashing names:** "Anna, 42, lärere" (**01:18:40**) vs "Anna, 52, sjef" (**01:34:51**); "Sofia, 37, projektledare" (**01:19:44**) vs "Sofia, 58" (**01:36:06**).
+- Closest to concrete (still soft): Anna(52) — *"noen måneder senere … kan jeg vakne … og kjenne at jeg faktisk tykker om mitt liv igjen"* (**01:36:06**) — has a timeframe but no measurable metric.
+- Live chat social proof exists but is **not converted into testimonials** (e.g. Victoria's "redd att det är för sent" is answered, not showcased as a transformation) — **01:20:45**.
+
+### Fix
+1. **Show, don't read.** Use **video or audio testimonials** (face + voice) — by far the highest-trust format; even 20–30s clips outperform read screenshots.
+2. **Display real screenshots on a slide** (with consent + light redaction) instead of narrating them — visible proof beats spoken claims.
+3. **Make them concrete + measurable + time-bound:** pair the emotion with a specific symptom + timeframe ("After 5 weeks the pain during sex was gone"; "Slept through the night for the first time in 3 years by week 2").
+4. **Fix the name clashes** — unique names + age + role + photo/initial; never reuse a first name. This alone removes a credibility red flag.
+5. **Map each testimonial to a specific objection/segment:** "too late" → the 58-year-old; "I've tried everything" → someone who'd done therapy; "no time, small kids" → the young mum. Place the matching proof right where that objection peaks.
+6. **Weave live chat as real-time proof:** read 2–3 live reactions aloud ("Maria just wrote she already felt her shoulders drop") — unscripted, present-tense social proof.
+7. **Add aggregate proof if data exists** ("X,000 women", "Y% report better sleep within 2 weeks") — **only if real; do not fabricate.**
+
+### Example (drop-in)
+> *On-screen testimonial card + voice clip, then:* "Det här är Karin, 49, sjuksköterska. Hon hade haft smärta vid sex i fyra år och provat allt. Titta vad hon skrev efter fem veckor:" → show screenshot → "*'Vecka 5 — smärtan är borta. Jag trodde aldrig jag skulle skriva det här.'*"
+>
+> *Live proof in the moment:* "Och titta — Birgitta skriver precis nu i chatten att hon redan känner axlarna sjunka. Det är exakt så det börjar."
+
+---
+
 ## Priority roadmap
 
 **Quick wins (low effort, high impact)**
@@ -124,10 +153,11 @@ She **pre-empts objections by self-asking** 4 questions after the close — effi
 3. Label the live breathing exercise as a "Module 1 sample."
 4. "Efter 8 veckor" outcome slide before price.
 5. Two-layer urgency (bonus 21:00 + price rises after launch).
+6. Fix testimonial name clashes + add one concrete metric/timeframe to each (§5).
 
 **Bigger plays (higher effort, higher impact)**
 1. Post-webinar close sequence (email + `/erbjudande` page, 24–48h cart-close with countdown) — captures replay buyers.
-2. 2–3 video testimonials with concrete outcomes + timeframes.
+2. 2–3 video/audio testimonials with concrete outcomes + timeframes, shown on-screen and mapped to objections (§5).
 3. Restructure/trim teaching to open the offer ~5–10 min earlier.
 4. Add a live product taste/demo and a brief member-area screen-share.
 
