@@ -29,7 +29,7 @@ export const SAMPLE_VALUES: Record<string, string> = {
   podcast_page_link: "https://innershift.se/podcast",
   video_page_link: "https://innershift.se/video",
   blog_page_link: "https://innershift.se/blogg",
-  testimonial_page_link: "https://innershift.se/testimonial",
+  testimonial_page_link: "https://gaia.awesm.com/testimonial",
   our_email_adress: "gaia@innershift.se",
 };
 
