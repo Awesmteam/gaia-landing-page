@@ -75,7 +75,7 @@ export default function VideoPage() {
               className="pointer-events-none absolute -bottom-16 -left-12 w-56 h-56 rounded-full bg-accent/25 blur-3xl"
               aria-hidden="true"
             />
-            <div className="relative grid md:grid-cols-[1fr_auto] gap-7 md:gap-10 items-center">
+            <div className="relative grid md:grid-cols-[1fr_300px] gap-7 md:gap-10 items-center">
               <div className="text-white order-2 md:order-1 text-center md:text-left">
                 <p className="text-[11px] tracking-[0.22em] uppercase text-white/60 font-bold mb-3">
                   Guidad övning · 10 min
