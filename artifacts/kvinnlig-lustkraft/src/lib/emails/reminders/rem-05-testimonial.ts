@@ -7,6 +7,7 @@ import {
   italic,
   signOff,
   cta,
+  ctaLight,
   infoBox,
   psBox,
 } from "../shell";
@@ -32,6 +33,8 @@ export const rem05Testimonial: EmailTemplate = {
       ${italic("&ldquo;Jag har blivit mycket lugnare hemma. Mjukare med barnen. Mer närvarande i relationen. Och lusten är tillbaka – inte bara i kroppen, utan i livet.&rdquo;")}
       ${p("<strong>Maria, 51 år</strong>, trodde att det mesta redan var förbi för hennes del:")}
       ${italic("&ldquo;Det här arbetet har förändrat så mycket, för mig och för min man. Han sa: det är som om jag har fått min fru tillbaka.&rdquo;")}
+      ${p("Det finns fler röster – fler kvinnor som vågade tro att förändring var möjlig. Du kan läsa deras berättelser i lugn och ro här:")}
+      ${ctaLight("Läs fler kvinnors berättelser", "testimonial_page_link")}
       ${p("Kanske tänker du: &ldquo;Men det är nog för sent för mig.&rdquo; Eller: &ldquo;Det fungerar säkert för andra, men inte för mig.&rdquo;")}
       ${p("Det var precis så Sonja, Sofia och Maria också tänkte. Skillnaden var inte att de hade mer tid, mer energi eller mindre att göra. Skillnaden var att de fick förstå vad som pågick – och fick rätt stöd.")}
       ${pLast("Det är det jag vill ge dig på webbinariet.")}
