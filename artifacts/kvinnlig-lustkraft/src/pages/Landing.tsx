@@ -6,6 +6,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import { PAYMENT_LINK } from "@/lib/webinar";
 import { useAttribution } from "@/lib/attribution";
+import { TestimonialsGrid } from "@/components/Testimonials";
 
 import heroImg from "@/assets/image_1778316613497.png";
 import programHeroCardImg from "@/assets/image_1778315697754.png";
@@ -664,6 +665,23 @@ export default function Landing() {
               </FadeIn>
             </div>
           </div>
+        </section>
+
+        {/* SECTION 9.5: Röster / testimonials */}
+        <section className="py-24 px-4 md:px-8 max-w-5xl mx-auto" id="roster">
+          <FadeIn>
+            <span className="text-accent text-sm font-semibold tracking-widest uppercase block mb-4 text-center">
+              Röster från kvinnor
+            </span>
+            <h2 className="text-3xl md:text-4xl font-serif text-primary text-center mb-4">
+              ”Det är som om jag har fått tillbaka mig själv”
+            </h2>
+            <p className="text-base md:text-lg text-primary/70 leading-relaxed text-center max-w-2xl mx-auto mb-12">
+              Vanliga kvinnor, med helt olika liv, som en gång satt precis där du sitter nu. Det
+              här är vad som hände när de fick rätt förståelse – och rätt stöd.
+            </p>
+          </FadeIn>
+          <TestimonialsGrid />
         </section>
 
         {/* SECTION 10: Pris */}

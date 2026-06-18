@@ -1,10 +1,8 @@
-import { Clock, Headphones, Film, ArrowRight } from "lucide-react";
-import { Link } from "wouter";
+import { Clock } from "lucide-react";
 import {
   PageHeader,
   PageTitle,
   WebinarCta,
-  JourneyNav,
   FadeIn,
   useJourneyGate,
   JourneyLocked,
@@ -224,41 +222,6 @@ export default function BlogPage() {
           </figure>
         </FadeIn>
 
-        {/* Cross-links to podcast & video */}
-        <FadeIn delay={0.3} className="mt-12 grid gap-4 sm:grid-cols-2">
-          <Link
-            href="/podcast"
-            className="group flex items-center gap-4 bg-white rounded-[1.5rem] p-5 border border-border/30 shadow-sm hover:border-accent/40 transition-colors"
-          >
-            <span className="w-11 h-11 rounded-full bg-secondary text-accent flex items-center justify-center shrink-0">
-              <Headphones className="w-5 h-5" strokeWidth={1.8} aria-hidden="true" />
-            </span>
-            <span className="min-w-0">
-              <span className="block text-[10px] tracking-[0.18em] uppercase text-accent/80 font-bold">
-                Podcast · 8 min
-              </span>
-              <span className="block font-serif text-primary leading-tight">Den stilla tomheten</span>
-            </span>
-            <ArrowRight className="w-4 h-4 text-primary/40 ml-auto group-hover:text-accent transition-colors" aria-hidden="true" />
-          </Link>
-          <Link
-            href="/video"
-            className="group flex items-center gap-4 bg-white rounded-[1.5rem] p-5 border border-border/30 shadow-sm hover:border-accent/40 transition-colors"
-          >
-            <span className="w-11 h-11 rounded-full bg-secondary text-accent flex items-center justify-center shrink-0">
-              <Film className="w-5 h-5" strokeWidth={1.8} aria-hidden="true" />
-            </span>
-            <span className="min-w-0">
-              <span className="block text-[10px] tracking-[0.18em] uppercase text-accent/80 font-bold">
-                Video · 10 min
-              </span>
-              <span className="block font-serif text-primary leading-tight">Trygghetsövningen</span>
-            </span>
-            <ArrowRight className="w-4 h-4 text-primary/40 ml-auto group-hover:text-accent transition-colors" aria-hidden="true" />
-          </Link>
-        </FadeIn>
-
-        <JourneyNav current="blogg" />
         <WebinarCta lead="Det är precis detta vi arbetar med på webbinariet:" label="Boka din plats" />
       </main>
     </div>

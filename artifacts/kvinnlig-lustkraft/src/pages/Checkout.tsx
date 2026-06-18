@@ -3,6 +3,8 @@ import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { ArrowRight, Clock, Sparkles, Check, Heart } from "lucide-react";
 import { PAYMENT_LINK } from "@/lib/webinar";
+import { TestimonialsGrid } from "@/components/Testimonials";
+import { TESTIMONIALS } from "@/lib/testimonials";
 import gaiaPortraitImg from "@/assets/image_1778315729204.png";
 
 const TIMER_DURATION_SECONDS = 20 * 60;
@@ -371,6 +373,20 @@ export default function Checkout() {
                 </div>
               </div>
             </div>
+          </section>
+        </FadeIn>
+
+        {/* Testimonials */}
+        <FadeIn delay={0.1}>
+          <section className="mb-14 md:mb-20">
+            <h2 className="font-serif text-2xl md:text-3xl text-primary text-center mb-3">
+              Kvinnor som redan gjort resan
+            </h2>
+            <p className="text-primary/70 leading-relaxed text-center max-w-xl mx-auto mb-8 md:mb-10">
+              Du behöver inte ta mitt ord för det. Lyssna på dem som en gång stod precis där du
+              står nu.
+            </p>
+            <TestimonialsGrid items={TESTIMONIALS.slice(0, 4)} />
           </section>
         </FadeIn>
 

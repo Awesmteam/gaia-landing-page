@@ -1,9 +1,8 @@
-import { Headphones, Sparkles, Moon, Flame, Users } from "lucide-react";
+import { Headphones, Sparkles, Moon, Flame, Users, Wind } from "lucide-react";
 import {
   PageHeader,
   PageTitle,
   WebinarCta,
-  JourneyNav,
   FadeIn,
   useJourneyGate,
   JourneyLocked,
@@ -88,18 +87,44 @@ export default function PodcastPage() {
           </div>
         </FadeIn>
 
-        {/* Pull quote */}
-        <FadeIn delay={0.22} className="mt-12 md:mt-14">
-          <blockquote className="border-l-2 border-accent/50 pl-6 md:pl-8">
-            <p className="font-serif italic text-2xl md:text-3xl text-primary leading-snug">
-              Det är inget fel på dig. Din kropp har bara burit för mycket, under för lång tid –
-              utan att få det den behöver.
+        {/* Gaias berättelse */}
+        <FadeIn delay={0.22} className="mt-14">
+          <span className="block text-accent text-[11px] font-bold tracking-[0.28em] uppercase text-center mb-3">
+            Gaias berättelse
+          </span>
+          <h2 className="font-serif text-2xl md:text-3xl text-primary mb-6 text-center leading-snug">
+            Jag hade allt – och vaknade ändå med en tyngd i kroppen
+          </h2>
+          <div className="space-y-5 text-primary/80 leading-relaxed text-base md:text-lg max-w-2xl mx-auto">
+            <p>
+              Utåt sett hade jag allt. Jag byggde företag, reste världen runt och älskade att skapa
+              resultat. Familj, barnbarn, ett liv som såg ut som en dröm. Men om nätterna vaknade
+              jag – med en malande oro i kroppen som inte gick att tänka bort, prata bort eller
+              springa ifrån. En tyngd. Och en djup ensamhet, mitt i ett liv fullt av människor.
             </p>
-          </blockquote>
+            <p>
+              Jag gjorde det jag är bäst på: försökte lösa det. Med mer kunskap, mer struktur, mer
+              disciplin. Jag fortsatte prestera, fortsatte leverera, skrattade på middagar. Men min
+              kropp var inte med – det var som om jag stod vid sidan av mitt eget liv och tittade på.
+            </p>
+          </div>
+        </FadeIn>
+
+        {/* Reframe: "jag borde inte klaga" */}
+        <FadeIn delay={0.28} className="mt-12 bg-cream/50 rounded-[2rem] p-7 md:p-10 border border-border/30 max-w-2xl mx-auto">
+          <p className="font-serif italic text-xl md:text-2xl text-primary leading-snug mb-4 text-center">
+            ”Skärp dig. Var tacksam. Andra har det mycket värre.”
+          </p>
+          <p className="text-base text-primary/80 leading-relaxed text-center">
+            Så sa jag till mig själv, om och om igen. Men ”jag borde inte klaga” är en av de
+            farligaste meningarna en kvinna kan säga till sig själv. För den gör att du lägger
+            locket på det allra första tecknet som kroppen ger dig. Och kroppen ljuger inte. Den
+            viskar först – och om vi inte lyssnar, ropar den till slut.
+          </p>
         </FadeIn>
 
         {/* De tre tysta tecknen */}
-        <FadeIn delay={0.3} className="mt-14">
+        <FadeIn delay={0.32} className="mt-14">
           <h2 className="font-serif text-2xl md:text-3xl text-primary mb-2 text-center">
             De tre tysta tecknen
           </h2>
@@ -125,8 +150,18 @@ export default function PodcastPage() {
           </div>
         </FadeIn>
 
+        {/* Pull quote */}
+        <FadeIn delay={0.38} className="mt-14">
+          <blockquote className="border-l-2 border-accent/50 pl-6 md:pl-8">
+            <p className="font-serif italic text-2xl md:text-3xl text-primary leading-snug">
+              Det är inget fel på dig. Din kropp har bara burit för mycket, under för lång tid –
+              utan att få det den behöver.
+            </p>
+          </blockquote>
+        </FadeIn>
+
         {/* Highlights */}
-        <FadeIn delay={0.38} className="mt-14 bg-cream/50 rounded-[2rem] p-7 md:p-10 border border-border/30">
+        <FadeIn delay={0.42} className="mt-14 bg-cream/50 rounded-[2rem] p-7 md:p-10 border border-border/30">
           <h2 className="font-serif text-2xl md:text-3xl text-primary mb-6 text-center">
             I avsnittet får du höra
           </h2>
@@ -142,14 +177,36 @@ export default function PodcastPage() {
           </ul>
         </FadeIn>
 
-        <FadeIn delay={0.45} className="mt-12 text-center">
+        {/* Andningspaus + tröst */}
+        <FadeIn delay={0.46} className="mt-14">
+          <div className="relative overflow-hidden rounded-[2rem] bg-primary text-white p-8 md:p-12 shadow-xl text-center">
+            <div
+              className="pointer-events-none absolute -bottom-16 -right-12 w-56 h-56 rounded-full bg-accent/25 blur-3xl"
+              aria-hidden="true"
+            />
+            <div className="relative">
+              <div className="w-12 h-12 rounded-full bg-white/10 ring-1 ring-white/15 flex items-center justify-center mx-auto mb-5">
+                <Wind className="w-6 h-6" strokeWidth={1.8} />
+              </div>
+              <p className="font-serif italic text-2xl md:text-3xl leading-snug mb-6">
+                Andas in … och släpp ut.
+              </p>
+              <p className="text-white/80 leading-relaxed max-w-xl mx-auto text-base md:text-lg">
+                Du är inte ensam – vi är fler än du anar. Och du är inte trasig. Det finns en väg
+                tillbaka. Den börjar inte i huvudet, genom att tänka rätt. Den börjar i kroppen,
+                genom att åter känna sig trygg. Och den är närmare än du tror.
+              </p>
+            </div>
+          </div>
+        </FadeIn>
+
+        <FadeIn delay={0.5} className="mt-12 text-center">
           <p className="font-serif italic text-primary/65 text-lg max-w-2xl mx-auto leading-snug">
             Om något i avsnittet känns igen – då är du på precis rätt väg, och på precis rätt
             webbinar.
           </p>
         </FadeIn>
 
-        <JourneyNav current="podcast" />
         <WebinarCta />
       </main>
     </div>
