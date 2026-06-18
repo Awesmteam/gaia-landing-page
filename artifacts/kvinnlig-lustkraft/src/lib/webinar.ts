@@ -55,8 +55,9 @@ export const JOURNEY_UNLOCK_ISO: Record<JourneyKey, string> = {
   testimonial: journeyUnlockIso(2), // D-2
 };
 
-export function isJourneyUnlocked(key: JourneyKey, now: Date = new Date()): boolean {
-  return now.getTime() >= new Date(JOURNEY_UNLOCK_ISO[key]).getTime();
+// Drip-gating disabled — all journey pages are open immediately (no locks).
+export function isJourneyUnlocked(_key: JourneyKey, _now: Date = new Date()): boolean {
+  return true;
 }
 
 const SWEDISH_MONTHS = [
