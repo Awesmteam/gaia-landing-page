@@ -1,1 +1,2 @@
 - [CSS grid aspect-ratio collapse](css-grid-aspect-ratio-collapse.md) — iframe/video embed renders blank in a grid `auto` track; use a definite column width.
+- [Webinar registration attribution](webinar-registration-attribution.md) — DB `source='webinar'` is cumulative across all webinars; use GHL date tags + email cross-ref to count one webinar's ad source.
