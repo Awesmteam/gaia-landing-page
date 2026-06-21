@@ -53,7 +53,13 @@ export async function sendCapiEvent(
     logger.warn("META_CAPI_ACCESS_TOKEN missing — skipping CAPI event");
     return { ok: false, status: null, body: null, skipped: "no_token" };
   }
-  const testEventCode = process.env["META_CAPI_TEST_EVENT_CODE"];
+  // Never attach test_event_code in production: it routes events to the
+  // "Test Events" tab in Events Manager, where they are NOT counted as real
+  // conversions and NOT attributed to ads. Only use it in development.
+  const testEventCode =
+    process.env.NODE_ENV === "production"
+      ? undefined
+      : process.env["META_CAPI_TEST_EVENT_CODE"];
   const url = `https://graph.facebook.com/${GRAPH_VERSION}/${PIXEL_ID}/events`;
 
   const payload: Record<string, unknown> = {
