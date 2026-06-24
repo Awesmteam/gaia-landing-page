@@ -1,5 +1,118 @@
-export const WEBINAR_DATE = "tisdag 23 juni 2026";
-export const WEBINAR_DATE_SHORT = "23.06.2026";
+// ─────────────────────────────────────────────────────────────────────────────
+// Webinar schedule
+//
+// The webinar runs every Tuesday at 18:00 (Europe/Stockholm). The site shows the
+// next upcoming session and AUTOMATICALLY advances one week once the current one
+// has ended — e.g. 30 juni → 7 juli → 14 juli → … — without any code change.
+// The Zoom link stays the same across all sessions.
+//
+// `WEBINAR_FIRST` is the anchor (first session of the current cycle). Everything
+// else (date strings, calendar/ICS links, replay deadline, drip schedule) is
+// derived from the computed start time, so changing the anchor is all it takes.
+// ─────────────────────────────────────────────────────────────────────────────
+
+const STOCKHOLM_TZ = "Europe/Stockholm";
+const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
+const WEBINAR_DURATION_MS = 90 * 60 * 1000; // 18:00 → 19:30
+
+// Anchor: first session of the current cycle (Tuesday). The schedule rolls
+// forward weekly from here.
+const WEBINAR_FIRST = { year: 2026, month: 6, day: 30 }; // 30 juni 2026
+
+const SWEDISH_MONTHS = [
+  "januari", "februari", "mars", "april", "maj", "juni",
+  "juli", "augusti", "september", "oktober", "november", "december",
+];
+
+function pad(n: number): string {
+  return String(n).padStart(2, "0");
+}
+
+// Offset (ms) of Europe/Stockholm at a given instant — handles CEST/CET (DST).
+function stockholmOffsetMs(date: Date): number {
+  const dtf = new Intl.DateTimeFormat("en-US", {
+    timeZone: STOCKHOLM_TZ,
+    year: "numeric", month: "2-digit", day: "2-digit",
+    hour: "2-digit", minute: "2-digit", second: "2-digit",
+    hour12: false,
+  });
+  const map: Record<string, string> = {};
+  for (const p of dtf.formatToParts(date)) map[p.type] = p.value;
+  const asUTC = Date.UTC(
+    +map.year, +map.month - 1, +map.day,
+    +map.hour, +map.minute, +map.second,
+  );
+  return asUTC - date.getTime();
+}
+
+// Wall-clock parts of an instant, expressed in Stockholm local time.
+function stockholmParts(date: Date) {
+  const dtf = new Intl.DateTimeFormat("en-US", {
+    timeZone: STOCKHOLM_TZ,
+    year: "numeric", month: "2-digit", day: "2-digit",
+    hour: "2-digit", minute: "2-digit", second: "2-digit",
+    hour12: false,
+  });
+  const map: Record<string, string> = {};
+  for (const p of dtf.formatToParts(date)) map[p.type] = p.value;
+  return {
+    year: +map.year, month: +map.month, day: +map.day,
+    hour: +map.hour, minute: +map.minute, second: +map.second,
+  };
+}
+
+// Convert a Stockholm wall-clock time (e.g. 18:00 on a given date) to the exact
+// UTC instant, accounting for DST.
+function stockholmWallToUtc(
+  year: number, month: number, day: number, hour: number, minute: number,
+): Date {
+  const guess = Date.UTC(year, month - 1, day, hour, minute, 0);
+  let offset = stockholmOffsetMs(new Date(guess));
+  let utc = guess - offset;
+  offset = stockholmOffsetMs(new Date(utc));
+  utc = guess - offset;
+  return new Date(utc);
+}
+
+// The current (upcoming) webinar start, rolling forward weekly after each ends.
+function computeWebinarStart(now: Date = new Date()): Date {
+  let { year, month, day } = WEBINAR_FIRST;
+  let start = stockholmWallToUtc(year, month, day, 18, 0);
+  while (now.getTime() > start.getTime() + WEBINAR_DURATION_MS) {
+    const next = new Date(Date.UTC(year, month - 1, day) + WEEK_MS);
+    year = next.getUTCFullYear();
+    month = next.getUTCMonth() + 1;
+    day = next.getUTCDate();
+    start = stockholmWallToUtc(year, month, day, 18, 0);
+  }
+  return start;
+}
+
+function toIsoWithOffset(date: Date): string {
+  const p = stockholmParts(date);
+  const offMin = Math.round(stockholmOffsetMs(date) / 60000);
+  const sign = offMin >= 0 ? "+" : "-";
+  const abs = Math.abs(offMin);
+  return (
+    `${p.year}-${pad(p.month)}-${pad(p.day)}` +
+    `T${pad(p.hour)}:${pad(p.minute)}:${pad(p.second)}` +
+    `${sign}${pad(Math.floor(abs / 60))}:${pad(abs % 60)}`
+  );
+}
+
+function toIcsUtc(date: Date): string {
+  return date.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}Z$/, "Z");
+}
+
+// ── Derived schedule values ──────────────────────────────────────────────────
+const WEBINAR_START = computeWebinarStart();
+const WEBINAR_END = new Date(WEBINAR_START.getTime() + WEBINAR_DURATION_MS);
+const _start = stockholmParts(WEBINAR_START);
+
+export const WEBINAR_DATE =
+  `tisdag ${_start.day} ${SWEDISH_MONTHS[_start.month - 1]} ${_start.year}`;
+export const WEBINAR_DATE_SHORT =
+  `${pad(_start.day)}.${pad(_start.month)}.${_start.year}`;
 export const WEBINAR_TIME = "18:00";
 export const WEBINAR_TIMEZONE_LABEL = "svensk tid";
 export const WEBINAR_LOCATION_PUBLIC = "Online – du får länken på mejlen";
@@ -8,13 +121,14 @@ export const WEBINAR_TITLE = "Kvinnlig Lustkraft – Gratis webinar med Gaia";
 export const WEBINAR_DESCRIPTION =
   "Din kropp vet vägen. Återväck din lust och livskraft. Gratis webinar med Gaia Lindroos.";
 
-// 23 June 2026 18:00 Europe/Stockholm (CEST, UTC+2) = 16:00 UTC
-export const WEBINAR_TARGET_ISO = "2026-06-23T18:00:00+02:00";
-export const WEBINAR_ICS_DTSTART_UTC = "20260623T160000Z";
-export const WEBINAR_ICS_DTEND_UTC = "20260623T173000Z";
+export const WEBINAR_TARGET_ISO = toIsoWithOffset(WEBINAR_START);
+export const WEBINAR_ICS_DTSTART_UTC = toIcsUtc(WEBINAR_START);
+export const WEBINAR_ICS_DTEND_UTC = toIcsUtc(WEBINAR_END);
 
-// Replay window: 48h after webinar end (19:30 Stockholm) → closes 25 June 2026 19:30
-export const REPLAY_DEADLINE_ISO = "2026-06-25T19:30:00+02:00";
+// Replay window: 48h after the webinar ends (19:30 Stockholm).
+export const REPLAY_DEADLINE_ISO = toIsoWithOffset(
+  new Date(WEBINAR_END.getTime() + 48 * 60 * 60 * 1000),
+);
 // Optional: embed URL for the recording (YouTube / Vimeo). Leave empty for placeholder.
 export const REPLAY_EMBED_URL =
   "https://player.vimeo.com/video/1199014437?badge=0&autopause=0&player_id=0&app_id=58479";
@@ -22,11 +136,11 @@ export const REPLAY_EMBED_URL =
 // GHL / FastPayDirect checkout link for "Kvinnlig Lustkraft" course
 export const PAYMENT_LINK = "https://link.fastpaydirect.com/payment-link/6a0498ff8c3f15f97515aee0";
 
-// Webinar Zoom link (matches the link sent in confirmation emails)
+// Webinar Zoom link (matches the link sent in confirmation emails) — same across all sessions.
 export const WEBINAR_ZOOM_LINK = "https://zoom.us/j/94430244908";
-// Add-to-calendar link — Google Calendar event prefilled with the Zoom link (same as in emails)
+// Add-to-calendar link — Google Calendar event prefilled with the Zoom link (same as in emails).
 export const WEBINAR_CALENDAR_LINK =
-  "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Kvinnlig+Lustkraft+%E2%80%93+Gratis+webinar+med+Gaia&dates=20260623T160000Z/20260623T173000Z&details=Anslut+via+Zoom%3A+https%3A%2F%2Fzoom.us%2Fj%2F94430244908&location=https%3A%2F%2Fzoom.us%2Fj%2F94430244908";
+  `https://calendar.google.com/calendar/render?action=TEMPLATE&text=Kvinnlig+Lustkraft+%E2%80%93+Gratis+webinar+med+Gaia&dates=${WEBINAR_ICS_DTSTART_UTC}/${WEBINAR_ICS_DTEND_UTC}&details=Anslut+via+Zoom%3A+https%3A%2F%2Fzoom.us%2Fj%2F94430244908&location=https%3A%2F%2Fzoom.us%2Fj%2F94430244908`;
 
 // Course access — where buyers go to start Module 1 after purchase
 export const COURSE_LOGIN_LINK = "https://members.innershift.se";
@@ -34,11 +148,11 @@ export const SUPPORT_EMAIL = "hej@innershift.se";
 
 // --- "Din resa fram till webbinariet": drip-unlock schedule for the nurture pages ---
 // Each page unlocks at 00:00 Stockholm on its "D-N" day, derived from the webinar date
-// so the schedule stays correct if the webinar is moved.
+// so the schedule stays correct as the webinar auto-advances.
 export type JourneyKey = "podcast" | "video" | "blogg" | "testimonial";
 
 function journeyUnlockIso(daysBefore: number): string {
-  const datePart = WEBINAR_TARGET_ISO.slice(0, 10); // e.g. "2026-06-23"
+  const datePart = WEBINAR_TARGET_ISO.slice(0, 10); // e.g. "2026-06-30"
   const base = new Date(`${datePart}T00:00:00Z`);
   base.setUTCDate(base.getUTCDate() - daysBefore);
   const y = base.getUTCFullYear();
@@ -59,11 +173,6 @@ export const JOURNEY_UNLOCK_ISO: Record<JourneyKey, string> = {
 export function isJourneyUnlocked(_key: JourneyKey, _now: Date = new Date()): boolean {
   return true;
 }
-
-const SWEDISH_MONTHS = [
-  "januari", "februari", "mars", "april", "maj", "juni",
-  "juli", "augusti", "september", "oktober", "november", "december",
-];
 
 // "18 juni" — parsed straight from the ISO date part so it shows the Stockholm
 // calendar day regardless of the viewer's own timezone.

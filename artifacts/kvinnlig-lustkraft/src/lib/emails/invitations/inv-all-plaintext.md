@@ -1,7 +1,7 @@
 # Inbjudningssekvens – plain text (5 mejl)
 
 Webbinarium: Kvinnlig Lustkraft med Gaia Lindroos
-Datum: tisdag 23 juni 2026, kl 18:00 svensk tid
+Datum: tisdag 30 juni 2026, kl 18:00 svensk tid
 
 OBS: Zoom-länken skickas i bekräftelsemejlet direkt efter anmälan
 — därför nämns den inte här. Alla CTA leder till anmälningssidan.
@@ -10,8 +10,8 @@ Sändschema:
 - Mejl 1 — tors 28 maj, 19:00
 - Mejl 2 — fre 29 maj, 09:00
 - Mejl 3 — fre 29 maj, 18:00
-- Mejl 4 — tis 23 juni, 10:00 (webinardagen)
-- Mejl 5 — tis 23 juni, 15:00 (3 tim före start)
+- Mejl 4 — tis 30 juni, 10:00 (webinardagen)
+- Mejl 5 — tis 30 juni, 15:00 (3 tim före start)
 
 ================================================================
 MEJL 1 — tors 28/5 kl 19:00 · Värdeöppning

@@ -1,3 +1,4 @@
 - [CSS grid aspect-ratio collapse](css-grid-aspect-ratio-collapse.md) — iframe/video embed renders blank in a grid `auto` track; use a definite column width.
 - [Webinar registration attribution](webinar-registration-attribution.md) — DB `source='webinar'` is cumulative across all webinars; use GHL date tags + email cross-ref to count one webinar's ad source.
 - [Meta CAPI test_event_code](meta-capi-test-event-code.md) — global test_event_code secret leaked to prod → events stuck in Test Events tab, not attributed to ads; gate on NODE_ENV.
+- [Webinar schedule auto-rollover](webinar-schedule-rollover.md) — date auto-computes weekly Tue 18:00 Stockholm; GHL prod emails need manual weekly updates.
