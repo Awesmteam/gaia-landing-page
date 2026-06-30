@@ -42,3 +42,9 @@ id = "Wq1w12AToGYI-RfbffFC4"
 uri = "file://screenshots/mejl-1-html.jpg"
 type = "image"
 title = "Mejl 1 – HTML (uppdaterad: ingen Zoom före anmälan)"
+
+[[outputs]]
+id = "ehaAA_5RJRLUk9L2wMOX-"
+uri = "file://artifacts/kvinnlig-lustkraft/src/lib/emails/after-webinar-plaintext.md"
+type = "text"
+title = "Efter-webinar-sekvens (6 mejl) – plain text"
