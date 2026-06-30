@@ -170,6 +170,20 @@ export default function Checkout() {
           </div>
         </FadeIn>
 
+        {/* Testimonials — social proof first to build trust before the price */}
+        <FadeIn delay={0.05}>
+          <section className="mb-12 md:mb-16">
+            <h2 className="font-serif text-2xl md:text-3xl text-primary text-center mb-3">
+              Kvinnor som redan gjort resan
+            </h2>
+            <p className="text-primary/70 leading-relaxed text-center max-w-xl mx-auto mb-8 md:mb-10">
+              Du behöver inte ta mitt ord för det. Lyssna på dem som en gång stod precis där du
+              står nu.
+            </p>
+            <TestimonialsGrid items={TESTIMONIALS.slice(0, 4)} />
+          </section>
+        </FadeIn>
+
         {/* Pricing card */}
         <FadeIn delay={0.05}>
           <div
@@ -373,20 +387,6 @@ export default function Checkout() {
                 </div>
               </div>
             </div>
-          </section>
-        </FadeIn>
-
-        {/* Testimonials */}
-        <FadeIn delay={0.1}>
-          <section className="mb-14 md:mb-20">
-            <h2 className="font-serif text-2xl md:text-3xl text-primary text-center mb-3">
-              Kvinnor som redan gjort resan
-            </h2>
-            <p className="text-primary/70 leading-relaxed text-center max-w-xl mx-auto mb-8 md:mb-10">
-              Du behöver inte ta mitt ord för det. Lyssna på dem som en gång stod precis där du
-              står nu.
-            </p>
-            <TestimonialsGrid items={TESTIMONIALS.slice(0, 4)} />
           </section>
         </FadeIn>
 
