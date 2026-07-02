@@ -17,7 +17,7 @@ const WEBINAR_DURATION_MS = 90 * 60 * 1000; // 18:00 → 19:30
 
 // Anchor: first session of the current cycle (Tuesday). The schedule rolls
 // forward weekly from here.
-const WEBINAR_FIRST = { year: 2026, month: 6, day: 30 }; // 30 juni 2026
+const WEBINAR_FIRST = { year: 2026, month: 7, day: 7 }; // 7 juli 2026
 
 const SWEDISH_MONTHS = [
   "januari", "februari", "mars", "april", "maj", "juni",
