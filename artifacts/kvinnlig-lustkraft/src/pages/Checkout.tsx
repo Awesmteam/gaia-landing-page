@@ -201,7 +201,7 @@ export default function Checkout() {
             <div className="space-y-4 mb-8">
               {[
                 { text: "8 moduler med vägledning / 8 hypnoser", value: "8 890:-" },
-                { text: "2 LIVE webinar 90 min Gaiacommunity", value: "1 980:-" },
+                { text: "12 LIVE webinar, 90 min, en per månad", value: "1 980:-" },
                 { text: "12 månaders tillgång", value: "2 000:-" },
               ].map((item, i) => (
                 <div
@@ -243,7 +243,7 @@ export default function Checkout() {
                     <div className="flex items-start gap-3">
                       <Sparkles className="w-4 h-4 text-accent mt-1 shrink-0" />
                       <span className="text-primary/90 font-medium">
-                        BONUS 1: 1 års medlemskap — 12 st LIVE webinar
+                        BONUS 1: Föreläsningen MATKA Kvinnans urminne & den livgivande kraften
                       </span>
                     </div>
                     <div className="text-sm font-medium text-primary/50 shrink-0 uppercase tracking-wide pl-7 sm:pl-0">
@@ -254,8 +254,7 @@ export default function Checkout() {
                     <div className="flex items-start gap-3">
                       <Sparkles className="w-4 h-4 text-accent mt-1 shrink-0" />
                       <span className="text-primary/90 font-medium">
-                        BONUS 2: MATKA — InnerMedicineWoman PAKET
-                        (föreläsning + hypnos)
+                        BONUS 2: Vägledd hypnos: Återvändandet till MATKA- kvinnans urminne och den livgivande kraften
                       </span>
                     </div>
                     <div className="text-sm font-medium text-primary/50 shrink-0 uppercase tracking-wide pl-7 sm:pl-0">
@@ -325,14 +324,14 @@ export default function Checkout() {
                 {[
                   "8 moduler som tar dig steg för steg hem till din kropp och din kraft",
                   "8 vägledda hypnoser — kroppen får uppleva, inte bara förstå",
-                  "2 LIVE-seminarier med Gaia varje månad — möte i Gaia­community",
+                  "12 LIVE-seminarier med Gaia — en per månad, går även att se i efterhand",
                   "12 månaders tillgång — du går i din egen takt",
                   "Tillgång till första modulen direkt efter köp",
                   ...(expired
                     ? []
                     : [
-                        "BONUS: 1 års medlemskap — 12 st LIVE webinar",
-                        "BONUS: MATKA — InnerMedicineWoman paket (föreläsning + vägledd hypnos)",
+                        "BONUS: Föreläsningen MATKA Kvinnans urminne & den livgivande kraften",
+                        "BONUS: Vägledd hypnos: Återvändandet till MATKA- kvinnans urminne och den livgivande kraften",
                       ]),
                 ].map((item, i) => (
                   <li

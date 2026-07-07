@@ -429,7 +429,7 @@ export default function Landing() {
                 <ul className="space-y-6 mb-12">
                   {[
                     "8 moduler som tar dig steg för steg hem till din kropp och din kraft – varje modul aktiverar, fördjupar och integrerar det som redan öppnats",
-                    "2 live-seminarier med mig varje månad – Möte med Gaia, första måndagen kl. 18.00–19.30. Här möts vi oavsett var du är i kursen. Du kan ställa frågor, känna att du inte är ensam, och låta kroppen landa djupare.",
+                    "1 live-seminarier varje månad – Möte med Gaia, här möts vi oavsett var du är i kursen. Du kan ställa frågor, känna att du inte är ensam, och låta kroppen landa djupare. Går även att se i efterhand.",
                     "12 månaders tillgång så du kan gå i din egen takt – det här är inte något du ska stressa igenom",
                     "Tillgång till första modulen direkt efter köp – du kan börja redan idag"
                   ].map((item, i) => (
@@ -699,7 +699,7 @@ export default function Landing() {
                 <div className="space-y-6 mb-12">
                   {[
                     { text: "8 moduler med vägledning / 8 hypnoser", value: "8 890:-" },
-                    { text: "2 LIVE webinar 90 min Gaiacommunity", value: "1 980:-" },
+                    { text: "12 LIVE webinar, 90 min, en per månad", value: "1 980:-" },
                     { text: "12 månaders tillgång", value: "2 000:-" }
                   ].map((item, i) => (
                     <div key={i} className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 py-2 border-b border-border/30 last:border-0">
@@ -729,7 +729,7 @@ export default function Landing() {
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 py-2 border-b border-border/40">
                       <div className="flex items-start gap-3">
                         <div className="w-1.5 h-1.5 rounded-full bg-accent mt-2 shrink-0" />
-                        <span className="text-primary/90 font-medium">BONUS 1: 1 års medlemskap — 12 st LIVE webinar</span>
+                        <span className="text-primary/90 font-medium">BONUS 1: Föreläsningen MATKA Kvinnans urminne & den livgivande kraften</span>
                       </div>
                       <div className="text-sm font-medium text-primary/50 shrink-0 uppercase tracking-wide">
                         Värde 11 880:-
@@ -738,7 +738,7 @@ export default function Landing() {
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 py-2">
                       <div className="flex items-start gap-3">
                         <div className="w-1.5 h-1.5 rounded-full bg-accent mt-2 shrink-0" />
-                        <span className="text-primary/90 font-medium">BONUS 2: MATKA — InnerMedicineWoman PAKET (föreläsning + hypnos)</span>
+                        <span className="text-primary/90 font-medium">BONUS 2: Vägledd hypnos: Återvändandet till MATKA- kvinnans urminne och den livgivande kraften</span>
                       </div>
                       <div className="text-sm font-medium text-primary/50 shrink-0 uppercase tracking-wide">
                         Värde 3 500:-
