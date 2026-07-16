@@ -1,13 +1,15 @@
 // Server-side webinar schedule — mirrors the frontend logic in
 // artifacts/kvinnlig-lustkraft/src/lib/webinar.ts. The webinar runs every
-// Tuesday 18:00 Europe/Stockholm and rolls forward weekly after each session
+// Wednesday 18:30 Europe/Stockholm and rolls forward weekly after each session
 // ends. Anchor must be kept in sync with the frontend.
 
 const STOCKHOLM_TZ = "Europe/Stockholm";
 const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
-const WEBINAR_DURATION_MS = 90 * 60 * 1000; // 18:00 → 19:30
+const WEBINAR_DURATION_MS = 90 * 60 * 1000; // 18:30 → 20:00
+const WEBINAR_START_HOUR = 18;
+const WEBINAR_START_MINUTE = 30;
 
-const WEBINAR_FIRST = { year: 2026, month: 7, day: 7 }; // 7 juli 2026
+const WEBINAR_FIRST = { year: 2026, month: 7, day: 22 }; // 22 juli 2026
 
 function pad(n: number): string {
   return String(n).padStart(2, "0");
@@ -57,13 +59,13 @@ function stockholmWallToUtc(
 
 export function computeWebinarStart(now: Date = new Date()): Date {
   let { year, month, day } = WEBINAR_FIRST;
-  let start = stockholmWallToUtc(year, month, day, 18, 0);
+  let start = stockholmWallToUtc(year, month, day, WEBINAR_START_HOUR, WEBINAR_START_MINUTE);
   while (now.getTime() > start.getTime() + WEBINAR_DURATION_MS) {
     const next = new Date(Date.UTC(year, month - 1, day) + WEEK_MS);
     year = next.getUTCFullYear();
     month = next.getUTCMonth() + 1;
     day = next.getUTCDate();
-    start = stockholmWallToUtc(year, month, day, 18, 0);
+    start = stockholmWallToUtc(year, month, day, WEBINAR_START_HOUR, WEBINAR_START_MINUTE);
   }
   return start;
 }

@@ -9,7 +9,7 @@ Pris (webinarerbjudande): 7 995 kr
 Erbjudandet med bonusar gäller en begränsad tid efter webbinariet och stänger
 fredag kl 23:59 (3 dagar efter webbinariet). Alla köp-CTA leder till säljsidan.
 
-Sändschema (webbinariet hålls tisdag kl 18:00):
+Sändschema (webbinariet hålls onsdag kl 18:30):
 - Mejl 1 — tisdag, ca 30 min efter webbinariet ...... Tack
 - Mejl 2 — onsdag 08:00 (morgonen efter) ............ Inspelning + erbjudande & bonus
 - Mejl 3 — onsdag 17:00 (1 dag efter) ............... Testimonial

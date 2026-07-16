@@ -1,7 +1,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 // Webinar schedule
 //
-// The webinar runs every Tuesday at 18:00 (Europe/Stockholm). The site shows the
+// The webinar runs every Wednesday at 18:30 (Europe/Stockholm). The site shows the
 // next upcoming session and AUTOMATICALLY advances one week once the current one
 // has ended — e.g. 30 juni → 7 juli → 14 juli → … — without any code change.
 // The Zoom link stays the same across all sessions.
@@ -13,11 +13,13 @@
 
 const STOCKHOLM_TZ = "Europe/Stockholm";
 const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
-const WEBINAR_DURATION_MS = 90 * 60 * 1000; // 18:00 → 19:30
+const WEBINAR_DURATION_MS = 90 * 60 * 1000; // 18:30 → 20:00
+const WEBINAR_START_HOUR = 18;
+const WEBINAR_START_MINUTE = 30;
 
-// Anchor: first session of the current cycle (Tuesday). The schedule rolls
+// Anchor: first session of the current cycle (Wednesday). The schedule rolls
 // forward weekly from here.
-const WEBINAR_FIRST = { year: 2026, month: 7, day: 7 }; // 7 juli 2026
+const WEBINAR_FIRST = { year: 2026, month: 7, day: 22 }; // 22 juli 2026
 
 const SWEDISH_MONTHS = [
   "januari", "februari", "mars", "april", "maj", "juni",
@@ -77,13 +79,13 @@ function stockholmWallToUtc(
 // The current (upcoming) webinar start, rolling forward weekly after each ends.
 function computeWebinarStart(now: Date = new Date()): Date {
   let { year, month, day } = WEBINAR_FIRST;
-  let start = stockholmWallToUtc(year, month, day, 18, 0);
+  let start = stockholmWallToUtc(year, month, day, WEBINAR_START_HOUR, WEBINAR_START_MINUTE);
   while (now.getTime() > start.getTime() + WEBINAR_DURATION_MS) {
     const next = new Date(Date.UTC(year, month - 1, day) + WEEK_MS);
     year = next.getUTCFullYear();
     month = next.getUTCMonth() + 1;
     day = next.getUTCDate();
-    start = stockholmWallToUtc(year, month, day, 18, 0);
+    start = stockholmWallToUtc(year, month, day, WEBINAR_START_HOUR, WEBINAR_START_MINUTE);
   }
   return start;
 }
@@ -110,10 +112,10 @@ const WEBINAR_END = new Date(WEBINAR_START.getTime() + WEBINAR_DURATION_MS);
 const _start = stockholmParts(WEBINAR_START);
 
 export const WEBINAR_DATE =
-  `tisdag ${_start.day} ${SWEDISH_MONTHS[_start.month - 1]} ${_start.year}`;
+  `onsdag ${_start.day} ${SWEDISH_MONTHS[_start.month - 1]} ${_start.year}`;
 export const WEBINAR_DATE_SHORT =
   `${pad(_start.day)}.${pad(_start.month)}.${_start.year}`;
-export const WEBINAR_TIME = "18:00";
+export const WEBINAR_TIME = "18:30";
 export const WEBINAR_TIMEZONE_LABEL = "svensk tid";
 export const WEBINAR_LOCATION_PUBLIC = "Online – du får länken på mejlen";
 export const WEBINAR_LOCATION_CONFIRMED = "Online via Zoom";

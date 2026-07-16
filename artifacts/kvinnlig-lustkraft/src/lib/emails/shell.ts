@@ -20,7 +20,7 @@ export const SAMPLE_VALUES: Record<string, string> = {
   name_of_the_business: "send.innershift.se",
   recording_page_link: "https://innershift.se/inspelning-av-webbinariet",
   sale_page_link: "https://innershift.se/kvinnlig-lustkraft",
-  time_of_the_webinar: "18.00",
+  time_of_the_webinar: "18.30",
   webinar_add_to_calendar_link: WEBINAR_CALENDAR_LINK,
   webinar_zoom_link: "https://zoom.us/j/94430244908",
   webinar_registration_link: "https://innershift.se/gratis-webbinarium",
