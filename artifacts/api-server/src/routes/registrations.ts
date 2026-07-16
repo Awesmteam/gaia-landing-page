@@ -9,6 +9,7 @@ import { logger } from "../lib/logger";
 import {
   buildPayload,
   sendToLeadConnector,
+  upsertContactWithWebinarFields,
   type Attribution,
 } from "../lib/leadconnector";
 import {
@@ -158,7 +159,23 @@ router.post("/registrations", async (req, res) => {
   const phoneDigits = phoneE164.replace(/\D/g, "");
 
   const [ghlResult, capiResult] = await Promise.all([
-    sendToLeadConnector(payload),
+    sendToLeadConnector(payload).then(async (webhookResult) => {
+      // Also upsert the contact directly so the webinar custom fields are
+      // populated without manual workflow mapping in GHL (webinar leads only).
+      if (input.source !== "webinar") return webhookResult;
+      const upsertResult = await upsertContactWithWebinarFields(payload);
+      return {
+        ...webhookResult,
+        body: {
+          webhook: webhookResult.body,
+          upsert: {
+            ok: upsertResult.ok,
+            status: upsertResult.status,
+            error: upsertResult.error ?? null,
+          },
+        },
+      };
+    }),
     input.event_id
       ? sendCapiEvent({
           eventName: "Lead",

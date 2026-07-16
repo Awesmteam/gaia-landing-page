@@ -86,12 +86,16 @@ export function RegistrationPopup({ open, onClose }: RegistrationPopupProps) {
         return;
       }
       // Persist the personal WebinarFuel join link for the thank-you page.
-      if (data.join_link) {
-        try {
+      // Always clear any previously stored link first so a stale link from an
+      // earlier registration can never be shown to a new registrant.
+      try {
+        if (data.join_link) {
           sessionStorage.setItem(JOIN_LINK_STORAGE_KEY, data.join_link);
-        } catch {
-          // storage errors must not block navigation
+        } else {
+          sessionStorage.removeItem(JOIN_LINK_STORAGE_KEY);
         }
+      } catch {
+        // storage errors must not block navigation
       }
       // Skip browser Lead pixel when server detected a duplicate within
       // the dedupe window — server already skipped CAPI, so firing the

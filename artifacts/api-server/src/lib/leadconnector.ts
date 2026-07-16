@@ -100,6 +100,69 @@ export function buildPayload(
   };
 }
 
+// Upsert the contact directly via the GHL API so the webinar custom fields
+// (contact.joining_link_webinar etc.) are populated without manual workflow
+// mapping. Requires GHL_PRIVATE_INTEGRATION_TOKEN + GHL_LOCATION_ID.
+export async function upsertContactWithWebinarFields(
+  payload: RegistrationWebhookPayload,
+): Promise<WebhookResult> {
+  const token = process.env["GHL_PRIVATE_INTEGRATION_TOKEN"];
+  const locationId = process.env["GHL_LOCATION_ID"];
+  if (!token || !locationId) {
+    logger.warn("GHL token/location missing — skipping contact upsert");
+    return { ok: false, status: null, body: null, error: "missing_ghl_config" };
+  }
+
+  const nameParts = payload.name.trim().split(/\s+/);
+  const body = {
+    locationId,
+    email: payload.email,
+    phone: payload.phone_e164 || payload.phone || undefined,
+    firstName: nameParts[0] ?? "",
+    lastName: nameParts.slice(1).join(" ") || undefined,
+    tags: payload.tags,
+    customFields: [
+      { key: "joining_link_webinar", field_value: payload.joining_link_webinar },
+      { key: "joining_date_event", field_value: payload.joining_date_event },
+      { key: "webinar_date", field_value: payload.webinar_date },
+      { key: "webinar_time", field_value: payload.webinar_time },
+      { key: "google_calendar_link", field_value: payload.google_calendar_link },
+    ],
+  };
+
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 8000);
+  try {
+    const res = await fetch("https://services.leadconnectorhq.com/contacts/upsert", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Version: "2021-07-28",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+      signal: controller.signal,
+    });
+    const text = await res.text();
+    let resBody: unknown = text;
+    try {
+      resBody = text ? JSON.parse(text) : null;
+    } catch {
+      // keep raw text
+    }
+    if (!res.ok) {
+      logger.error({ status: res.status, body: resBody }, "GHL contact upsert failed");
+    }
+    return { ok: res.ok, status: res.status, body: resBody };
+  } catch (err) {
+    const message = err instanceof Error ? err.message : String(err);
+    logger.error({ err }, "GHL contact upsert failed");
+    return { ok: false, status: null, body: null, error: message };
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
 export async function sendToLeadConnector(
   payload: RegistrationWebhookPayload,
 ): Promise<WebhookResult> {
