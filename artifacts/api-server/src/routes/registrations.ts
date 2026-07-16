@@ -17,6 +17,7 @@ import {
   getClientIp,
 } from "../lib/normalize";
 import { sendCapiEvent } from "../lib/metaCapi";
+import { registerWithWebinarFuel } from "../lib/webinarfuel";
 
 const router: IRouter = Router();
 const DEDUPE_WINDOW_MS = 6 * 60 * 60 * 1000;
@@ -106,8 +107,33 @@ router.post("/registrations", async (req, res) => {
     return;
   }
 
-  // Respond immediately; forward to webhook + CAPI in the background.
-  res.json({ ok: true, id: inserted.id });
+  // Register in WebinarFuel first (webinar leads only) so the personal join
+  // link can be returned to the client and forwarded to GHL. Non-blocking on
+  // failure: the lead is already saved and GHL/CAPI still run.
+  let wfResult: Awaited<ReturnType<typeof registerWithWebinarFuel>> | null =
+    null;
+  if (input.source === "webinar") {
+    wfResult = await registerWithWebinarFuel({
+      email: input.email,
+      name: input.name,
+      phoneE164,
+      tags: ["kvinnlig-lustkraft", input.source],
+      ip: clientIp,
+      referrer: input.referrer,
+      utm_source: input.utm_source,
+      utm_medium: input.utm_medium,
+      utm_campaign: input.utm_campaign,
+      utm_term: input.utm_term,
+      utm_content: input.utm_content,
+    });
+  }
+
+  // Respond now; forward to webhook + CAPI in the background.
+  res.json({
+    ok: true,
+    id: inserted.id,
+    join_link: wfResult?.joinLink ?? null,
+  });
 
   const payload = buildPayload({
     name: input.name,
@@ -120,6 +146,7 @@ router.post("/registrations", async (req, res) => {
     attribution,
     clientIp,
     userAgent,
+    joinLink: wfResult?.joinLink ?? null,
   });
 
   const sourceUrl =
@@ -183,6 +210,21 @@ router.post("/registrations", async (req, res) => {
           error:
             "error" in capiResult && capiResult.error ? capiResult.error : null,
         },
+        ...(wfResult
+          ? {
+              wfStatus: wfResult.ok
+                ? "sent"
+                : wfResult.skipped
+                  ? `skipped:${wfResult.skipped}`
+                  : "failed",
+              wfResponse: {
+                status: wfResult.status,
+                body: wfResult.body,
+                error: wfResult.error ?? null,
+              },
+              wfJoinLink: wfResult.joinLink,
+            }
+          : { wfStatus: "skipped:not_webinar" }),
       })
       .where(eq(registrationsTable.id, inserted.id));
   } catch (err) {

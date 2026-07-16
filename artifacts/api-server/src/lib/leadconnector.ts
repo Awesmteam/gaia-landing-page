@@ -1,4 +1,8 @@
 import { logger } from "./logger";
+import { getWebinarScheduleFields } from "./webinarSchedule";
+
+// Shared fallback link if WebinarFuel didn't return a personal join link.
+export const FALLBACK_JOIN_LINK = "https://zoom.us/j/94430244908";
 
 const DEFAULT_WEBHOOK_URL =
   "https://services.leadconnectorhq.com/hooks/eciQwkSR4pLDI1cdBwK9/webhook-trigger/9df1165c-bbec-48ce-802e-d76fba032b2e";
@@ -34,6 +38,9 @@ export type RegistrationWebhookPayload = {
   webinar_date: string;
   webinar_time: string;
   timezone: string;
+  joining_link_webinar: string;
+  joining_date_event: string;
+  google_calendar_link: string;
   submitted_at: string;
   tags: string[];
   client_ip?: string;
@@ -51,6 +58,7 @@ export type BuildPayloadInput = {
   attribution?: Attribution;
   clientIp?: string;
   userAgent?: string;
+  joinLink?: string | null;
 };
 
 export function buildPayload(
@@ -59,6 +67,8 @@ export function buildPayload(
   const a = input.attribution ?? {};
   const tags = ["kvinnlig-lustkraft", input.source];
   if (a.utm_source) tags.push(a.utm_source);
+  const joinLink = input.joinLink || FALLBACK_JOIN_LINK;
+  const schedule = getWebinarScheduleFields(joinLink);
   return {
     name: input.name,
     email: input.email,
@@ -67,9 +77,12 @@ export function buildPayload(
     country: input.country,
     source: input.source,
     event_id: input.eventId,
-    webinar_date: "2026-05-27",
-    webinar_time: "18:00",
+    webinar_date: schedule.webinarDate,
+    webinar_time: schedule.webinarTime,
     timezone: "Europe/Stockholm",
+    joining_link_webinar: joinLink,
+    joining_date_event: schedule.joiningDateEvent,
+    google_calendar_link: schedule.googleCalendarLink,
     submitted_at: new Date().toISOString(),
     tags,
     client_ip: input.clientIp,

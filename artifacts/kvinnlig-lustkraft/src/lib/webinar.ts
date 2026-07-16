@@ -136,11 +136,33 @@ export const REPLAY_EMBED_URL =
 // GHL / FastPayDirect checkout link for "Kvinnlig Lustkraft" course
 export const PAYMENT_LINK = "https://link.fastpaydirect.com/payment-link/6a0498ff8c3f15f97515aee0";
 
-// Webinar Zoom link (matches the link sent in confirmation emails) — same across all sessions.
+// Fallback join link (used if WebinarFuel didn't return a personal link).
 export const WEBINAR_ZOOM_LINK = "https://zoom.us/j/94430244908";
-// Add-to-calendar link — Google Calendar event prefilled with the Zoom link (same as in emails).
-export const WEBINAR_CALENDAR_LINK =
-  `https://calendar.google.com/calendar/render?action=TEMPLATE&text=Kvinnlig+Lustkraft+%E2%80%93+Gratis+webinar+med+Gaia&dates=${WEBINAR_ICS_DTSTART_UTC}/${WEBINAR_ICS_DTEND_UTC}&details=Anslut+via+Zoom%3A+https%3A%2F%2Fzoom.us%2Fj%2F94430244908&location=https%3A%2F%2Fzoom.us%2Fj%2F94430244908`;
+
+// sessionStorage key where the personal WebinarFuel join link is stored after signup.
+export const JOIN_LINK_STORAGE_KEY = "wf_join_link";
+
+export function getStoredJoinLink(): string | null {
+  try {
+    const v = sessionStorage.getItem(JOIN_LINK_STORAGE_KEY);
+    return v && /^https?:\/\//.test(v) ? v : null;
+  } catch {
+    return null;
+  }
+}
+
+// Add-to-calendar link — Google Calendar event prefilled with the join link.
+export function buildCalendarLink(joinLink: string): string {
+  return (
+    `https://calendar.google.com/calendar/render?action=TEMPLATE` +
+    `&text=Kvinnlig+Lustkraft+%E2%80%93+Gratis+webinar+med+Gaia` +
+    `&dates=${WEBINAR_ICS_DTSTART_UTC}/${WEBINAR_ICS_DTEND_UTC}` +
+    `&details=${encodeURIComponent(`Anslut här: ${joinLink}`)}` +
+    `&location=${encodeURIComponent(joinLink)}`
+  );
+}
+
+export const WEBINAR_CALENDAR_LINK = buildCalendarLink(WEBINAR_ZOOM_LINK);
 
 // Course access — where buyers go to start Module 1 after purchase
 export const COURSE_LOGIN_LINK = "https://members.innershift.se";

@@ -7,6 +7,7 @@ import {
   WEBINAR_TIME,
   WEBINAR_TIMEZONE_LABEL,
   WEBINAR_LOCATION_PUBLIC,
+  JOIN_LINK_STORAGE_KEY,
 } from "@/lib/webinar";
 import {
   generateEventId,
@@ -77,12 +78,20 @@ export function RegistrationPopup({ open, onClose }: RegistrationPopupProps) {
         }),
       });
       const data = (await res.json().catch(() => null)) as
-        | { ok?: boolean; deduped?: boolean; error?: string }
+        | { ok?: boolean; deduped?: boolean; error?: string; join_link?: string | null }
         | null;
       if (!res.ok || !data?.ok) {
         setError(data?.error ?? "Något gick fel, försök igen.");
         setSubmitting(false);
         return;
+      }
+      // Persist the personal WebinarFuel join link for the thank-you page.
+      if (data.join_link) {
+        try {
+          sessionStorage.setItem(JOIN_LINK_STORAGE_KEY, data.join_link);
+        } catch {
+          // storage errors must not block navigation
+        }
       }
       // Skip browser Lead pixel when server detected a duplicate within
       // the dedupe window — server already skipped CAPI, so firing the

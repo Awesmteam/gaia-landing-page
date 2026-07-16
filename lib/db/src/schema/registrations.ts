@@ -32,6 +32,9 @@ export const registrationsTable = pgTable(
     }),
     capiStatus: text("capi_status").notNull().default("pending"),
     capiResponse: jsonb("capi_response"),
+    wfStatus: text("wf_status").notNull().default("pending"),
+    wfResponse: jsonb("wf_response"),
+    wfJoinLink: text("wf_join_link"),
   },
   (t) => [
     index("registrations_dedupe_idx").on(

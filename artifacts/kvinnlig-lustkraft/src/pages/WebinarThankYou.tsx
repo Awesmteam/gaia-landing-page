@@ -22,10 +22,12 @@ import {
   WEBINAR_ICS_DTSTART_UTC,
   WEBINAR_ICS_DTEND_UTC,
   WEBINAR_ZOOM_LINK,
-  WEBINAR_CALENDAR_LINK,
+  WEBINAR_DATE_SHORT,
+  buildCalendarLink,
+  getStoredJoinLink,
 } from "@/lib/webinar";
 
-function buildIcs(): string {
+function buildIcs(joinLink: string): string {
   const dtStamp = new Date()
     .toISOString()
     .replace(/[-:]/g, "")
@@ -43,8 +45,8 @@ function buildIcs(): string {
     `DTSTART:${WEBINAR_ICS_DTSTART_UTC}`,
     `DTEND:${WEBINAR_ICS_DTEND_UTC}`,
     `SUMMARY:${WEBINAR_TITLE}`,
-    `DESCRIPTION:${WEBINAR_DESCRIPTION}\\n\\nZoom: ${WEBINAR_ZOOM_LINK}`,
-    `LOCATION:${WEBINAR_ZOOM_LINK}`,
+    `DESCRIPTION:${WEBINAR_DESCRIPTION}\\n\\nAnslut här: ${joinLink}`,
+    `LOCATION:${joinLink}`,
     "END:VEVENT",
     "END:VCALENDAR",
   ].join("\r\n");
@@ -52,9 +54,12 @@ function buildIcs(): string {
 
 export default function WebinarThankYou() {
   const [copied, setCopied] = useState(false);
+  // Personal WebinarFuel join link from signup; falls back to the shared link.
+  const joinLink = getStoredJoinLink() ?? WEBINAR_ZOOM_LINK;
+  const calendarLink = buildCalendarLink(joinLink);
 
   const handleDownloadIcs = () => {
-    const blob = new Blob([buildIcs()], { type: "text/calendar;charset=utf-8" });
+    const blob = new Blob([buildIcs(joinLink)], { type: "text/calendar;charset=utf-8" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
@@ -67,7 +72,7 @@ export default function WebinarThankYou() {
 
   const handleCopyZoom = async () => {
     try {
-      await navigator.clipboard.writeText(WEBINAR_ZOOM_LINK);
+      await navigator.clipboard.writeText(joinLink);
       setCopied(true);
       window.setTimeout(() => setCopied(false), 2000);
     } catch {
@@ -184,7 +189,7 @@ export default function WebinarThankYou() {
               </div>
               <div>
                 <p className="text-[10px] tracking-[0.2em] uppercase text-primary/50 font-semibold">
-                  Zoom-länk
+                  Din länk
                 </p>
                 <p className="font-serif text-primary text-lg leading-tight">
                   Din ingång till webinaret
@@ -194,13 +199,13 @@ export default function WebinarThankYou() {
 
             <div className="flex flex-col sm:flex-row gap-2 mb-4">
               <code className="flex-1 bg-secondary/40 rounded-xl px-4 py-3 text-sm text-primary/80 font-mono break-all border border-border/40">
-                {WEBINAR_ZOOM_LINK}
+                {joinLink}
               </code>
               <button
                 type="button"
                 onClick={handleCopyZoom}
                 className="inline-flex items-center justify-center gap-2 rounded-xl border border-border bg-white px-4 py-3 text-sm font-medium text-primary hover:bg-secondary/40 transition-colors duration-200 shrink-0"
-                aria-label="Kopiera Zoom-länken"
+                aria-label="Kopiera länken"
               >
                 {copied ? (
                   <>
@@ -217,18 +222,18 @@ export default function WebinarThankYou() {
             </div>
 
             <a
-              href={WEBINAR_ZOOM_LINK}
+              href={joinLink}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 rounded-full bg-accent text-white px-6 py-3 text-sm font-semibold tracking-wide shadow-sm hover:bg-accent/90 transition-colors duration-200 w-full sm:w-auto"
             >
               <Video className="w-4 h-4" strokeWidth={2} />
-              <span>Öppna Zoom-länken</span>
+              <span>Öppna din länk</span>
               <ExternalLink className="w-3.5 h-3.5 opacity-80" strokeWidth={2} />
             </a>
 
             <p className="text-xs text-primary/55 mt-4 leading-relaxed">
-              Öppna den här länken den 23 juni kl. 18:00. Spara den så du har den nära.
+              Öppna den här länken den {WEBINAR_DATE_SHORT} kl. {WEBINAR_TIME}. Spara den så du har den nära.
             </p>
           </div>
 
@@ -250,7 +255,7 @@ export default function WebinarThankYou() {
 
             <div className="flex flex-col sm:flex-row gap-3">
               <a
-                href={WEBINAR_CALENDAR_LINK}
+                href={calendarLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-primary text-white px-6 py-3 text-sm font-semibold tracking-wide shadow-sm hover:bg-primary/90 transition-colors duration-200 flex-1"
