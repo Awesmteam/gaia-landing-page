@@ -111,7 +111,13 @@ export function RegistrationPopup({ open, onClose }: RegistrationPopupProps) {
           // pixel errors must not block navigation
         }
       }
-      navigate("/tack");
+      // Go straight into the webinar room when we got a personal join link;
+      // otherwise fall back to the thank-you page.
+      if (data.join_link) {
+        window.location.assign(data.join_link);
+      } else {
+        navigate("/tack");
+      }
     } catch {
       setError("Något gick fel, försök igen.");
       setSubmitting(false);

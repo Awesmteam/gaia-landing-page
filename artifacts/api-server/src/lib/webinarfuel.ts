@@ -2,7 +2,7 @@ import { logger } from "./logger";
 
 const WEBINARFUEL_API_URL = "https://api.webinarfuel.com/registrants";
 export const WEBINARFUEL_WEBINAR_ID = 20541;
-export const WEBINARFUEL_SESSION_ID = 75648;
+export const WEBINARFUEL_SESSION_ID = 75909;
 
 export type WebinarFuelResult = {
   ok: boolean;
