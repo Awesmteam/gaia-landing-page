@@ -10,6 +10,7 @@ import PodcastPage from "@/pages/PodcastPage";
 import VideoPage from "@/pages/VideoPage";
 import BlogPage from "@/pages/BlogPage";
 import TestimonialPage from "@/pages/TestimonialPage";
+import TestNow from "@/pages/TestNow";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -25,6 +26,7 @@ function Router() {
       <Route path="/video" component={VideoPage} />
       <Route path="/blogg" component={BlogPage} />
       <Route path="/testimonial" component={TestimonialPage} />
+      <Route path="/test-now" component={TestNow} />
       <Route path="/sales" component={Landing} />
       <Route path="/sales/tack" component={ThankYou} />
       <Route component={NotFound} />

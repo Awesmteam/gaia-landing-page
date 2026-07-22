@@ -18,7 +18,10 @@ import {
   getClientIp,
 } from "../lib/normalize";
 import { sendCapiEvent } from "../lib/metaCapi";
-import { registerWithWebinarFuel } from "../lib/webinarfuel";
+import {
+  registerWithWebinarFuel,
+  WEBINARFUEL_TEST_NOW_SESSION_ID,
+} from "../lib/webinarfuel";
 
 const router: IRouter = Router();
 const DEDUPE_WINDOW_MS = 6 * 60 * 60 * 1000;
@@ -113,8 +116,10 @@ router.post("/registrations", async (req, res) => {
   // failure: the lead is already saved and GHL/CAPI still run.
   let wfResult: Awaited<ReturnType<typeof registerWithWebinarFuel>> | null =
     null;
+  const testNow = (req.body as Record<string, unknown>)["test_now"] === true;
   if (input.source === "webinar") {
     wfResult = await registerWithWebinarFuel({
+      ...(testNow ? { sessionId: WEBINARFUEL_TEST_NOW_SESSION_ID } : {}),
       email: input.email,
       name: input.name,
       phoneE164,

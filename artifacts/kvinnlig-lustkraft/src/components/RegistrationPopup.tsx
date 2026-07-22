@@ -18,9 +18,12 @@ import {
 export type RegistrationPopupProps = {
   open: boolean;
   onClose: () => void;
+  // When true (used by the /test-now page): register against the WebinarFuel
+  // "just-in-time" session and redirect straight into the webinar room.
+  testNow?: boolean;
 };
 
-export function RegistrationPopup({ open, onClose }: RegistrationPopupProps) {
+export function RegistrationPopup({ open, onClose, testNow }: RegistrationPopupProps) {
   const [, navigate] = useLocation();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -71,6 +74,7 @@ export function RegistrationPopup({ open, onClose }: RegistrationPopupProps) {
           email: email.trim(),
           phone: phoneTrimmed,
           source: "webinar",
+          ...(testNow ? { test_now: true } : {}),
           event_id: eventId,
           fbp,
           fbc,
@@ -111,9 +115,9 @@ export function RegistrationPopup({ open, onClose }: RegistrationPopupProps) {
           // pixel errors must not block navigation
         }
       }
-      // Go straight into the webinar room when we got a personal join link;
-      // otherwise fall back to the thank-you page.
-      if (data.join_link) {
+      // On the /test-now page: jump straight into the webinar room.
+      // Normal flow: go to the thank-you page.
+      if (testNow && data.join_link) {
         window.location.assign(data.join_link);
       } else {
         navigate("/tack");

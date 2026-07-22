@@ -2,7 +2,10 @@ import { logger } from "./logger";
 
 const WEBINARFUEL_API_URL = "https://api.webinarfuel.com/registrants";
 export const WEBINARFUEL_WEBINAR_ID = 20541;
-export const WEBINARFUEL_SESSION_ID = 75909;
+export const WEBINARFUEL_SESSION_ID = 75648;
+// Special "just-in-time" session used by the /test-now page — registrants get
+// a goto_now link that drops them straight into the webinar room.
+export const WEBINARFUEL_TEST_NOW_SESSION_ID = 75909;
 
 export type WebinarFuelResult = {
   ok: boolean;
@@ -25,6 +28,7 @@ export type WebinarFuelInput = {
   utm_campaign?: string;
   utm_term?: string;
   utm_content?: string;
+  sessionId?: number;
 };
 
 function splitName(name: string): { first: string; last: string } {
@@ -86,7 +90,7 @@ export async function registerWithWebinarFuel(
       ...(input.tags && input.tags.length > 0 ? { tags: input.tags } : {}),
     },
     session: {
-      webinar_session_id: WEBINARFUEL_SESSION_ID,
+      webinar_session_id: input.sessionId ?? WEBINARFUEL_SESSION_ID,
       time_zone: "Europe/Stockholm",
       ...(input.ip ? { ip: input.ip } : {}),
       ...(input.referrer ? { referrer: input.referrer } : {}),
